@@ -12,6 +12,7 @@ public:
 	Contact();
 	~Contact();
 
+	// void	get_contact(*Contact);
 private:
 };
 
