@@ -4,19 +4,23 @@
 
 int main(int ac, char **av)
 {
-	PhoneBook	phoneBook;
-	// std::string input;
+	PhoneBook		phoneBook;
+	Contact			new_contact;
+	std::string		input;
 	
-	// while (1)
-	// {
-	// 	std::getline(std::cin, input);
-	// 	if (input == "ADD")
-
-	// 	else if (input == "SEARCH")
-
-	// 	else if (input == "EXIT")
-	// 		return 0;
-	// }
+	while (1)
+	{
+		std::getline(std::cin, input);
+		if (input == "ADD")
+			std::cout << "ADD" << std::endl;
+		else if (input == "SEARCH")
+			std::cout << "SEARCH" << std::endl;
+		else if (input == "EXIT")
+		{
+			std::cout << "EXIT" << std::endl;
+			return 0;
+		}
+	}
 
 	char str[] = "Carl";
 	phoneBook.contact[0].name = str;
