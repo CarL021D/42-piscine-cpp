@@ -14,9 +14,8 @@ int main(int ac, char **av)
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			std::cout << "ADD" << std::endl;
-			// create_contact();
-			new_contact.create_contact();
+			new_contact = Contact::create_contact();
+			phoneBook.add_contact(phoneBook, new_contact);
 		}
 		else if (input == "SEARCH")
 			std::cout << "SEARCH" << std::endl;
@@ -27,7 +26,7 @@ int main(int ac, char **av)
 		}
 	}
 
-	char str[] = "Carl";
-	phoneBook.contact[0].name = str;
-	std::cout << phoneBook.contact[0].name << std::endl;
+	// phoneBook.contact[0].name = str;
+	// char str[] = "Carl";
+	// std::cout << phoneBook.contact[0].name << std::endl;
 }

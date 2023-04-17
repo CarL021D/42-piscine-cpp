@@ -12,7 +12,6 @@ Contact::~Contact(void) {
 Contact		Contact::create_contact()
 {
 	Contact			contact;
-	bool			valid_input;
 	std::string		input;
 
 	while (input.empty())
@@ -58,5 +57,9 @@ Contact		Contact::create_contact()
 		std::getline(std::cin, input);
 		contact.darkest_secret = input;
 	}
+	std::cout << contact.name << std::endl;
+	std::cout << contact.last_name << std::endl;
+	std::cout << contact.nickname << std::endl;
+
 	return contact;
 }

@@ -15,7 +15,7 @@ public:
 	Contact();
 	~Contact();
 
-	Contact create_contact(void);
+	static Contact 		create_contact(void);
 
 private:
 
