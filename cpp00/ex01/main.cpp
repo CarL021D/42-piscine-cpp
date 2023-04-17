@@ -10,9 +10,14 @@ int main(int ac, char **av)
 	
 	while (1)
 	{
+		std::cout << "Enter a command !" << std::endl;
 		std::getline(std::cin, input);
 		if (input == "ADD")
+		{
 			std::cout << "ADD" << std::endl;
+			// create_contact();
+			new_contact.create_contact();
+		}
 		else if (input == "SEARCH")
 			std::cout << "SEARCH" << std::endl;
 		else if (input == "EXIT")
