@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include "Contact.hpp"
 
 Contact::Contact(void) {
@@ -64,7 +65,7 @@ Contact		Contact::create_contact()
 	return contact;
 }
 
-unsigned short	dot_count(std::str str)
+unsigned short	space_count(std::str str)
 {
 	unsigned int	len;
 
@@ -95,13 +96,44 @@ std::str	PhoneBook::truncate_str(std::str str)
 	return ret;
 }
 
+bool	contact_index_error(PhoneBook phoneB, std::str index_str)
+{
+	unsigned short	len;
+	unsigned short	max_index;
+	long long		value;
+
+	if (index.empy)
+		return true;
+	len = strlen(index_str)
+	for (unsigned int i; i < len; i++)
+	{
+		if (!index_str.isdigit())
+			std::cout << "Unknonw characters, inset digits only" << std::stdl;
+		return true;
+	}
+	max_index = 0;
+	while (!phoneB.contact[max_index].name.empty())
+		max_index++;
+	value = atoi(index);
+	if (value < 0 || value < max_index)
+	{
+		std::cout << "Error, chose an index between 0 and " << max_index << std::stdl;
+		return true;
+	}
+	return false;
+}
+
 void	PhoneBook::display_contact_info(PhoneBook phoneB)
 {
 	std::string		input;
 
+	while (contact_index_error(phoneB, input))
+	{
+		input.clear();
+		std::cout << "Enter the contact index you're looking for!" << std::endl;
+		std::getline(std::cin, input);
+	}
 
-	std::cout << "Enter the contact you are looking for!" << std::endl;
-	std::getline(std::cin, input);
 	while (i < 8)
 	{
 		if (input == phoneB.contact[i].name)
