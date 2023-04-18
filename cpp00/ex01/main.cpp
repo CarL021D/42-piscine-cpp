@@ -18,7 +18,7 @@ int main(int ac, char **av)
 			phoneBook.add_contact(phoneBook, new_contact);
 		}
 		else if (input == "SEARCH")
-			std::cout << "SEARCH" << std::endl;
+			phoneBook.look_for_contact_info(phoneBook);
 		else if (input == "EXIT")
 		{
 			std::cout << "EXIT" << std::endl;

@@ -49,16 +49,18 @@ bool	PhoneBook::contact_index_error(PhoneBook phoneB, std::string index_str)
 
 	if (index_str.empty())
 		return true;
-	for (unsigned int i; i < index_str.length(); i++)
+	for (unsigned int i = 0; i < index_str.length(); i++)
 	{
 		if (!isdigit(index_str[i]))
-			std::cout << "Unknonw characters, inset digits only" << std::endl;
-		return true;
+		{
+			std::cout << "Unknown characters, insert digits only!" << std::endl;
+			return true;
+		}
 	}
 	max_index = 0;
 	while (!phoneB.contact[max_index].name.empty())
 		max_index++;
-	value = atoi(index_str);
+	value = std::stoi(index_str);
 	if (value < 0 || value < max_index)
 	{
 		std::cout << "Error, chose an index between 0 and " << max_index << std::endl;
@@ -82,20 +84,21 @@ void	PhoneBook::print_content(std::string input)
 	std::cout << _truncate_str;
 }
 
-void	PhoneBook::display_contact_info(PhoneBook phoneB)
+void	PhoneBook::look_for_contact_info(PhoneBook phoneB)
 {
 	std::string		input;
 	std::string		tmp;
 	short			_space_count;
 	short			index;
 
-	while (contact_index_error(phoneB, input))
+	std::cout << "Enter the contact index you're looking for!" << std::endl;
+	std::getline(std::cin, input);
+	if (contact_index_error(phoneB, input))
 	{
-		input.clear();
-		std::cout << "Enter the contact index you're looking for!" << std::endl;
-		std::getline(std::cin, input);
+		std::cout << "Wrong Input" << std::endl;
+		return;
 	}
-	index = atoi(input);
+	index = std::stoi(input);
 	std::cout << "|";
 	print_content(input);
 	std::cout << "|";

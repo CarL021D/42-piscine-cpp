@@ -17,7 +17,7 @@ public:
 	std::string	truncate_str(std::string str);
 	bool		contact_index_error(PhoneBook phoneB, std::string index_str);
 	void		print_content(std::string input);
-	void		display_contact_info(PhoneBook phoneB);
+	void		look_for_contact_info(PhoneBook phoneB);
 
 
 private:
