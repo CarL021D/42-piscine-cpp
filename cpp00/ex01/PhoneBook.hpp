@@ -12,7 +12,9 @@ public:
 	PhoneBook();
 	~PhoneBook();
 
-	PhoneBook add_contact(PhoneBook phoneB, Contact contact);
+	PhoneBook	add_contact(PhoneBook phoneB, Contact contact);
+	void		display_contact_info(PhoneBook phoneB);
+	
 private:
 };
 

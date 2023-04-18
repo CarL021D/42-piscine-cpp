@@ -63,3 +63,55 @@ Contact		Contact::create_contact()
 
 	return contact;
 }
+
+unsigned short	dot_count(std::str str)
+{
+	unsigned int	len;
+
+	len = strlen(str);
+	return (10 - len);
+
+
+	// short			dot_count = 0;
+	// char			temp;
+
+	// len = strlen(str);
+	// if (len > 10)
+	// 	len = 9;
+	// if (len < 10)
+	// 	dot_count = 10 - len;
+	// temp = str.substr(0, )
+}
+
+std::str	PhoneBook::truncate_str(std::str str)
+{
+	unsigned int	len;
+	std::str		ret;
+
+	len = strlen(str);
+	if (len <= 10)
+		return str;
+	ret = str.substr(0, 9);
+	return ret;
+}
+
+void	PhoneBook::display_contact_info(PhoneBook phoneB)
+{
+	std::string		input;
+
+
+	std::cout << "Enter the contact you are looking for!" << std::endl;
+	std::getline(std::cin, input);
+	while (i < 8)
+	{
+		if (input == phoneB.contact[i].name)
+		{
+			len = strlen(input);
+			if (len > 9)
+				len = 9;
+			if 
+
+		}
+	}
+
+}
