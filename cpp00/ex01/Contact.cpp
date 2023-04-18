@@ -71,17 +71,6 @@ unsigned short	space_count(std::str str)
 
 	len = strlen(str);
 	return (10 - len);
-
-
-	// short			dot_count = 0;
-	// char			temp;
-
-	// len = strlen(str);
-	// if (len > 10)
-	// 	len = 9;
-	// if (len < 10)
-	// 	dot_count = 10 - len;
-	// temp = str.substr(0, )
 }
 
 std::str	PhoneBook::truncate_str(std::str str)
@@ -93,6 +82,7 @@ std::str	PhoneBook::truncate_str(std::str str)
 	if (len <= 10)
 		return str;
 	ret = str.substr(0, 9);
+	ret.push_back('.');
 	return ret;
 }
 
@@ -123,9 +113,27 @@ bool	contact_index_error(PhoneBook phoneB, std::str index_str)
 	return false;
 }
 
+void	print_content(std::str input)
+{
+	std::str	_truncate_str;
+	short		_space_count;
+
+	_space_count = space_count(input);
+	while (_space_count)
+	{
+		std::cout << " ";
+		_space_count--;
+	}
+	_truncate_str = truncate_str(unput);
+	std::cout << _truncate_str;
+}
+
 void	PhoneBook::display_contact_info(PhoneBook phoneB)
 {
 	std::string		input;
+	std::string		tmp;
+	short	_space_count;
+	short	index;
 
 	while (contact_index_error(phoneB, input))
 	{
@@ -133,17 +141,15 @@ void	PhoneBook::display_contact_info(PhoneBook phoneB)
 		std::cout << "Enter the contact index you're looking for!" << std::endl;
 		std::getline(std::cin, input);
 	}
-
-	while (i < 8)
-	{
-		if (input == phoneB.contact[i].name)
-		{
-			len = strlen(input);
-			if (len > 9)
-				len = 9;
-			if 
-
-		}
-	}
-
+	index = atoi(input);
+	std::cout << "|";
+	print_content(input);
+	std::cout << "|";
+	print_content(phoneB.contact[index].name);
+	std::cout << "|";
+	print_content(phoneB.contact[index].last_name);
+	std::cout << "|";
+	print_content(phoneB.contact[index].nickname);
+	std::cout << "|" << std::endl;
+	
 }
