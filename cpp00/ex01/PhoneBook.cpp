@@ -13,17 +13,11 @@ PhoneBook::~PhoneBook(void) {
 	return;
 }
 
-PhoneBook		PhoneBook::add_contact(PhoneBook phoneB, Contact contact)
+void	PhoneBook::add_contact(Contact contact)
 {
-	int8_t	i = 7;
-
-	while (i >= 0)
-	{
-		phoneB.contact[i - 1] = phoneB.contact[i];
-		i--;
-	}
-	phoneB.contact[0] = contact;
-	return phoneB;
+	for (int8_t i = 7; i >= 0; i--)
+		this->contact[i] = this->contact[i - 1];
+	this->contact[0] = contact;
 }
 
 short	PhoneBook::space_count(std::string str)
@@ -42,7 +36,7 @@ std::string	PhoneBook::truncate_str(std::string str)
 	return ret;
 }
 
-bool	PhoneBook::contact_index_error(PhoneBook phoneB, std::string index_str)
+bool	PhoneBook::contact_index_error(std::string index_str)
 {
 	unsigned short	max_index;
 	long long		value;
@@ -58,7 +52,7 @@ bool	PhoneBook::contact_index_error(PhoneBook phoneB, std::string index_str)
 		}
 	}
 	max_index = 0;
-	while (!phoneB.contact[max_index].name.empty())
+	while (!this->contact[max_index].name.empty())
 		max_index++;
 	value = std::stoi(index_str);
 	if (value < 0 || value < max_index)
@@ -84,16 +78,19 @@ void	PhoneBook::print_content(std::string input)
 	std::cout << _truncate_str;
 }
 
-void	PhoneBook::look_for_contact_info(PhoneBook phoneB)
+void	PhoneBook::look_for_contact_info()
 {
 	std::string		input;
 	std::string		tmp;
 	short			_space_count;
 	short			index;
 
+	std::cout << "HERE"<< this->contact[0].name << std::endl;
+
+
 	std::cout << "Enter the contact index you're looking for!" << std::endl;
 	std::getline(std::cin, input);
-	if (contact_index_error(phoneB, input))
+	if (contact_index_error(input))
 	{
 		std::cout << "Wrong Input" << std::endl;
 		return;
@@ -102,10 +99,10 @@ void	PhoneBook::look_for_contact_info(PhoneBook phoneB)
 	std::cout << "|";
 	print_content(input);
 	std::cout << "|";
-	print_content(phoneB.contact[index].name);
+	print_content(this->contact[index].name);
 	std::cout << "|";
-	print_content(phoneB.contact[index].last_name);
+	print_content(this->contact[index].last_name);
 	std::cout << "|";
-	print_content(phoneB.contact[index].nickname);
+	print_content(this->contact[index].nickname);
 	std::cout << "|" << std::endl;
 }

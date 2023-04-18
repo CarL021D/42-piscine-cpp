@@ -14,11 +14,14 @@ int main(int ac, char **av)
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
-			new_contact = Contact::create_contact();
-			phoneBook.add_contact(phoneBook, new_contact);
+			new_contact.create_contact();
+			phoneBook.add_contact(new_contact);
+			std::cout << "1: " << phoneBook.contact[0].name << std::endl;
+			std::cout << "2: " << phoneBook.contact[1].name << std::endl;
+
 		}
 		else if (input == "SEARCH")
-			phoneBook.look_for_contact_info(phoneBook);
+			phoneBook.look_for_contact_info();
 		else if (input == "EXIT")
 		{
 			std::cout << "EXIT" << std::endl;

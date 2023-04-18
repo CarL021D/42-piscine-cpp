@@ -12,12 +12,12 @@ public:
 	PhoneBook();
 	~PhoneBook();
 
-	PhoneBook	add_contact(PhoneBook phoneB, Contact contact);
+	void		add_contact(Contact contact);
 	short		space_count(std::string str);
 	std::string	truncate_str(std::string str);
-	bool		contact_index_error(PhoneBook phoneB, std::string index_str);
+	bool		contact_index_error(std::string index_str);
 	void		print_content(std::string input);
-	void		look_for_contact_info(PhoneBook phoneB);
+	void		look_for_contact_info();
 
 
 private:

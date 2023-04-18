@@ -10,30 +10,30 @@ Contact::~Contact(void) {
 	return;
 }
 
-Contact		Contact::create_contact()
+void		Contact::create_contact()
 {
-	Contact			contact;
+	// Contact			contact;
 	std::string		input;
 
 	while (input.empty())
 	{
 		std::cout << "Insert your first name:" << std::endl;
 		std::getline(std::cin, input);
-		contact.name = input;
+		this->name = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert your last name:" << std::endl;
 		std::getline(std::cin, input);
-		contact.last_name = input;
+		this->last_name = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert a nickname name:" << std::endl;
 		std::getline(std::cin, input);
-		contact.nickname = input;
+		this->nickname = input;
 	}
 	input.clear();
 	while (input.empty())
@@ -49,18 +49,16 @@ Contact		Contact::create_contact()
 			}
 			break;
 		}
-		contact.phone_number = input;
+		this->phone_number = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
-		std::cout << "Insert darkest secret:" << std::endl;
+		std::cout << "Insert your darkest secret:" << std::endl;
 		std::getline(std::cin, input);
-		contact.darkest_secret = input;
+		this->darkest_secret = input;
 	}
-	std::cout << contact.name << std::endl;
-	std::cout << contact.last_name << std::endl;
-	std::cout << contact.nickname << std::endl;
-
-	return contact;
+	// std::cout << contact.name << std::endl;
+	// std::cout << contact.last_name << std::endl;
+	// std::cout << contact.nickname << std::endl;
 }
