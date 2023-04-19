@@ -15,13 +15,15 @@ PhoneBook::~PhoneBook(void) {
 
 void	PhoneBook::add_contact(Contact contact)
 {
-	for (int8_t i = 7; i > 0; i--)
+	for (int8_t i = 1; i > 0; i--)
 		this->contact[i] = this->contact[i - 1];
 	this->contact[0] = contact;
 }
 
 short	PhoneBook::space_count(std::string str)
 {
+	if (str.length() >= 10)
+		return 0;
 	return (10 - str.length());
 }
 
@@ -51,21 +53,22 @@ bool	PhoneBook::contact_index_error(std::string input)
 			return true;
 		}
 	}
-	max_index = -1;
+	max_index = 0;
+	// TODO: - Error max_index incrementation bugged
 	while (!this->contact[max_index].name.empty())
 		max_index++;
-	// std::cout << "MAX:" << max_index << std::endl;
+	std::cout << "MAX:" << max_index << std::endl;
 	
-	if (max_index < 0)
+	if (!max_index)
 	{
 		std::cout << "Phone book empty" << std::endl;
 		return true;
 	}
 	int_input = std::stoi(input);
-	// std::cout << "VAL:" << int_input << std::endl;
+	std::cout << "VAL:" << int_input << std::endl;
 	if (int_input < 0 || int_input > (max_index - 1))
 	{
-		std::cout << "Wrong input, there's " << max_index << " in the phone book!" << std::endl;
+		std::cout << "Wrong input, there's " << max_index << " contact(s) in the phone book!" << std::endl;
 		return true;
 	}
 	return false;
@@ -89,8 +92,8 @@ void	PhoneBook::print_content(std::string input)
 void	PhoneBook::look_for_contact_info()
 {
 	std::string		input;
-	std::string		tmp;
-	short			_space_count;
+	// std::string		tmp;
+	// short			_space_count;
 	short			index;
 
 	std::cout << "Enter the contact index you're looking for!" << std::endl;

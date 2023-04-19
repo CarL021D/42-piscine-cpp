@@ -10,7 +10,7 @@ int main(int ac, char **av)
 	
 	while (1)
 	{
-		std::cout << "Enter a command !" << std::endl;
+		std::cout << "Enter a command!" << std::endl;
 		std::getline(std::cin, input);
 		if (input == "ADD")
 		{
@@ -22,10 +22,7 @@ int main(int ac, char **av)
 		else if (input == "SEARCH")
 			phoneBook.look_for_contact_info();
 		else if (input == "EXIT")
-		{
-			std::cout << "EXIT" << std::endl;
 			return 0;
-		}
 	}
 
 	// phoneBook.contact[0].name = str;
