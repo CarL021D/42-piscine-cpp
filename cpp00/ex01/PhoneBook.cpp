@@ -15,7 +15,7 @@ PhoneBook::~PhoneBook(void) {
 
 void	PhoneBook::add_contact(Contact contact)
 {
-	for (int8_t i = 1; i > 0; i--)
+	for (int8_t i = 7; i > 0; i--)
 		this->contact[i] = this->contact[i - 1];
 	this->contact[0] = contact;
 }
