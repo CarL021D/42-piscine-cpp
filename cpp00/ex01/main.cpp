@@ -16,9 +16,8 @@ int main(int ac, char **av)
 		{
 			new_contact.create_contact();
 			phoneBook.add_contact(new_contact);
-			std::cout << "1: " << phoneBook.contact[0].name << std::endl;
-			std::cout << "2: " << phoneBook.contact[1].name << std::endl;
-
+			// std::cout << "1: " << phoneBook.contact[0].name << std::endl;
+			// std::cout << "2: " << phoneBook.contact[1].name << std::endl;
 		}
 		else if (input == "SEARCH")
 			phoneBook.look_for_contact_info();
