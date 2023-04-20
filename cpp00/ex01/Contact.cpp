@@ -19,21 +19,21 @@ void		Contact::create_contact()
 	{
 		std::cout << "Insert your first name:" << std::endl;
 		std::getline(std::cin, input);
-		this->name = input;
+		first_name = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert your last name:" << std::endl;
 		std::getline(std::cin, input);
-		this->last_name = input;
+		last_name = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert a nickname name:" << std::endl;
 		std::getline(std::cin, input);
-		this->nickname = input;
+		nickname = input;
 	}
 	input.clear();
 	while (input.empty())
@@ -49,14 +49,14 @@ void		Contact::create_contact()
 			}
 			break;
 		}
-		this->phone_number = input;
+		phone_number = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert your darkest secret:" << std::endl;
 		std::getline(std::cin, input);
-		this->darkest_secret = input;
+		darkest_secret = input;
 	}
 	// std::cout << contact.name << std::endl;
 	// std::cout << contact.last_name << std::endl;

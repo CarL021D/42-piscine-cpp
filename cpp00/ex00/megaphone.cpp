@@ -3,17 +3,20 @@
 
 int main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac < 2)
 	{
 		std::cout << "Only 1 argument is required" << std::endl;
 		return 1;
 	}
-	for (unsigned int i = 0; i < strlen(av[1]); i++)
+	for (unsigned int i = 1; i < ac; i++)
 	{
-		if (isupper(av[1][i]))
-			av[1][i] = tolower(av[1][i]);
-		else if (islower(av[1][i]))
-			av[1][i] = toupper(av[1][i]);
+		for (unsigned int j = 0; av[i][j]; j++)
+		{
+			if (islower(av[i][j]))
+				std::cout << (char)toupper(av[i][j]);
+			else
+				std::cout << av[i][j];
+		}
 	}
-	std::cout << av[1] << std::endl;
+	std::cout << std::endl;
 }

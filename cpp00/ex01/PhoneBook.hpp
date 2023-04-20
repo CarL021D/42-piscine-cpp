@@ -19,7 +19,9 @@ private:
 	short			space_count(std::string str);
 	bool			contact_index_error(std::string index_str);
 	std::string		truncate_str(std::string str);
+	void			display_contacts_info();
 	void			print_content(std::string input);
+	void			single_contact_info_display(std::string input);
 };
 
 #endif
