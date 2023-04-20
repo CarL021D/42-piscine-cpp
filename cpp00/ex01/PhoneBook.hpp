@@ -7,6 +7,7 @@
 class PhoneBook {
 	
 public:
+
 	Contact		contact[8];
 
 	PhoneBook();
@@ -16,6 +17,7 @@ public:
 	void			look_for_contact_info();
 
 private:
+
 	short			space_count(std::string str);
 	bool			contact_index_error(std::string index_str);
 	std::string		truncate_str(std::string str);
