@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <cctype>
+#include <stdint.h>
 #include <cstdlib>
 #include "Contact.hpp"
 

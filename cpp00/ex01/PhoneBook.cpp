@@ -1,7 +1,7 @@
 #include <iostream>
-#include <cstring>
+#include <cstdlib>
 #include <cctype>
-#include <cstdint>
+#include <stdint.h>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
@@ -16,18 +16,18 @@ PhoneBook::~PhoneBook(void) {
 void	PhoneBook::add_contact(Contact contact)
 {
 	for (int8_t i = 7; i > 0; i--)
-		this->contact[i] = this->contact[i - 1];
-	this->contact[0] = contact;
+		this->_contact[i] = this->_contact[i - 1];
+	this->_contact[0] = contact;
 }
 
-short	PhoneBook::space_count(std::string str)
+short	PhoneBook::space_count(std::string str) const
 {
 	if (str.length() >= 10)
 		return 0;
 	return (10 - str.length());
 }
 
-std::string	PhoneBook::truncate_str(std::string str)
+std::string	PhoneBook::truncate_str(std::string str) const
 {
 	std::string		ret;
 
@@ -38,9 +38,8 @@ std::string	PhoneBook::truncate_str(std::string str)
 	return ret;
 }
 
-bool	PhoneBook::contact_index_error(std::string input)
+bool	PhoneBook::contact_index_error(std::string input) const
 {
-	short			max_index;
 	long long		int_input;
 
 	if (input.empty())
@@ -53,8 +52,8 @@ bool	PhoneBook::contact_index_error(std::string input)
 			return true;
 		}
 	}
-	int_input = std::stoi(input);
-	if ((int_input < 0 || int_input > 7) || contact[int_input].first_name.empty())
+	int_input = std::atoi(input.c_str());
+	if ((int_input < 0 || int_input > 7) || _contact[int_input].first_name.empty())
 	{
 		std::cout << "Wrong input!" << std::endl;
 		return true;
@@ -62,7 +61,7 @@ bool	PhoneBook::contact_index_error(std::string input)
 	return false;
 }
 
-void	PhoneBook::print_content(std::string input)
+void	PhoneBook::print_content(std::string input) const
 {
 	std::string		_truncate_str;
 	short			_space_count;
@@ -77,7 +76,7 @@ void	PhoneBook::print_content(std::string input)
 	std::cout << _truncate_str;
 }
 
-void	PhoneBook::display_contacts_info()
+void	PhoneBook::display_contacts_info() const
 {
 	std::cout << std::endl << "|";
 	for (short i = 0; i < 5; i++)
@@ -95,25 +94,25 @@ void	PhoneBook::display_contacts_info()
 	for (short i = 0; i < 8; i++)
 	{
 		std::cout << "|         " << i << "|";		
-		print_content(contact[i].first_name);
+		print_content(_contact[i].first_name);
 		std::cout << "|";
-		print_content(contact[i].last_name);
+		print_content(_contact[i].last_name);
 		std::cout << "|";
-		print_content(contact[i].nickname);
+		print_content(_contact[i].nickname);
 		std::cout << "|" << std::endl;
 	}
 		std::cout << std::endl;
 }
 
-void	PhoneBook::single_contact_info_display(std::string input)
+void	PhoneBook::single_contact_info_display(std::string input) const
 {
-	int32_t index = std::stoi(input);
+	int32_t index = std::atoi(input.c_str());
 
-	std::cout << std::endl << "first name: " << contact[index].first_name << std::endl;
-	std::cout << "last name: " << contact[index].last_name << std::endl;
-	std::cout << "nickname: " << contact[index].nickname << std::endl;
-	std::cout << "phone number: " << contact[index].phone_number << std::endl;
-	std::cout << "darkest secret: " << contact[index].darkest_secret << std::endl << std::endl;
+	std::cout << std::endl << "first name: " << _contact[index].first_name << std::endl;
+	std::cout << "last name: " << _contact[index].last_name << std::endl;
+	std::cout << "nickname: " << _contact[index].nickname << std::endl;
+	std::cout << "phone number: " << _contact[index].phone_number << std::endl;
+	std::cout << "darkest secret: " << _contact[index].darkest_secret << std::endl << std::endl;
 
 }
 

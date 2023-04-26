@@ -8,7 +8,7 @@ int main(int ac, char **av)
 		std::cout << "Only 1 argument is required" << std::endl;
 		return 1;
 	}
-	for (unsigned int i = 1; i < ac; i++)
+	for (int i = 1; i < ac; i++)
 	{
 		for (unsigned int j = 0; av[i][j]; j++)
 		{

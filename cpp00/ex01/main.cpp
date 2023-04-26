@@ -2,12 +2,13 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-int main(int ac, char **av)
+int main()
 {
 	PhoneBook		phoneBook;
 	Contact			new_contact;
 	std::string		input;
 	
+
 	while (1)
 	{
 		std::cout << "Enter a command!" << std::endl;
