@@ -10,7 +10,6 @@ int main(int ac, char **av)
 	}
 	std::ifstream	infile(av[1]);
 	if (!infile.is_open())
-	if (!infile)
 	{
 		std::cerr << "Error: failed to open file!" << std::endl;
 		return 1;
