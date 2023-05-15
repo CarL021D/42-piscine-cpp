@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/15 16:45:51 by caboudar          #+#    #+#             */
+/*   Updated: 2023/05/15 20:53:48 by caboudar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
-#include <cstdint>
+#include <fstream>
+#include <stdint.h>
 
 int main(int ac, char **av)
 {
@@ -8,26 +21,30 @@ int main(int ac, char **av)
 		std::cerr << "4 arguments required!" << std::endl;
 		return 1;
 	}
+	
 	std::ifstream	infile(av[1]);
+	std::string		s1 = av[2];
+	std::string		s2 = av[3];
+
 	if (!infile.is_open())
 	{
 		std::cerr << "Error: failed to open file!" << std::endl;
 		return 1;
 	}
-	std::ostream outfile((std::string)av[1] + ".replace");
-	// if (!outfile)
-	// {
-	// 	std::cerr << "Error: failed to create file!" << std::endl;
-	// 	return 1;
-	// }
-	std::string	fileContent = std::getline(infile, fileContent);
+	
+	std::ofstream	outfile((std::string(av[1]) + ".replace").c_str());
+	std::string		line;
 
-	for (findRet == fileContent.find(); findRet != -1)
-	{
-
-
-
-
-
+	 while (std::getline(infile, line)) {
+		size_t pos = 0;
+		while ((pos = line.find(s1, pos)) != std::string::npos) {
+			line = line.substr(0, pos) + s2;
+			line += line.substr(pos + s1.length());
+			pos += s2.length();
+		}
+		outfile << line << '\n';
 	}
+
+	infile.close();
+	outfile.close();
 }

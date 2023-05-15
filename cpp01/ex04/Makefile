@@ -5,15 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/15 16:43:10 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/15 16:43:11 by caboudar         ###   ########.fr        #
+#    Created: 2023/05/15 16:45:55 by caboudar          #+#    #+#              #
+#    Updated: 2023/05/15 16:53:35 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	newZombie.cpp \
-				randomChump.cpp \
-				Zombie.cpp \
-				main.cpp \
+SRCS		=	main.cpp
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
@@ -25,7 +22,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex00
+NAME		= 	ex04
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
