@@ -6,11 +6,12 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:45:55 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/15 21:02:22 by caboudar         ###   ########.fr        #
+#    Updated: 2023/05/17 14:17:47 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp	\
+				Harl.cpp	\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
