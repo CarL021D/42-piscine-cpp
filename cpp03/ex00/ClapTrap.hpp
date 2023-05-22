@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 16:06:40 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/17 16:06:41 by caboudar         ###   ########.fr       */
+/*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
+/*   Updated: 2023/05/22 18:00:15 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include <stdint.h>
 
-class Harl {
+class ClapTrap {
 
 	public:
-		Harl();
-		~Harl();
-		
-		void		complain(std::string);
 
-		typedef struct		s_ptr_arr
-		{
-			std::string		level;
-			void(Harl::*funcPtr)(void);
-		}					t_ptr_arr;
+		ClapTrap();
+		~ClapTrap();
+		ClapTrap(std::string name);
+	
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+		void setDamage(unsigned int amount);
+		void constructorCall();
 
 	private:
-		void		_debug();
-		void		_info();
-		void		_warning();
-		void		_error();
-		t_ptr_arr	funcArr[4];
+		std::string		_name;
+		int				_hp;
+		unsigned int	_energy;
+		unsigned int	_attackDamage;
 };

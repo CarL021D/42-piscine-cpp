@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:15:40 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/17 15:48:22 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:54:23 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ Harl::Harl() {
 Harl::~Harl() {}
 
 void	Harl::complain(std::string level) {
-		for (int i = 0; i < 4; i++)
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (level == funcArr[i].level)
 		{
-			if (level == funcArr[i].level)
-			{
-				(this->*funcArr[i].funcPtr)();
-				return ;
-			}
+			(this->*funcArr[i].funcPtr)();
+			return ;
 		}
+	}
 }
 
 void	Harl::_debug() {
