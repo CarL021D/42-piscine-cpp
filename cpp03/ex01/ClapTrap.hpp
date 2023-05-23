@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/22 21:46:47 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/05/23 21:19:38 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ class ClapTrap {
 	public:
 
 		ClapTrap();
-		~ClapTrap();
 		ClapTrap(std::string name);
+		virtual ~ClapTrap();
 	
 		virtual	void 	attack(const std::string& target);
 		void			takeDamage(unsigned int amount);

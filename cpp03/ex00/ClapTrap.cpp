@@ -6,15 +6,11 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/22 19:45:49 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:57:45 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-
-void ClapTrap::constructorCall() {
-		std::cout << "ClapTrap created!" << std::endl;
-}
 
 ClapTrap::ClapTrap() {}
 
