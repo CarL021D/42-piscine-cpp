@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 10:53:03 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 11:42:18 by caboudar         ###   ########.fr       */
+/*   Created: 2023/05/24 12:03:06 by caboudar          #+#    #+#             */
+/*   Updated: 2023/05/24 17:40:11 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class DiamondTrap : public FragTrap, public ScavTrap {
 
 	public:
-			FragTrap();
-			FragTrap(std::string name);
-			~FragTrap();
+	
+		DiamondTrap();
+		DiamondTrap(std::string name);
+		~DiamondTrap();
 
-			void highFiveGuys();
+		void whoAmI();
+		using ScavTrap::attack;
+
+	private:
+		std::string name;
 };

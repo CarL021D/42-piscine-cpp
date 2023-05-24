@@ -6,13 +6,12 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:30:19 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 10:19:57 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:40:52 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <ClapTrap.hpp>
-#include <ScavTrap.hpp>
 
 class ScavTrap : public ClapTrap {
 	public:

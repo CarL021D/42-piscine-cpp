@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 16:53:58 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:35:46 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	std::cout << "ScavTrap created!" << std::endl;
 	this->_name = name;
 	this->_energy = 50;
-	this->_hp = 100;
-	this->_attackDamage = 20;
+	this->_hp = 20;
 }
 
 ScavTrap::~ScavTrap() {
