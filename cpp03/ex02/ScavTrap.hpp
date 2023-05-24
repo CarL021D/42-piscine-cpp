@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 11:15:45 by caboudar         ###   ########.fr       */
+/*   Created: 2023/05/22 20:30:19 by caboudar          #+#    #+#             */
+/*   Updated: 2023/05/24 10:19:57 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include <iostream>
-#include <stdint.h>
+#include <ClapTrap.hpp>
+#include <ScavTrap.hpp>
 
-class ClapTrap {
-
+class ScavTrap : public ClapTrap {
 	public:
 
-		ClapTrap();
-		ClapTrap(std::string name);
-		virtual ~ClapTrap();
-	
-		virtual	void 	attack(const std::string& target);
-		void			takeDamage(unsigned int amount);
-		void			beRepaired(unsigned int amount);
+		ScavTrap();
+		ScavTrap(std::string name);
+		~ScavTrap();
 
-	protected:
-		std::string		_name;
-		int				_hp;
-		unsigned int	_energy;
-		unsigned int	_attackDamage;
+		void	guardGate();
+		void 	attack(const std::string& target);
 	
 	private:
 };
