@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #pragma once
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap : virtual public FragTrap, virtual public ScavTrap {
 
 	public:
 	

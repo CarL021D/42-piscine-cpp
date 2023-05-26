@@ -26,6 +26,7 @@ class ClapTrap {
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 		void			setDamage(unsigned int amount);
+		unsigned int	getAttackDamage();
 
 	protected:
 		std::string		_name;

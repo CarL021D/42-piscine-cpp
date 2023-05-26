@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #pragma once
-#include <ClapTrap.hpp>
-#include <ScavTrap.hpp>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 class ScavTrap : public ClapTrap {
 	public:

@@ -21,11 +21,11 @@ int main() {
 	player2.guardGate();
 	for (uint8_t i = 0; i < 2; i++) {
 		player1.attack("player2");
-		player2.takeDamage(1);
+		player2.takeDamage(player1.getAttackDamage());
 	}
 	player2.beRepaired(8);
 	for (uint8_t i = 0; i < 2; i++) {
 		player2.attack("player1");
-		player1.takeDamage(20);
+		player1.takeDamage(player2.getAttackDamage());
 	}
 }

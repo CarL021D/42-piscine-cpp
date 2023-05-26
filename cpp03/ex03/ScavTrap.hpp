@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #pragma once
-#include <ClapTrap.hpp>
+#include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap {
 	public:

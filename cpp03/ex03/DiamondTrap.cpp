@@ -14,15 +14,17 @@
 
 DiamondTrap::DiamondTrap() {}
 
-DiamondTrap::DiamondTrap(std::string name) : FragTrap() , ScavTrap() {
-	std::cout << "DiamondTrap created" << std::endl;
+DiamondTrap::DiamondTrap(std::string name) : FragTrap(name) , ScavTrap(name) {
+	std::cout << "DiamondTrap created!" << std::endl;
 	this->_name  = name + "_clap_name";
 	this->_hp = FragTrap::_hp;
 	this->_energy = ScavTrap::_energy;
 	this->_attackDamage = FragTrap::_attackDamage;
 }
 
-DiamondTrap::~DiamondTrap() {}
+DiamondTrap::~DiamondTrap() {
+	std::cout << "DiamondTrap " << this->_name << " destroyed!" << std::endl;
+}
 
 void DiamondTrap::whoAmI() {
 	std::cout << "My name is " << this->_name << " son of " << ClapTrap::_name << std::endl;

@@ -17,18 +17,13 @@
 
 int main() {
 	
-	ScavTrap 	player1 = ScavTrap("player1");
-	FragTrap	player2 = FragTrap("player2");
-	DiamondTrap	player3 = DiamondTrap("player3");
+	ClapTrap		player1 = ClapTrap("player1");
+	DiamondTrap		player2 = DiamondTrap("player2");
 	
-	player2.highFiveGuys();
-	for (uint8_t i = 0; i < 2; i++) {
-		player1.attack("player2");
-		player2.takeDamage(1);
-	}
-	player2.beRepaired(8);
+	player1.beRepaired(34);
+	player2.whoAmI();
 	for (uint8_t i = 0; i < 2; i++) {
 		player2.attack("player1");
-		player1.takeDamage(20);
+		player1.takeDamage(player2.getAttackDamage());
 	}
 }

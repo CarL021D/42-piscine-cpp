@@ -34,6 +34,6 @@ void ScavTrap::attack(const std::string& target) {
 		return ;
 	}
 	this->_energy -= 1;
-	std::cout << this->_name << " punched in the face " << target << " dealing " << this->_attackDamage << " damage(s)" << std::endl;
+	std::cout << this->_name << " punched " <<  target << " in the face dealing " << this->_attackDamage << " damage(s)" << std::endl;
 	std::cout << this->_name << " has " << this->_energy << " energy left" << std::endl;	
 }

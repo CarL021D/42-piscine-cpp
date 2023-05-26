@@ -38,6 +38,8 @@ void ClapTrap::attack(const std::string& target) {
 	
 }
 
+unsigned int ClapTrap::getAttackDamage() { return this->_attackDamage; }
+
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (this->_hp == 0)
 	{
