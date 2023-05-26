@@ -20,7 +20,6 @@ int main() {
 	ClapTrap		player1 = ClapTrap("player1");
 	DiamondTrap		player2 = DiamondTrap("player2");
 	
-	player1.beRepaired(34);
 	player2.whoAmI();
 	for (uint8_t i = 0; i < 2; i++) {
 		player2.attack("player1");

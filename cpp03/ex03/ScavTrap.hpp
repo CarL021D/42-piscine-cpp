@@ -13,7 +13,7 @@
 #pragma once
 #include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap {
+class ScavTrap: virtual public ClapTrap {
 	public:
 
 		ScavTrap();
@@ -22,10 +22,4 @@ class ScavTrap : virtual public ClapTrap {
 
 		void	guardGate();
 		void 	attack(const std::string& target);
-	
-	protected:
-
-		
-	
-	private:
 };

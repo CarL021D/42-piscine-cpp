@@ -14,7 +14,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : virtual public FragTrap, virtual public ScavTrap {
+class DiamondTrap: virtual public FragTrap, virtual public ScavTrap {
 
 	public:
 	

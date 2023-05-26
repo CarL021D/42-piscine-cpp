@@ -13,7 +13,7 @@
 #pragma once
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap {
+class FragTrap: virtual public ClapTrap {
 
 	public:
 			FragTrap();
