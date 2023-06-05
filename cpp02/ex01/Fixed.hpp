@@ -25,7 +25,7 @@ class Fixed {
 			Fixed(int value const);
 			
 			Fixed & operator=(Fixed const & rhs);
-			Fixed & operator<<();
+			Fixed & operator<<(os,);
 			int getRawBits(void) const;
 			void setRawBits(int const raw);
 			float toFloat() const;
