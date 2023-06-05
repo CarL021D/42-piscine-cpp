@@ -22,15 +22,17 @@ class Fixed {
 			~Fixed();
 			Fixed(Fixed const & cpy);
 			
-			Fixed(int value const);
-			
-			Fixed & operator=(Fixed const & rhs);
-			Fixed & operator<<(os,);
-			int getRawBits(void) const;
-			void setRawBits(int const raw);
+			Fixed(const int value);
+			Fixed(const float value);
+
+			Fixed &operator=(Fixed const & rhs);
+			int getRawBits() const;
+			void setRawBits(const int raw);
 			float toFloat() const;
 			int toInt() const;
 	private:
 			int _value;
 			static const int _fractionalBits;
 };
+
+std::ostream &operator<<(std::ostream &os, const Fixed &obj);
