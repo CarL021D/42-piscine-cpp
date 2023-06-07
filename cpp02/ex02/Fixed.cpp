@@ -47,6 +47,16 @@ Fixed Fixed::operator*(Fixed const &rhs) { return this->_value * rhs._value; }
 
 Fixed Fixed::operator/(Fixed const &rhs) { return this->_value / rhs._value; }
 
+bool Fixed::operator>(Fixed const &rhs) { return this->value > rhos._value; }
+
+bool Fixed::operator>=(Fixed const &rhs) { return this->value >= rhos._value; }
+
+bool Fixed::operator>(Fixed const &rhs) { return this->value < rhos._value; }
+
+bool Fixed::operator>(Fixed const &rhs) { return this->value <= rhos._value; }
+
+
+
 std::ostream &operator<<(std::ostream &os, const Fixed &obj) {
 	os << obj.toFloat();
 	return os;

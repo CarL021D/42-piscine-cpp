@@ -30,6 +30,12 @@ class Fixed {
 			Fixed operator-(Fixed const &rhs);
 			Fixed operator*(Fixed const &rhs);
 			Fixed operator/(Fixed const &rhs);
+
+			bool operator>(Fixed const &rhs);
+			bool operator>=(Fixed const &rhs);
+			bool operator<(Fixed const &rhs);
+			bool operator<=(Fixed const &rhs);
+
 			int getRawBits() const;
 			void setRawBits(const int raw);
 			float toFloat() const;
