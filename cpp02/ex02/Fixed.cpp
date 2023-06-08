@@ -40,7 +40,7 @@ Fixed &Fixed::operator-(Fixed const &rhs) {
 }
 
 Fixed &Fixed::operator*(Fixed const &rhs) {
-	this->_value *= rhs._value;
+	this->_value = (this->toFloat() * rhs.toFloat() * (1 << this->_fractionalBits));
 	return (*this);	
 }
 
@@ -50,15 +50,10 @@ Fixed &Fixed::operator/(Fixed const &rhs) {
 }
 
 bool Fixed::operator>(Fixed const &rhs) { return this->_value > rhs._value; }
-
 bool Fixed::operator>=(Fixed const &rhs) { return this->_value >= rhs._value; }
-
 bool Fixed::operator<(Fixed const &rhs) { return this->_value < rhs._value; }
-
 bool Fixed::operator<=(Fixed const &rhs) { return this->_value <= rhs._value; }
-
 bool Fixed::operator==(Fixed const &rhs) { return this->_value == rhs._value; }
-
 bool Fixed::operator!=(Fixed const &rhs) { return this->_value != rhs._value; }
 
 Fixed &Fixed::operator++() {
@@ -89,19 +84,14 @@ std::ostream &operator<<(std::ostream &os, const Fixed &obj) {
 }
 
 void Fixed::setRawBits(const int raw) { this->_value = raw; }
-
 int	Fixed::getRawBits() const { return this->_value; }
 
-float Fixed::toFloat() const {
-	return (_value / (double)(1 << _fractionalBits));
-}
 
+float Fixed::toFloat() const { return (_value / (double)(1 << _fractionalBits)); }
 int Fixed::toInt() const { return _value >> _fractionalBits; }
 
-Fixed Fixed::min(Fixed &nb1, Fixed &nb2) { return nb1._value < nb2._value ? nb1._value : nb2._value; }
+Fixed &Fixed::min(Fixed &obj1, Fixed &obj2) { return obj1._value < obj2._value ? obj1 : obj2; }
+Fixed &Fixed::max(Fixed &obj1, Fixed &obj2) { return obj1._value > obj2._value ? obj1 : obj2; }
 
-Fixed Fixed::min(Fixed const &nb1, Fixed const &nb2) { return nb1._value < nb2._value ? nb1._value : nb2._value; }
-
-Fixed Fixed::max(Fixed &nb1, Fixed &nb2) { return nb1._value > nb2._value ? nb1._value : nb2._value;}
-
-Fixed Fixed::max(Fixed const &nb1, Fixed const &nb2) { return nb1._value > nb2._value ? nb1._value : nb2._value; }
+const Fixed &Fixed::min(Fixed const &obj1, Fixed const &obj2) { return obj1._value < obj2._value ? obj1 : obj2; }
+const Fixed &Fixed::max(Fixed const &obj1, Fixed const &obj2) { return obj1._value > obj2._value ? obj1 : obj2; }
