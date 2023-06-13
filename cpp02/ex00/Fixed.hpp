@@ -20,7 +20,7 @@ class Fixed {
 			Fixed();
 			~Fixed();
 			Fixed(Fixed const & cpy);
-			Fixed & operator=(Fixed const & rhs);
+			Fixed & operator=(const Fixed& rhs);
 			int getRawBits(void) const;
 			void setRawBits(int const raw);
 	private:

@@ -20,12 +20,11 @@ class Fixed {
 	public:
 			Fixed();
 			~Fixed();
-			Fixed(Fixed const & cpy);
-			
+			Fixed(Fixed const & cpy);		
 			Fixed(const int value);
 			Fixed(const float value);
+			Fixed &operator=(const Fixed& rhs);
 
-			Fixed &operator=(Fixed const & rhs);
 			int getRawBits() const;
 			void setRawBits(const int raw);
 			float toFloat() const;
