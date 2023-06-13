@@ -1,4 +1,4 @@
-#include "WrongCat.hpp"
+#include "includes/WrongCat.hpp"
 
 WrongCat::WrongCat() {
 	std::cout << "WrongCat constructor called" << std::endl;

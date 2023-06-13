@@ -1,4 +1,4 @@
-#include "WrongAnimal.hpp"
+#include "includes/WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() { std::cout << "Wrong aninmal constructor called" << std::endl; }
 

@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:16 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:17 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:06:23 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,9 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-PhoneBook::PhoneBook(void) {
-	return;
-}
+PhoneBook::PhoneBook(void) { return; }
 
-PhoneBook::~PhoneBook(void) {
-	return;
-}
+PhoneBook::~PhoneBook(void) { return; }
 
 void	PhoneBook::add_contact(Contact contact)
 {

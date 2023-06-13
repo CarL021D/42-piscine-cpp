@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:20 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:21 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:08:54 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@
 class PhoneBook {
 	
 public:
-
-
 	PhoneBook();
 	~PhoneBook();
-
 	void			add_contact(Contact contact);
 	void			look_for_contact_info();
 

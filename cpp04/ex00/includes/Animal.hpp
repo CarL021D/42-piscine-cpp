@@ -6,7 +6,7 @@ class Animal {
 
 	public:
 			Animal();
-			~Animal();
+			virtual ~Animal();
 			Animal(const Animal& cpy);
 			Animal& operator=(const Animal& cpy);
 			std::string getType() const;

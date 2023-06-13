@@ -1,4 +1,4 @@
-#include "Dog.hpp"
+#include "includes/Dog.hpp"
 
 Dog::Dog() { 
 	std::cout << "Dog constructor called" << std::endl; 
