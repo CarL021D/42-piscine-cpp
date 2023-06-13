@@ -1,9 +1,6 @@
 
 #pragma once
-
 #include <iostream>
-#include "Dog.hpp"
-#include "Cat.hpp"
 
 class Animal {
 
@@ -13,8 +10,8 @@ class Animal {
 			Animal(const Animal& cpy);
 			Animal& operator=(const Animal& rhs);
 			std::string getType() const;
-			virtual void makeSound() const = 0;
+			virtual void makeSound() const;
 
-	private:
-			std::string		type;
+	protected:
+			std::string		_type;
 };
