@@ -6,14 +6,17 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:43:10 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/31 22:20:18 by caboudar         ###   ########.fr        #
+#    Updated: 2023/06/13 15:14:16 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.cpp	\
-				Animal.cpp	\
-				Dog.cpp		\
-				Cat.cpp		\
+SRCS		=	main.cpp			\
+				Animal.cpp			\
+				Dog.cpp				\
+				Cat.cpp				\
+				WrongAnimal.cpp		\
+				WrongCat.cpp		\
+				
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 

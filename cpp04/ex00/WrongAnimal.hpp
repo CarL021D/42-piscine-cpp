@@ -1,6 +1,5 @@
 
 #pragma once
-
 #include <iostream>
 
 class WrongAnimal {
@@ -9,7 +8,10 @@ class WrongAnimal {
 			WrongAnimal();
 			~WrongAnimal();
 			WrongAnimal(const WrongAnimal& cpy);
-			WrongAnimal operator=(const WrongAnimal& rhs);
-	private:
-			std::string		type;
-}
+			WrongAnimal& operator=(const WrongAnimal& rhs);
+			std::string getType();
+			void makeSound() const;
+
+	protected:
+			std::string		_type;
+};

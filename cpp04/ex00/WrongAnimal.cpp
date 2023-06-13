@@ -1,12 +1,15 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() {}
+WrongAnimal::WrongAnimal() { std::cout << "Wrong aninmal constructor called" << std::endl; }
 
-~WrongAnimal::WrongAnimal() {}
+WrongAnimal::~WrongAnimal() { std::cout << "Wrong aninmal destructor called" << std::endl; }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& rhs) { *this = cpy; }
+WrongAnimal::WrongAnimal(const WrongAnimal& cpy) { *this = cpy; }
 
-WrongAnimal& WrongAnimal::operator=(const WroongAnimal& rhs) {
-	this->type = rhs.type;
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& rhs) {
+	this->_type = rhs._type;
 	return *this;
 }
+std::string WrongAnimal::getType() { return this->_type; }
+
+void	WrongAnimal::makeSound() const { std::cout << "..." << std::endl; }
