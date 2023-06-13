@@ -12,8 +12,8 @@
 
 SRCS		=	main.cpp	\
 				Animal.cpp	\
-				Dog.cpp	\
-				Cat.cpp	\
+				Dog.cpp		\
+				Cat.cpp		\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 

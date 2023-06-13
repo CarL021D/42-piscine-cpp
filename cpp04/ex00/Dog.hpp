@@ -5,5 +5,5 @@
 class Dog : public Animal {
 
 	public:
-			void makeSound() const override;
+			void makeSound() const;
 };
