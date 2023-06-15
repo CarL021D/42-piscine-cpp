@@ -23,9 +23,10 @@ int main()
 	Cat cat;
 
 	std::cout << std::endl << "Display Idea" << std::endl;
+	std::cout << dog.getType() << std::endl;
 	dog.displayIdea(4);
+	std::cout << cat.getType() << std::endl;
 	cat.displayIdea(100);
 	std::cout << std::endl;
-	
 	return 0;
 }
