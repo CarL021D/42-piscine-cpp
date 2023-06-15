@@ -28,7 +28,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex00
+NAME		= 	ex01
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
