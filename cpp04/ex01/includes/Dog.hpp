@@ -10,6 +10,7 @@ class Dog : public Animal {
 			Dog(const Dog& cpy);
 			Dog& operator=(const Dog& rhs);
 			void makeSound() const;
+			void displayIdea(short i) const;
 	private:
 			Brain	*brain;
 };

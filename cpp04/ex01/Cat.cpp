@@ -19,3 +19,9 @@ Cat& Cat::operator=(const Cat& rhs ) {
 }
 
 void Cat::makeSound() const { std::cout << "Meow" << std::endl; }
+
+void Cat::displayIdea(short i) const {
+	if (i < 1 || i > 100)
+		return;
+	std::cout << this->brain->ideas[i - 1] << std::endl;
+}

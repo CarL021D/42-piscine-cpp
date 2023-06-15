@@ -4,7 +4,7 @@ Brain::Brain() {
 	std::cout << "Brain constructor called" << std::endl;
 	this->ideas = new std::string[100];
 	for (short i = 0; i < 100; i++)
-		ideas[i] = "encripted idea: " + std::to_string(i);
+		this->ideas[i] = "code: idea: " + std::to_string(i + 1);
 }
 
 Brain::~Brain() {

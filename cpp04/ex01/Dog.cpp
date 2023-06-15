@@ -19,3 +19,11 @@ Dog& Dog::operator=(const Dog& rhs) {
 }
 
 void Dog::makeSound() const { std::cout << "Bark Bark" << std::endl; }
+
+void Dog::displayIdea(short i) const {
+	if (i < 1 || i > 100)
+		return;
+	std::cout << this->brain->ideas[i - 1] << std::endl;
+}
+
+// void	Dog::setIdea(short i, std::string idea) { this->brain.ideas[i] = idea; }
