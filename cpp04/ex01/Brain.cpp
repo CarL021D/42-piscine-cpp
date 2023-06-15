@@ -1,13 +1,21 @@
-#include "Brain.hpp"
+#include "includes/Brain.hpp"
 
-Brain::Brain() { std::cout << "Brain constructor called" << std::endl; }
+Brain::Brain() {
+	std::cout << "Brain constructor called" << std::endl;
+	this->ideas = new std::string[100];
+	for (short i = 0; i < 100; i++)
+		ideas[i] = "encripted idea: " + std::to_string(i);
+}
 
-Brain::~Brain() { std::cout << "Brain destructor called" << std::endl; }
+Brain::~Brain() {
+	std::cout << "Brain destructor called" << std::endl;
+	delete[] this->ideas;
+}
 
-Brain& Brain(const Brain& cpy) { return *this = cpy; }
+Brain::Brain(const Brain& cpy) { *this = cpy; }
 
-void Brain::operator=(const Brain& rhs) {
+Brain& Brain::operator=(const Brain& rhs) {
 
-    this->ideas = rhs->ideas;
-    return *this;
+	this->ideas = rhs.ideas;
+	return *this;
 }

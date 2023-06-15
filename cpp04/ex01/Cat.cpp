@@ -3,10 +3,13 @@
 Cat::Cat() {
 	std::cout << "Cat constructor called" << std::endl;
 	this->_type = "Cat";
-	this->brain = new Brain[100];
+	this->brain = new Brain();
 }
 
-Cat::~Cat() { std::cout << "Cat destructor called" << std::endl; }
+Cat::~Cat() {
+	std::cout << "Cat destructor called" << std::endl;
+	delete this->brain;	
+}
 
 Cat::Cat(const Cat& cpy) { *this = cpy; }
 
