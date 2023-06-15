@@ -13,6 +13,10 @@ int main()
 			animalArr[i] = new Cat();
 	}
 
+	std::cout << std::endl;
+	Dog dog();
+	Cat cat();
+	// TODO: - Display secret info
 
 	std::cout << std::endl << "Class destruction:" << std::endl;
 	for (short i = 0; i < 4 ; i++)
