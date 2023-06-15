@@ -20,6 +20,8 @@ Dog& Dog::operator=(const Dog& rhs) {
 
 void Dog::makeSound() const { std::cout << "Bark Bark" << std::endl; }
 
+std::string Dog::getType() const { return this->_type; }
+
 void Dog::displayIdea(short i) const {
 	if (i < 1 || i > 100)
 		return;
