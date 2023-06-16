@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:30:19 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 11:40:52 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:16:05 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,4 @@ class ScavTrap : public ClapTrap {
 
 		void	guardGate();
 		void 	attack(const std::string& target);
-	
-	private:
 };
