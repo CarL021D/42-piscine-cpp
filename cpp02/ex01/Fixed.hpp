@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:26:43 by caboudar          #+#    #+#             */
-/*   Updated: 2023/06/02 04:23:04 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:11:22 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class Fixed {
 			Fixed(const float value);
 			Fixed &operator=(const Fixed& rhs);
 
-			int getRawBits() const;
-			void setRawBits(const int raw);
-			float toFloat() const;
-			int toInt() const;
+			int 	getRawBits() const;
+			void 	setRawBits(const int raw);
+			float 	toFloat() const;
+			int		toInt() const;
 	private:
 			int _value;
 			static const int _fractionalBits;
