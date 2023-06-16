@@ -10,4 +10,5 @@ class Brain {
 			Brain(const Brain& cpy);
 			Brain& operator=(const Brain& rhs);
 			std::string *ideas;
+	protected:
 };
