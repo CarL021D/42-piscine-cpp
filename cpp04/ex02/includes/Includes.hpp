@@ -1,7 +1,6 @@
 
 
 #pragma once
-
 #include "IAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
