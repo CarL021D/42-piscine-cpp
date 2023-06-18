@@ -1,5 +1,6 @@
 
 #pragma once
+#include <iostream>
 #include "IMateria.hpp"
 #include "AMateria.hpp"
 #include "Materia.hpp"

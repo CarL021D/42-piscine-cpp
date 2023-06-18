@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/AMateria.hpp"
-#include "includes/ICharacter.hpp"
+#include "includes/includes.hpp"
 
 AMateria::AMateria() { std::cout << "AMateria constructor called" << std::endl; }
 
@@ -20,6 +19,7 @@ AMateria::~AMateria() { std::cout << "AMateria destructor called" << std::endl; 
 AMateria::AMateria(AMateria& const cpy) { *this = cpy; }
 
 AMateria& AMateria::operator=(AMateria& const rhs) { return *this; }
+
 
 const std::string AMateria::getType() { return this->type; }
 

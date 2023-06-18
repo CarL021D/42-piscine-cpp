@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+#include "includes.hpp"
 
 class Cure : public AMateria {
      public:
@@ -10,8 +10,9 @@ class Cure : public AMateria {
 
 			Cure(std::string const & type);
 			std::string const & getType() const;
-			Cure* clone() const = 0;
-			void use(ICharacter& target);
+			Cure*	clone() const;
+			void	use(ICharacter& target);
+			Cure*	createMateria(std::string type)
     protected:
-            std::string     type;
+            std::string     _type;
 }
