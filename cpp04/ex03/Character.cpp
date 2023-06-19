@@ -17,7 +17,7 @@ Character& Character::operator=(const Character& rhs) {
 	this->_name = rhs->getName()
 	for (short i = 0; i < 4; i++;)
 		this->_items[i] = rhs->getItems(i);
-	this->_unequipItems =
+	this->_unequippedItems =
 	return *this;
 }
 
@@ -25,7 +25,10 @@ std::string const & getName() const { return this->_name; }
 
 AMateria const getItems(short i) const { return this->_items[i]; }
 
-AMateria const getUnequipItems(unsigned short i) const { return this->_unequipItems[i]; }
+std::list<AMateria> copyUnequippedItems(std::list<AMateria> sourceList) {
+	std::list<AMateria> copyList(sourceList);
+	return copyList;
+}
 
 void Character::equip(AMateria* m) {	
 	for (short i = 0; i < 4; i++)
@@ -41,7 +44,7 @@ void Character::equip(AMateria* m) {
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3 || this->_items[idx] == NULL)
 		return;
-	this->_unequipItems.push_back(this->_items[idx]);
+	this->_unequippedItems.push_back(this->_items[idx]);
 	this->items[idx] = NULL;
 }
 
