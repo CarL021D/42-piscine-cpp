@@ -9,6 +9,7 @@ class ICharacter {
 			virtual void unequip(int idx) = 0;
 			virtual void use(int idx, ICharacter& target) = 0;
 	protected:
-			virtual std::string		name;
-			virtual AMateria		items[4];
+			virtual std::string			name;
+			virtual std::list<AMateria>	unequipItems;
+			virtual AMateria			items[4];
 };

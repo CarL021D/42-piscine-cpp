@@ -25,7 +25,10 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-	
+	if (idx < 0 || idx > 3 || this->items[idx] == nullptr)
+		return;
+	this->unequipItems.push_back(this->items[idx]);
+	this->items[idx] = nullptr;
 }
 
 void Character::use(int idx, Character& target) {
