@@ -16,4 +16,4 @@ void ICharacter::equip(AMateria* m) {}
 
 void ICharacter::unequip(int idx) {}
 
-void ICharacter::use(int idx, ICharacter& target) {}
+void ICharacter::use(int idx, ICharacter& target) const {}
