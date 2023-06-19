@@ -8,10 +8,10 @@ class Character : public ICharacter {
 			std::string const & getName() const;
 			void equip(AMateria* m);
 			void unequip(int idx);
-			void use(int idx, ICharacter& target);
+			void use(int idx, ICharacter& target) const;
 	private:
-			virtual std::string			name;
-			virtual std::list<AMateria>	unequipItems;
-			virtual AMateria			items[4];
+			virtual std::string			_name;
+			virtual std::list<AMateria>	_unequipItems;
+			virtual AMateria			_items[4];
 
 }

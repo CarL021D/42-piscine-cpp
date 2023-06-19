@@ -20,4 +20,4 @@ Ice* Ice::createMateria(std::string type) {
 	return newMateria;
 }
 
-void Ice::use(ICharacter& target) { std::cout << "* shoots an ice bolt at " << target.name << std::endl; }
+void Ice::use(ICharacter& target) { std::cout << "* shoots an ice bolt at " << target.getName() << std::endl; }

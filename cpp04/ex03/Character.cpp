@@ -16,24 +16,23 @@ void Character::equip(AMateria* m) {
 	
 	for (short i = 0; i < 4; i++)
 	{
-		if (this->items[i] == nullptr)
+		if (this->_items[i] == nullptr)
 		{
-			items[i] = m;
+			_items[i] = m;
 			return;
 		}
 	}
 }
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx > 3 || this->items[idx] == nullptr)
+	if (idx < 0 || idx > 3 || this->_items[idx] == nullptr)
 		return;
-	this->unequipItems.push_back(this->items[idx]);
+	this->_unequipItems.push_back(this->_items[idx]);
 	this->items[idx] = nullptr;
 }
 
-void Character::use(int idx, Character& target) {
+void Character::use(int idx, Character& target) const {
 	if (idx < 0 || idx > 3)
 		return;
-	items[idx]->use(*this);
-	
+	_items[idx]->use(*this);	
 }
