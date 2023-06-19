@@ -4,7 +4,11 @@
 class Character : public ICharacter {
 	public:
 			Character();
-			virtual ~Character() {}
+			virtual ~Character();
+			Character(std::string name);
+			Character(Character& const cpy);
+			Character& operator=(Character& const rhs);
+			
 			std::string const & getName() const;
 			void equip(AMateria* m);
 			void unequip(int idx);

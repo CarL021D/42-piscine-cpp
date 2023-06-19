@@ -4,18 +4,16 @@ ICharacter::ICharacter() { std::cout << "ICharacter constructor called" << std::
 
 ICharacter::~ICharacter() { std::cout << "ICharacter destructor called" << std::endl; }
 
+ICharacter::ICharacter(std::string name) : ICharacter(), _name(name) {}
+
 ICharacter::ICharacter(ICharacter& const cpy) { *this = cpy; }
 
 ICharacter& ICharacter::operator=(ICharacter& const rhs) { return *this; }
 
-void ICharacter::equip(AMateria* m) {
-	
-}
+std::string const & getName() const {}
 
-void ICharacter::unequip(int idx) {
-    
-}
+void ICharacter::equip(AMateria* m) {}
 
-void ICharacter::use(int idx, ICharacter& target) {
+void ICharacter::unequip(int idx) {}
 
-}
+void ICharacter::use(int idx, ICharacter& target) {}

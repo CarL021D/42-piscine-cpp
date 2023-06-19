@@ -3,14 +3,19 @@ include "includes/inlcudes.hpp"
 Character::Character() {
 	std::cout << "Character constructor called" << std::endl;
 	for (short i = 0; i < 4; i++)
-		this->items[i] = nullptr;	
+		this->items[i] = nullptr;
+	this->_name = "";
 }
 
 Character::~Character() { std::cout << "Character destructor called" << std::endl; }
 
+Character::Character(std::string name) : Character(), _name(name) {}
+
 Character::Character(Character& const cpy) { *this = cpy; }
 
 Character& Character::operator=(Character& const rhs) { return *this; }
+
+std::string const & getName() const { return this->_name}
 
 void Character::equip(AMateria* m) {
 	
