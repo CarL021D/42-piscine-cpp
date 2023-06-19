@@ -17,7 +17,7 @@ Character& Character::operator=(const Character& rhs) {
 	this->_name = rhs->getName()
 	for (short i = 0; i < 4; i++;)
 		this->_items[i] = rhs->getItems(i);
-	this->_unequippedItems =
+	this->_unequippedItems = rhs->copyUnequippedItems(rhs);
 	return *this;
 }
 
