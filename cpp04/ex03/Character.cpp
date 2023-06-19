@@ -3,7 +3,7 @@
 Character::Character() {
 	std::cout << "Character constructor called" << std::endl;
 	for (short i = 0; i < 4; i++)
-		this->items[i] = nullptr;
+		this->items[i] = NULL;
 	this->_name = "";
 }
 
@@ -13,15 +13,24 @@ Character::Character(std::string name) : Character(), _name(name) {}
 
 Character::Character(const Character& cpy) { *this = cpy; }
 
-Character& Character::operator=(const Character& rhs) { return *this; }
+Character& Character::operator=(const Character& rhs) {
+	this->_name = rhs->getName()
+	for (short i = 0; i < 4; i++;)
+		this->_items[i] = rhs->getItems(i);
+	this->_unequipItems =
+	return *this;
+}
 
 std::string const & getName() const { return this->_name; }
 
-void Character::equip(AMateria* m) {
-	
+AMateria const getItems(short i) const { return this->_items[i]; }
+
+AMateria const getUnequipItems(unsigned short i) const { return this->_unequipItems[i]; }
+
+void Character::equip(AMateria* m) {	
 	for (short i = 0; i < 4; i++)
 	{
-		if (this->_items[i] == nullptr)
+		if (this->_items[i] == NULL)
 		{
 			_items[i] = m;
 			return;
@@ -30,10 +39,10 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx > 3 || this->_items[idx] == nullptr)
+	if (idx < 0 || idx > 3 || this->_items[idx] == NULL)
 		return;
 	this->_unequipItems.push_back(this->_items[idx]);
-	this->items[idx] = nullptr;
+	this->items[idx] = NULL;
 }
 
 void Character::use(int idx, Character& target) const {

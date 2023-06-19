@@ -8,7 +8,7 @@ class Character : public ICharacter {
 			Character(std::string name);
 			Character(Character& const cpy);
 			Character& operator=(Character& const rhs);
-			
+
 			std::string const & getName() const;
 			void equip(AMateria* m);
 			void unequip(int idx);

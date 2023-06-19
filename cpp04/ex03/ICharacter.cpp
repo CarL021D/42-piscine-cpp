@@ -8,7 +8,7 @@ ICharacter::ICharacter(std::string name) : ICharacter(), _name(name) {}
 
 ICharacter::ICharacter(const ICharacter& cpy) { *this = cpy; }
 
-ICharacter& ICharacter::operator=(const ICharacter& rhs) { return *this; }
+ICharacter& ICharacter::operator=(const ICharacter& rhs) { return new ICharacter(); }
 
 std::string const & ICharacter::getName() const { return this->_name; }
 
