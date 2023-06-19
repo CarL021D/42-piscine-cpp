@@ -6,11 +6,11 @@ ICharacter::~ICharacter() { std::cout << "ICharacter destructor called" << std::
 
 ICharacter::ICharacter(std::string name) : ICharacter(), _name(name) {}
 
-ICharacter::ICharacter(ICharacter& const cpy) { *this = cpy; }
+ICharacter::ICharacter(const ICharacter& cpy) { *this = cpy; }
 
-ICharacter& ICharacter::operator=(ICharacter& const rhs) { return *this; }
+ICharacter& ICharacter::operator=(const ICharacter& rhs) { return *this; }
 
-std::string const & getName() const {}
+std::string const & ICharacter::getName() const { return this->_name; }
 
 void ICharacter::equip(AMateria* m) {}
 
