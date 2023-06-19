@@ -13,6 +13,12 @@ const std::string Cure::getType() { return this->type; }
 
 Cure* Cure::clone() const { return (new Cure()); }
 
-Cure& Cure::createMateria(std::string type) { /* set Cure into an arr[3] of Cure*/ }
+Cure* Cure::createMateria(std::string type) {
+	if (type != "cure")
+		return 0;
+	AMateria* newMateria = new Cure();
+	newMateria->type = this->type;  
+	return newMateria;
+}
 
 void Cure::use(ICharacter& target) { std::cout << "* heals " << target.name << "'s wounds *" << std::endl; }
