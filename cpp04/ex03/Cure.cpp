@@ -17,7 +17,7 @@ Cure* Cure::createMateria(std::string type) {
 	if (type != "cure")
 		return 0;
 	AMateria* newMateria = new Cure();
-	newMateria->type = this->type;  
+	newMateria->_type = this->_type;  
 	return newMateria;
 }
 
