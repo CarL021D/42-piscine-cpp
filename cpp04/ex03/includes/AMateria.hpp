@@ -20,12 +20,12 @@ class AMateria {
 			AMateria();
 			~AMateria();
 			AMateria(const AMateria& cpy);
+			AMateria(const std::string& type);
 			AMateria& operator=(const AMateria& rhs);
 
-			AMateria(std::string const & type);
-			virtual AMateria* 	createMateria(std::string type);
-			virtual AMateria* 	clone() const = 0;
-			virtual void		use(ICharacter& target);
+			// virtual AMateria* 	createMateria(std::string type);
+			// virtual AMateria* 	clone() const = 0;
+			// virtual void		use(ICharacter& target);
 			std::string const & getType() const;
 	protected:
 			std::string _type;

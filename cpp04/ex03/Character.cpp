@@ -1,4 +1,4 @@
-#include "includes/inlcudes.hpp"
+#include "includes/includes.hpp"
 
 Character::Character() {
 	std::cout << "Character constructor called" << std::endl;

@@ -6,9 +6,9 @@ class Cure : public AMateria {
             Cure();
 			~Cure();
 			Cure(const Cure& cpy);
+			Cure(const std::string& type);
 			Cure& operator=(const Cure& rhs);
 
-			Cure(const std::string& type);
 			std::string const & getType() const;
 			Cure*	clone() const;
 			void	use(ICharacter& target);

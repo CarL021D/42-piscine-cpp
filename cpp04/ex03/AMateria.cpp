@@ -16,15 +16,20 @@ AMateria::AMateria() { std::cout << "AMateria constructor called" << std::endl; 
 
 AMateria::~AMateria() { std::cout << "AMateria destructor called" << std::endl; }
 
-AMateria::AMateria(AMateria& const cpy) { *this = cpy; }
+AMateria::AMateria(const AMateria& cpy) { *this = cpy; }
 
-AMateria& AMateria::operator=(AMateria& const rhs) { return *this; }
+AMateria::AMateria(const std::string& type) : _type(type) {}
+
+AMateria& AMateria::operator=(const AMateria& rhs) {
+	this->_type = rhs.getType();
+	return *this;
+}
 
 
-const std::string AMateria::getType() { return this->type; }
+std::string const & AMateria::getType() const { return this->_type; }
 
-AMateria* AMateria::clone() const {}
+// AMateria* AMateria::clone() const {}
 
-AMateria& AMateria::createMateria(std::string type) { /* set Amateria into an arr[3] of Amateria*/ }
+// AMateria& AMateria::createMateria(std::string type) {}
 
-void AMateria::use(ICharacter& target) { std::cout << ICharacter->name << ""}
+// void AMateria::use(ICharacter& target) { std::cout << ICharacter->name << ""}
