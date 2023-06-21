@@ -15,4 +15,4 @@ class Cure : public AMateria {
 			Cure*	createMateria(std::string type)
     protected:
             std::string     _type;
-}
+};

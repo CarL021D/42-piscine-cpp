@@ -27,4 +27,4 @@ class AMateria {
 			std::string const & getType() const;
 	protected:
 			std::string _type;
-}
+};

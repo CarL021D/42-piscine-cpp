@@ -4,6 +4,6 @@
 class IMAteriaSource {
 	public:
 			virtual ~IMateriaSource() = default;
-			learnMateria(AMateria*) = 0;
-			createMateria((std::string const &) = 0;
-}
+			virtual void learnMateria(AMateria*) = 0;
+			virtual AMateria* createMateria((std::string const &) = 0;
+};

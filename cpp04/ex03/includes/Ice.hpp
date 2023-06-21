@@ -15,4 +15,4 @@ class Ice : public AMateria {
 			Ice*	createMateria(std::string type)
 	protected:
 			std::string		_type;
-}
+};
