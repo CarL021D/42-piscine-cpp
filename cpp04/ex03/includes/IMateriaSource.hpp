@@ -1,9 +1,9 @@
 #pragma once
 #include "includes.hpp"
 
-class IMAteriaSource {
+class IMateriaSource {
 	public:
-			virtual ~IMateriaSource() = default;
+			virtual ~IMateriaSource();
 			virtual void learnMateria(AMateria*) = 0;
-			virtual AMateria* createMateria((std::string const &) = 0;
+			virtual AMateria* createMateria(std::string const &) = 0;
 };

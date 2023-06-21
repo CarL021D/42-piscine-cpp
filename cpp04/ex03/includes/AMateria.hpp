@@ -13,15 +13,17 @@
 #pragma once
 #include "includes.hpp"
 
+class ICharacter;
+
 class AMateria {
 	public:
 			AMateria();
 			~AMateria();
-			AMateria(AMateria& const cpy);
-			AMateria& operator=(AMateria& const rhs);
+			AMateria(const AMateria& cpy);
+			AMateria& operator=(const AMateria& rhs);
 
 			AMateria(std::string const & type);
-			virtual AMateria* 	createMateria(std::string type)
+			virtual AMateria* 	createMateria(std::string type);
 			virtual AMateria* 	clone() const = 0;
 			virtual void		use(ICharacter& target);
 			std::string const & getType() const;

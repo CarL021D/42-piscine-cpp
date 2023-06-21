@@ -9,11 +9,11 @@ class MateriaSource : public IMateriaSource {
             MateriaSource();
 			~MateriaSource();
 			MateriaSource(std::string name);
-			MateriaSource(MateriaSource& const cpy);
-			MateriaSource& operator=(MateriaSource& const rhs);
+			MateriaSource(const MateriaSource& cpy);
+			MateriaSource& operator=(const MateriaSource& rhs);
 
 			void learnMateria(AMateria*);
-			AMateria* createMateria(std::string const&);
+			AMateria* createMateria(const std::string&);
 	private:
-			Materia _inventory[4];
+			AMateria* _inventory[4];
 };

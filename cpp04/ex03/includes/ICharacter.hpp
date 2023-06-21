@@ -1,6 +1,7 @@
 #pragma once
 #include "includes.hpp"
 
+class AMateria;
 class ICharacter {
 	public:
 			virtual ~ICharacter();
