@@ -16,7 +16,7 @@ class Character : public ICharacter {
 			void unequip(int idx);
 			void use(int idx, ICharacter& target) const;
 	private:
-			std::string				_name;
+			std::string		_name;
 			std::list<AMateria>		_unequippedItems;
 			AMateria*				_items[4];
 
