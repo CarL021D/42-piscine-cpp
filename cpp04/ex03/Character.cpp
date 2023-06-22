@@ -62,7 +62,7 @@ void Character::unequip(int idx) {
 	this->_items[idx] = NULL;
 }
 
-void Character::use(int idx, Character& target) const {
+void Character::use(int idx, ICharacter& target) const {
 	if (idx < 0 || idx > 3)
 		return;
 	this->_items[idx]->use(target);	
