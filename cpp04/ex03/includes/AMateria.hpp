@@ -23,9 +23,9 @@ class AMateria {
 			AMateria(const std::string& type);
 			AMateria& operator=(const AMateria& rhs);
 
-			// virtual AMateria* 	createMateria(std::string type) = 0;
-			// virtual AMateria* 	clone() const = 0;
-			// virtual void		use(ICharacter& target) = 0;
+			virtual AMateria* 	createMateria(std::string type) = 0;
+			virtual AMateria* 	clone() const = 0;
+			virtual void		use(ICharacter& target) = 0;
 			std::string const & getType() const;
 	protected:
 			std::string _type;

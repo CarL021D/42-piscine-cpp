@@ -8,9 +8,13 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::~MateriaSource() { std::cout << "MateriaSource destructor called" << std::endl; }
 
-MateriaSource::MateriaSource(MateriaSource& const cpy) { *this = cpy; }
+MateriaSource::MateriaSource(const MateriaSource& cpy) { *this = cpy; }
 
-MateriaSource& MateriaSource::operator=(MateriaSource& const rhs) { return *this; }
+MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
+	for (short i = 0; i < 4; i++)
+		this->_inventory[i] = rhs.getMateria(i)->clone();
+	return *this;
+}
 
 void MateriaSource::learnMateria(AMateria* materia) {
 	for (short i = 0; i < 4; i++)
@@ -23,9 +27,11 @@ void MateriaSource::learnMateria(AMateria* materia) {
 	}
 }
 
-Materia* MateriaSource::createMateria(std::string& const type) {
+AMateria* MateriaSource::getMateria(short i) const { return this->_inventory[i]; }
+
+AMateria* MateriaSource::createMateria(const std::string& type) {
 	for (short i = 0; i < 4; i++)
-		if (type == _inventory[i]->getType();)
-			return _inventory[i].clone();
+		if (type == _inventory[i]->getType())
+			return _inventory[i]->clone();
 	return NULL; 
 }
