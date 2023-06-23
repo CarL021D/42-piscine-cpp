@@ -9,7 +9,12 @@ Character::Character() {
 
 Character::~Character() { std::cout << "Character destructor called" << std::endl; }
 
-Character::Character(std::string name) : _name(name) {}
+Character::Character(std::string name) : _name(name) {
+		std::cout << "Character constructor called" << std::endl;
+	for (short i = 0; i < 4; i++)
+		this->_items[i] = NULL;
+	this->_name = "";
+}
 
 Character::Character(const Character& cpy) { *this = cpy; }
 
@@ -26,12 +31,6 @@ Character& Character::operator=(const Character& rhs) {
 		if (this->_items[i])
 			this->_items[i] = rhs.getItems(i)->clone();
 	}
-	// for (short i = 0; i < 4; i++)
-	// 	this->_items[i] = rhs.getItems(i);
-	// this->_unequippedItems = rhs.copyUnequippedItems(rhs._unequippedItems);
-	return *this;
-
-
 	return *this;
 }
 
@@ -63,7 +62,10 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) const {
-	if (idx < 0 || idx > 3)
+	if (idx < 0 || idx > 3 || !_items[idx])
+	{
+		std::cout << "Item usage failed, empty index" std::cout;
 		return;
+	}
 	this->_items[idx]->use(target);	
 }

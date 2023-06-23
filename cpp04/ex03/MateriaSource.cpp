@@ -19,7 +19,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
 void MateriaSource::learnMateria(AMateria* materia) {
 	for (short i = 0; i < 4; i++)
 	{
-		if (_inventory[i] != NULL)
+		if (_inventory[i] == NULL)
 		{
 			_inventory[i] = materia;
 			return;
@@ -27,11 +27,11 @@ void MateriaSource::learnMateria(AMateria* materia) {
 	}
 }
 
-AMateria* MateriaSource::getMateria(short i) const { return this->_inventory[i]; }
-
 AMateria* MateriaSource::createMateria(const std::string& type) {
 	for (short i = 0; i < 4; i++)
-		if (type == _inventory[i]->getType())
+		if (_inventory[i] && type == _inventory[i]->getType())
 			return _inventory[i]->clone();
 	return NULL; 
 }
+
+AMateria* MateriaSource::getMateria(short i) const { return this->_inventory[i]; }

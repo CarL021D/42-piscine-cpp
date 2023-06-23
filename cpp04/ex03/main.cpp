@@ -2,12 +2,21 @@
 
 int main()
 {
+	ICharacter* ken = new Character("Ken");
+	ICharacter* lee = new Character("Lee");
+
+
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	ICharacter* me = new Character("me");
-	AMateria* tmp;
-	tmp = src->createMateria("ice");
+	
+	ken->equip(src->createMateria("ice"));
+	ken->equip(src->createMateria("cure"));
+	ken->equip(src->getMateria(0));
+	ken->equip(src->getMateria(1));
+
+	std::cout << std::endl;
+	ken->use(1, *lee);
 	// me->equip(tmp);
 	// tmp = src->createMateria("cure");
 	// me->equip(tmp);
