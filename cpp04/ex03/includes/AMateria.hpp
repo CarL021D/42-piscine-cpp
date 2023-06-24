@@ -18,7 +18,7 @@ class ICharacter;
 class AMateria {
 	public:
 			AMateria();
-			~AMateria();
+			virtual ~AMateria();
 			AMateria(const AMateria& cpy);
 			AMateria(const std::string& type);
 			AMateria& operator=(const AMateria& rhs);
