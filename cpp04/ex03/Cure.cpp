@@ -1,6 +1,9 @@
 #include "includes/Cure.hpp"
 
-Cure::Cure() { std::cout << "Cure constructor called" << std::endl; }
+Cure::Cure() {
+	std::cout << "Cure constructor called" << std::endl;
+	this->_type = "ice";	
+}
 
 Cure::~Cure() { std::cout << "Cure destructor called" << std::endl; }
 
@@ -24,13 +27,5 @@ Cure& Cure::operator=(const Cure& rhs) {
 std::string const & Cure::getType() const { return this->_type; }
 
 Cure* Cure::clone() const { return (new Cure()); }
-
-Cure* Cure::createMateria(std::string type) {
-	if (type != "cure")
-		return 0;
-	Cure* newMateria = new Cure("cure");
-	// newMateria->_type = this->_type;  
-	return newMateria;
-}
 
 void Cure::use(ICharacter& target) { std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl; }

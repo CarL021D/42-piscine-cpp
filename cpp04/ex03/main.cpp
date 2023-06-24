@@ -5,18 +5,22 @@ int main()
 	ICharacter* ken = new Character("Ken");
 	ICharacter* lee = new Character("Lee");
 
-
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-	
-	ken->equip(src->createMateria("ice"));
-	ken->equip(src->createMateria("cure"));
-	ken->equip(src->getMateria(0));
-	ken->equip(src->getMateria(1));
 
 	std::cout << std::endl;
-	ken->use(1, *lee);
+	ken->equip(new Ice());
+	ken->use(0, *lee);
+	ken->unequip(0);
+	ken->use(0, *lee);
+
+	std::cout << std::endl;
+	ken->equip(src->createMateria("cure"));
+	ken->use(0, *lee);
+
+
+
 	// me->equip(tmp);
 	// tmp = src->createMateria("cure");
 	// me->equip(tmp);
@@ -24,7 +28,9 @@ int main()
 	// me->use(0, *bob);
 	// me->use(1, *bob);
 	// delete bob;
-	// delete me;
-	// delete src;
+	
+	std::cout << std::endl << "Class destruction!" << std::endl;
+	delete ken;
+	delete lee;
 	// return 0;
 }

@@ -12,7 +12,7 @@ class Ice : public AMateria {
 			std::string const & getType() const;
 			Ice*	clone() const;
 			void	use(ICharacter& target);
-			Ice*	createMateria(std::string type);
+			// Ice*	createMateria(std::string type);
 	protected:
 			std::string		_type;
 };

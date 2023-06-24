@@ -17,10 +17,8 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
 }
 
 void MateriaSource::learnMateria(AMateria* materia) {
-	for (short i = 0; i < 4; i++)
-	{
-		if (_inventory[i] == NULL)
-		{
+	for (short i = 0; i < 4; i++) {
+		if (!_inventory[i]) {
 			_inventory[i] = materia;
 			return;
 		}
