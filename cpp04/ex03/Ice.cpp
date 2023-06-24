@@ -1,11 +1,8 @@
 #include "includes/Ice.hpp"
 
-Ice::Ice() {
-	std::cout << "Ice constructor called" << std::endl;
-	this->_type = "ice";	
-}
+Ice::Ice() { this->_type = "ice"; }
 
-Ice::~Ice() { std::cout << "Ice destructor called" << std::endl; }
+Ice::~Ice() {}
 
 Ice::Ice(const Ice& cpy) { *this = cpy; }
 
@@ -18,22 +15,15 @@ Ice::Ice(const std::string& type) {
 	_type = type;
 }
 
-
 Ice& Ice::operator=(const Ice& rhs) {
 	this->_type = rhs.getType();
 	return *this;
 }
 
-std::string const & Ice::getType() const { return this->_type; }
-
-Ice* Ice::clone() const { return (new Ice()); }
-
-// Ice* Ice::createMateria(std::string type) { 
-// 	if (type != "ice")
-// 		return 0;
-// 	Ice* newMateria = new Ice("ice");
-// 	// newMateria->type = this->_type;  
-// 	return newMateria;
-// }
+Ice* Ice::clone() const { 
+	Ice* ice = new Ice();
+	ice->setType("ice");
+	return (ice);
+}
 
 void Ice::use(ICharacter& target) { std::cout << "* shoots an ice bolt at " << target.getName() << std::endl; }

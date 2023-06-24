@@ -9,7 +9,7 @@ class Cure : public AMateria {
 			Cure(const std::string& type);
 			Cure& operator=(const Cure& rhs);
 
-			std::string const & getType() const;
+			// std::string const & getType() const;
 			Cure*	clone() const;
 			void	use(ICharacter& target);
 			// Cure*	createMateria(std::string type);

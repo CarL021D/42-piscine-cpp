@@ -12,9 +12,9 @@
 
 #include "includes/includes.hpp"
 
-AMateria::AMateria() { std::cout << "AMateria constructor called" << std::endl; }
+AMateria::AMateria() {}
 
-AMateria::~AMateria() { std::cout << "AMateria destructor called" << std::endl; }
+AMateria::~AMateria() {}
 
 AMateria::AMateria(const AMateria& cpy) { *this = cpy; }
 
@@ -25,11 +25,6 @@ AMateria& AMateria::operator=(const AMateria& rhs) {
 	return *this;
 }
 
-
 std::string const & AMateria::getType() const { return this->_type; }
 
-// AMateria* AMateria::clone() const {}
-
-// AMateria& AMateria::createMateria(std::string type) {}
-
-// void AMateria::use(ICharacter& target) { std::cout << ICharacter->name << ""}
+void AMateria::setType(std::string type) { this->_type = type; }

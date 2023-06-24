@@ -1,19 +1,17 @@
 #include "includes/MateriaSource.hpp"
 
 MateriaSource::MateriaSource() {
-	std::cout << "MateriaSource constructor called" << std::endl;
 	for (short i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 }
 
+MateriaSource::MateriaSource(const MateriaSource& cpy) { *this = cpy; }
+
 MateriaSource::~MateriaSource() {
-	std::cout << "MateriaSource destructor called" << std::endl;
 	for (short i = 0; i < 4; i++)
 		if (_inventory[i])
 			delete _inventory[i];	
 }
-
-MateriaSource::MateriaSource(const MateriaSource& cpy) { *this = cpy; }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
 	for (short i = 0; i < 4; i++)
@@ -23,8 +21,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
 
 void MateriaSource::learnMateria(AMateria* materia) {
 	
-	std::cout << materia->getType() << std::endl;
-	std::cout << "<<<<>>>>" << std::endl;
+	std::cout << ">>" << materia->getType() << std::endl;
 	for (short i = 0; i < 4; i++) {
 		if (!_inventory[i]) {
 			_inventory[i] = materia;

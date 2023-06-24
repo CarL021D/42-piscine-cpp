@@ -1,19 +1,20 @@
 #include "includes/includes.hpp"
 
 Character::Character() {
-	std::cout << "Character constructor called" << std::endl;
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 	this->_name = "";
 }
 
 Character::~Character() {
-	std::cout << "Character destructor called" << std::endl;
+	for (short i = 0; i < 4; i++)
+		if (this->_items[i])
+			delete _items[i];
 	_unequippedItems.clear();
 }
 
-Character::Character(std::string name) : _name(name) {
-		std::cout << "Character constructor called" << std::endl;
+Character::Character(std::string name) {
+	this->_name = name;
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
@@ -72,12 +73,6 @@ void Character::use(int idx, ICharacter& target) {
 }
 
 void Character::displayUnequippedEquipment() const {
-	// std::list<AMateria*>::const_iterator it;
-	// for (it = _unequippedItems.begin(); it != _unequippedItems.end(); ++it) {
-    // 	AMateria* item = *it;
-    //     std::cout << item->getType();
-	// }
-
 	std::list<AMateria*>::const_iterator it;
     for (it = _unequippedItems.begin(); it != _unequippedItems.end(); ++it) {
         AMateria* item = *it;
