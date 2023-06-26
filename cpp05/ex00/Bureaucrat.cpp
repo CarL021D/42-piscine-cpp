@@ -40,9 +40,9 @@ std::string const Bureaucrat::getName() const { return this->_name; }
 int16_t Bureaucrat::getGrade() const { return this->_grade; }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "Grade too high";
+	return "Grade too high exception";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "Grade too low";
+	return "Grade too low exception";
 }
