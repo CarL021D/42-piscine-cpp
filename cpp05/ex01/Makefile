@@ -11,12 +11,7 @@
 # **************************************************************************** #
 
 SRCS		=	main.cpp			\
-				Animal.cpp			\
-				Dog.cpp				\
-				Cat.cpp				\
-				WrongAnimal.cpp		\
-				WrongCat.cpp		\
-				
+				Bureaucrat.cpp		\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
@@ -28,7 +23,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex01
+NAME		= 	ex00
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
