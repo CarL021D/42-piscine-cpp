@@ -79,7 +79,7 @@ int		Account::checkAmount(void) const { return _amount; }
 
 void	Account::displayStatus(void) const {
 	_displayTimestamp();
-	std::cout	<< "accounts:" << _accountIndex << ";total:"
+	std::cout	<< " accounts:" << _accountIndex << ";total:"
 				<< _amount << ";deposits:" << _nbDeposits
 				<< ";withdrawals:" << _nbWithdrawals << std::endl;
 }
@@ -96,7 +96,7 @@ void	Account::_displayTimestamp(void) {
 
 void	Account::displayAccountsInfos() {
 	_displayTimestamp();
-	std::cout	<< "accounts:" << getNbAccounts() << ";total:"
+	std::cout	<< " accounts:" << getNbAccounts() << ";total:"
 				<< getTotalAmount() << ";deposits:" << getNbDeposits()
 				<< ";nb_withdrawals:" << getNbWithdrawals() << std::endl;
 }
