@@ -2,7 +2,7 @@
 
 Bureaucrat::Bureaucrat(const std::string name, int16_t grade) : _name(name) {
 	if ( grade < 1)
-		throw GradeTooHighExeption;
+		throw GradeTooHighexception;
 	else if (grade > 150)
 		throw GradeTooLowException;
 	else
@@ -33,7 +33,7 @@ Bureaucrat& Bureaucrat::operator<<(std::ostream& os, const Bureaucrat& rhs) {
 
 void Bureaucrat::upgradeGrade() {
 	if (this->_grade == 1)
-		throw GradeTooHighExeption;
+		throw GradeTooHighexception;
 	this->_grade--;
 }
 
