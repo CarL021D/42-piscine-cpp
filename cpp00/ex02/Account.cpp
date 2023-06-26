@@ -89,9 +89,8 @@ void	Account::_displayTimestamp(void) {
 	char temp[20];
 	time_t rawtime = time( &rawtime);
 	struct tm * timeinfo = localtime (&rawtime);
-	std::cout << "[";
 	strftime(temp, 30, "%G%m%e_%H%M%S", timeinfo);
-	std::cout << "]";
+	std::cout << "[" << temp << "]";
 }
 
 void	Account::displayAccountsInfos() {
