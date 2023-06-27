@@ -26,8 +26,8 @@ std::ostream& operator<<(std::ostream& os, const Form& rhs) {
 
 void Form::beSigned(Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() <= this->_grade) {
-		std::cout << std::endl << this->_name << " signed" << std::endl;
 		this->_isSigned = true;
+		std::cout << std::endl << this->_name << " signed" << std::endl;
 	}
 	else {
 		std::cout << bureaucrat.getName() << " can't sign " << this->_name << std::endl;
