@@ -16,6 +16,7 @@ class Bureaucrat {
 							virtual const char* what() const throw();
 			};
 
+			Bureaucrat();
 			Bureaucrat(const std::string name, int16_t grade);
 			~Bureaucrat();
 			Bureaucrat (const Bureaucrat& cpy);
