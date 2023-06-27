@@ -12,6 +12,7 @@
 
 SRCS		=	main.cpp			\
 				Bureaucrat.cpp		\
+				Form.cpp			\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
@@ -19,11 +20,11 @@ CC			=	c++
 
 RM			=	rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror -I./
+CFLAGS		= 	-Wall -Wextra -Werror -I./includes
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex00
+NAME		= 	ex01
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
