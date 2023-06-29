@@ -3,31 +3,19 @@
 #include <fstream>
 #include <string>
 
-PresidentialPardonForm::PresidentialPardonForm() : _name(""), _grade(0), _execGrade(0), _isSigned(false), _target("") {}
-
-// PresidentialPardonForm::PresidentialPardonForm(const std::string& name, const int16_t grade) : _name(name), _grade(grade), _execGrade(0), _isSigned(false) {
-// 	if (grade < 1)
-// 		throw GradeTooHighException();
-// 	else if (grade > 150)
-// 		throw GradeTooLowException();
-// }
+PresidentialPardonForm::PresidentialPardonForm() : _name(""), _signGrade(0), _execGrade(0), _isSigned(false), _target("") {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : _name(name), _signGrade(145), _execGrade(137), _isSigned(false) _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cpy) : _name(cpy._name), _grade(cpy._grade), _execGrade(cpy._execGrade), _isSigned(cpy._isSigned) {}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cpy) : _name(cpy._name), _signGrade(cpy._signGrade), _execGrade(cpy._execGrade), _isSigned(cpy._isSigned) {}
 
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) {
 	this->_isSigned = rhs._isSigned;
 	return *this;
 }
-
-// std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& rhs) {
-// 	os << rhs.getName() << " PresidentialPardonForm grade " << rhs.getGrade() << std::endl;
-// 	return os;
-// }
 
 void PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() <= this->_signGrade) {
@@ -43,39 +31,20 @@ void PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat) {
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	if (exception.getGrade() > this->_execGrade)
 		throw GradeTooLowException();
+	else if (this->_isSigned == false)
+		throw FormularynotSignedException();
 
 	std::ofstream file((this->_target + "_shrubbery").c_str());
-	if (file.isOpen()) {
-
-
-	   file.close() 
+	if (file.is_open()) {
+		printTree(file);
+	   file.close();
 	}
 	else
-		std::cout << "The file  could not be created" << swtd::cout;
-}
-
-void PresidentialPardonForm::printTree(std::ofstream os) {
-	std::os <<	"             * *" << std::endl
-				"           *    *  *" << std::endl
-				"	  *  *    *     *  *" << std::endl
-				"	 *     *    *  *    *" << std::endl
-				" * *   *    *    *    *   *" << std::endl
-				" *     *  *    * * .#  *   *" << std::endl
-				" *   *     * #.  .# *   *" << std::endl
-				"  *     \"#.  #: #\" * *    *" << std::endl
-				" *   * * \"#. ##\"       *" << std::endl
-				"   *       \"###" << std::endl
-				"			 \"##" << std::endl
-				"			  ##." << std::endl
-				"			  .##:" << std::endl
-				"			  :###" << std::endl
-				"			  ;###" << std::endl
-				"			,####." << std::endl
-				"/\\/\\/\\/\\/\\/.######.\\/\\/\\/\\/\\" << std::endl
+		std::cout << "The file could not be created" << std::endl;
 }
 
 const std::string   PresidentialPardonForm::getName() const { return this->_name; }
-int16_t				PresidentialPardonForm::getGrade() const { return this->_grade; }
+int16_t				PresidentialPardonForm::getGrade() const { return this->_signGrade; }
 int16_t				PresidentialPardonForm::getExecGrade() const { return this->_execGrade; }
 bool				PresidentialPardonForm::getIsSigned() const { return this->_isSigned; }
 
@@ -89,4 +58,25 @@ const char* PresidentialPardonForm::GradeTooLowException::what() const throw() {
 
 const char* PresidentialPardonForm::FormularynotSignedException::what() const throw() {
 	return "Formulary not signed!";
+}
+
+
+void PresidentialPardonForm::printTree(std::ofstream& os) const {
+	os <<	"             * *" << std::endl
+			"           *    *  *" << std::endl
+			"	  *  *    *     *  *" << std::endl
+			"	 *     *    *  *    *" << std::endl
+			" * *   *    *    *    *   *" << std::endl
+			" *     *  *    * * .#  *   *" << std::endl
+			" *   *     * #.  .# *   *" << std::endl
+			"  *     \"#.  #: #\" * *    *" << std::endl
+			" *   * * \"#. ##\"       *" << std::endl
+			"   *       \"###" << std::endl
+			"			 \"##" << std::endl
+			"			  ##." << std::endl
+			"			  .##:" << std::endl
+			"			  :###" << std::endl
+			"			  ;###" << std::endl
+			"			,####." << std::endl
+			"/\\/\\/\\/\\/\\/.######.\\/\\/\\/\\/\\" << std::endl
 }

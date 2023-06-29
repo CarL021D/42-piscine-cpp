@@ -32,7 +32,7 @@ class AForm {
 			int16_t				getGrade() const;
 			int16_t				getExecGrade() const;
 			bool				getIsSigned() const;
-	private:
+	protected:
 			const std::string	_name;
 			const int16_t		_signGrade;
 			const int16_t		_execGrade;

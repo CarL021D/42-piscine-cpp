@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() {}
 
@@ -47,6 +48,14 @@ void Bureaucrat::signForm(const Form& form) const {
 					<< form.getGrade() << "is greater than 150" << std::endl;
 	}
 } 
+
+void Bureaucrat::executeForm(const AForm& form) {
+	this->signForm(form);
+	form.execute(*this);
+
+	if ((this->getGrade() <= form.getGrade()) && form.getIsSigned() == true)
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+}
 
 std::string const	Bureaucrat::getName() const { return this->_name; }
 int16_t				Bureaucrat::getGrade() const { return this->_grade; }

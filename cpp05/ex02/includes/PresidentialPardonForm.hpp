@@ -8,14 +8,19 @@
 class PresidentialPardonForm : public Aform {
 	public:
 			class GradeTooHighException : std::exception {
-					public:
-							virtual const char* what() const throw();
+				public:
+						virtual const char* what() const throw();
 			};
 
 			class GradeTooLowException : std::exception {
-					public:
-							virtual const char* what() const throw();
+				public:
+						virtual const char* what() const throw();
 			};
+
+			class FormularynotSignedException : std::exception {
+				public:
+						virtual const char* what() const throw();
+			}
 
 			PresidentialPardonForm();
 			~PresidentialPardonForm();
@@ -26,8 +31,5 @@ class PresidentialPardonForm : public Aform {
 			void	beSigned(Bureaucrat& bureaucrat);
             void	execute(const Bureaucrat& executor) const;
 	private:
-			const std::string	_name;
-			const int16_t		_signGrade;
-			const int16_t		_execGrade;
-			bool				_isSigned;
-			const std::string	_target;
+			void	printTree(std::ofstream& os) const;
+};
