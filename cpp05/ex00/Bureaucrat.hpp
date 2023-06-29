@@ -16,7 +16,6 @@ class Bureaucrat {
 							virtual const char* what() const throw();
 			};
 			
-			Bureaucrat();
 			Bureaucrat(const std::string name, int16_t grade);
 			~Bureaucrat();
 			Bureaucrat (const Bureaucrat& cpy);
@@ -29,7 +28,8 @@ class Bureaucrat {
 	private:
 			const std::string	_name;
 			int16_t				_grade;
-
+			
+			Bureaucrat();
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs);

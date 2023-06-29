@@ -19,7 +19,6 @@ class Form {
 							virtual const char* what() const throw();
 			};
 
-			Form();
 			Form(const std::string& name, const int16_t grade);
 			~Form();
 			Form(const Form& cpy);
@@ -36,6 +35,8 @@ class Form {
 			const int16_t		_grade;
 			const int16_t		_execGrade;
 			bool				_isSigned;
+
+			Form();
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& rhs);

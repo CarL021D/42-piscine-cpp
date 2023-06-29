@@ -22,7 +22,6 @@ class RobotomyRequestForm : public AForm {
 						virtual const char* what() const throw();
 			}
 
-			RobotomyRequestForm();
 			~RobotomyRequestForm();
 			RobotomyRequestForm(const RobotomyRequestForm& cpy);
 			RobotomyRequestForm(const std::string target);
@@ -30,4 +29,6 @@ class RobotomyRequestForm : public AForm {
 
 			void	beSigned(Bureaucrat& bureaucrat);
             void	execute(const Bureaucrat& executor) const;
+	private:
+			RobotomyRequestForm();
 };

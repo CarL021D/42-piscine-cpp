@@ -19,9 +19,8 @@ class AForm {
 							virtual const char* what() const throw();
 			};
 
-			AForm();
 			AForm(const std::string& name, const int16_t signGrade, const int16_t _execGrade);
-			~AForm();
+			virtual ~AForm();
 			AForm(const AForm& cpy);
 			AForm& operator=(const AForm& rhs);
 
@@ -32,6 +31,9 @@ class AForm {
 			int16_t				getGrade() const;
 			int16_t				getExecGrade() const;
 			bool				getIsSigned() const;
+			
+	private:
+					AForm();
 	protected:
 			const std::string	_name;
 			const int16_t		_signGrade;

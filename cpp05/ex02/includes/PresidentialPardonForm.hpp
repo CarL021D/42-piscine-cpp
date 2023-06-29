@@ -22,7 +22,6 @@ class PresidentialPardonForm : public AForm {
 						virtual const char* what() const throw();
 			}
 
-			PresidentialPardonForm();
 			~PresidentialPardonForm();
 			PresidentialPardonForm(const PresidentialPardonForm& cpy);
 			PresidentialPardonForm(const std::string target);
@@ -31,5 +30,6 @@ class PresidentialPardonForm : public AForm {
 			void	beSigned(Bureaucrat& bureaucrat);
             void	execute(const Bureaucrat& executor) const;
 	private:
+			PresidentialPardonForm();
 			void	printTree(std::ofstream& os) const;
 };

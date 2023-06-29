@@ -2,13 +2,11 @@
 
 Bureaucrat::Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const std::string name, int16_t grade) : _name(name) {
+Bureaucrat::Bureaucrat(const std::string name, int16_t grade) : _name(name), _grade(grade) {
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	else
-		this->_grade = grade;
 }
 
 Bureaucrat::~Bureaucrat() {}
