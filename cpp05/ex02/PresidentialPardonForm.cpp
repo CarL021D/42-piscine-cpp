@@ -5,7 +5,7 @@
 
 PresidentialPardonForm::PresidentialPardonForm() : _name(""), _signGrade(0), _execGrade(0), _isSigned(false), _target("") {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : _name(name), _signGrade(145), _execGrade(137), _isSigned(false) _target(target) {}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("the president", 145, 137), _isSigned(false) _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 

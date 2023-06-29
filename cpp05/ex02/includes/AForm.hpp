@@ -20,7 +20,7 @@ class AForm {
 			};
 
 			AForm();
-			AForm(const std::string& name, const int16_t grade);
+			AForm(const std::string& name, const int16_t signGrade, const int16_t _execGrade);
 			~AForm();
 			AForm(const AForm& cpy);
 			AForm& operator=(const AForm& rhs);

@@ -1,9 +1,9 @@
 
 #include "AForm.hpp"
 
-AForm::AForm() : _name(""), _grade(0), _execGrade(0), _isSigned(false) {}
+AForm::AForm() : _name(""), _signGrade(0), _execGrade(0), _isSigned(false) {}
 
-AForm::AForm(const std::string& name, const int16_t grade) : _name(name), _grade(grade), _execGrade(0), _isSigned(false) {
+AForm::AForm(const std::string& name, const int16_t signGrade, const int16_t execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false) {
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
@@ -12,7 +12,7 @@ AForm::AForm(const std::string& name, const int16_t grade) : _name(name), _grade
 
 AForm::~AForm() {}
 
-AForm::AForm(const AForm& cpy) : _name(cpy._name), _grade(cpy._grade), _execGrade(cpy._execGrade), _isSigned(cpy._isSigned) {}
+AForm::AForm(const AForm& cpy) : _name(cpy._name), _signGrade(cpy._signGrade), _execGrade(cpy._execGrade), _isSigned(cpy._isSigned) {}
 
 AForm& AForm::operator=(const AForm& rhs) {
 	this->_isSigned = rhs._isSigned;
@@ -25,7 +25,7 @@ std::ostream& operator<<(std::ostream& os, const AForm& rhs) {
 }
 
 void AForm::beSigned(Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() <= this->_grade) {
+	if (bureaucrat.getGrade() <= this->_signGrade) {
 		this->_isSigned = true;
 		std::cout << std::endl << this->_name << " signed" << std::endl;
 	}
@@ -36,7 +36,7 @@ void AForm::beSigned(Bureaucrat& bureaucrat) {
 }
 
 const std::string   AForm::getName() const { return this->_name; }
-int16_t				AForm::getGrade() const { return this->_grade; }
+int16_t				AForm::getGrade() const { return this->_signGrade; }
 int16_t				AForm::getExecGrade() const { return this->_execGrade; }
 bool				AForm::getIsSigned() const { return this->_isSigned; }
 
