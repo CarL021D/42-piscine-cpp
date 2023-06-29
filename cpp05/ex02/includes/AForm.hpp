@@ -34,7 +34,7 @@ class AForm {
 			bool				getIsSigned() const;
 	private:
 			const std::string	_name;
-			const int16_t		_grade;
+			const int16_t		_signGrade;
 			const int16_t		_execGrade;
 			bool				_isSigned;
 };
