@@ -5,7 +5,7 @@
 #include <exception>
 #include "Bureaucrat.hpp"
 
-class PresidentialPardonForm : public Aform {
+class PresidentialPardonForm : public AForm {
 	public:
 			class GradeTooHighException : std::exception {
 				public:

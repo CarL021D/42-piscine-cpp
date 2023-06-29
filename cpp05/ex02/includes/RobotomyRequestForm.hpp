@@ -5,7 +5,7 @@
 #include <exception>
 #include "Bureaucrat.hpp"
 
-class RobotomyRequestForm : public Aform {
+class RobotomyRequestForm : public AForm {
 	public:
 			class GradeTooHighException : std::exception {
 				public:
