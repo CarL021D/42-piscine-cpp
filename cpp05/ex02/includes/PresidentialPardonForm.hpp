@@ -17,7 +17,7 @@ class PresidentialPardonForm : public AForm {
 						virtual const char* what() const throw();
 			};
 
-			class FormularynotSignedException : std::exception {
+			class UnsignedFormulary : std::exception {
 				public:
 						virtual const char* what() const throw();
 			}
