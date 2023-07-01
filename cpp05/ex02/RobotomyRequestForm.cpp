@@ -44,7 +44,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	if (exception.getGrade() > this->_execGrade)
 		throw GradeTooLowException();
 	else if (this->_isSigned == false)
-		throw FormularynotSignedException();
+		throw UnsignedFormulary();
 
 	srand(time(NULL));
 	int32_t randomNumber = rand() % 2;
@@ -67,6 +67,6 @@ const char* RobotomyRequestForm::GradeTooLowException::what() const throw() {
 	return "Grade too low!";
 }
 
-const char* RobotomyRequestForm::FormularynotSignedException::what() const throw() {
+const char* RobotomyRequestForm::UnsignedFormulary::what() const throw() {
 	return "Formulary not signed!";
 }

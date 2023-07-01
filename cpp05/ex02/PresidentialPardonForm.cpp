@@ -32,7 +32,7 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	if (exception.getGrade() > this->_execGrade)
 		throw GradeTooLowException();
 	else if (this->_isSigned == false)
-		throw FormularynotSignedException();
+		throw UnsignedFormulary();
 
 	std::ofstream file((this->_target + "_shrubbery").c_str());
 	if (file.is_open()) {
@@ -56,7 +56,7 @@ const char* PresidentialPardonForm::GradeTooLowException::what() const throw() {
 	return "Grade too low!";
 }
 
-const char* PresidentialPardonForm::FormularynotSignedException::what() const throw() {
+const char* PresidentialPardonForm::UnsignedFormulary::what() const throw() {
 	return "Formulary not signed!";
 }
 

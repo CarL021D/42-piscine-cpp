@@ -20,7 +20,7 @@ class PresidentialPardonForm : public AForm {
 			class UnsignedFormulary : std::exception {
 				public:
 						virtual const char* what() const throw();
-			}
+			};
 
 			~PresidentialPardonForm();
 			PresidentialPardonForm(const PresidentialPardonForm& cpy);

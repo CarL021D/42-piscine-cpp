@@ -19,6 +19,11 @@ class Bureaucrat {
 							virtual const char* what() const throw();
 			};
 
+			class UnsignedFormulary : std::exception {
+				public:
+						virtual const char* what() const throw();
+			};
+
 			Bureaucrat(const std::string name, int16_t grade);
 			~Bureaucrat();
 			Bureaucrat (const Bureaucrat& cpy);

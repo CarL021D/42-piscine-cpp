@@ -20,7 +20,7 @@ class RobotomyRequestForm : public AForm {
 			class UnsignedFormulary : std::exception {
 				public:
 						virtual const char* what() const throw();
-			}
+			};
 
 			~RobotomyRequestForm();
 			RobotomyRequestForm(const RobotomyRequestForm& cpy);

@@ -32,7 +32,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	if (exception.getGrade() > this->_execGrade)
 		throw GradeTooLowException();
 	else if (this->_isSigned == false)
-		throw FormularynotSignedException();
+		throw UnsignedFormulary();
 
     std::cout << this->_target << " has been forgiven by Zaphod Beeblebrox" << std::endl;
 }
@@ -50,6 +50,6 @@ const char* ShrubberyCreationForm::GradeTooLowException::what() const throw() {
 	return "Grade too low!";
 }
 
-const char* ShrubberyCreationForm::FormularynotSignedException::what() const throw() {
+const char* ShrubberyCreationForm::UnsignedFormulary::what() const throw() {
 	return "Formulary not signed!";
 }
