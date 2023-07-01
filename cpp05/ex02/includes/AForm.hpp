@@ -1,7 +1,6 @@
 
 #pragma once
 #include <iostream>
-#include <cstdint>
 #include <exception>
 #include "Bureaucrat.hpp"
 
@@ -10,16 +9,22 @@ class Bureaucrat;
 class AForm {
 	public:
 			class GradeTooHighException : std::exception {
-					public:
-							virtual const char* what() const throw();
+				public:
+						virtual const char* 	what() const throw();
 			};
 
 			class GradeTooLowException : std::exception {
-					public:
-							virtual const char* what() const throw();
+				public:
+						virtual const char* 	what() const throw();
 			};
 
-			AForm(const std::string& name, const int16_t signGrade, const int16_t _execGrade);
+			class UnsignedFormularyException : std::exception {
+				public:
+						virtual const char*		what() const throw();
+			};
+
+			AForm();
+			AForm(const std::string& name, const short signGrade, const short _execGrade);
 			virtual ~AForm();
 			AForm(const AForm& cpy);
 			AForm& operator=(const AForm& rhs);
@@ -28,16 +33,13 @@ class AForm {
 			virtual void	execute(const Bureaucrat& executor) const = 0;
 
 			const std::string	getName() const;
-			int16_t				getGrade() const;
-			int16_t				getExecGrade() const;
+			short				getGrade() const;
+			short				getExecGrade() const;
 			bool				getIsSigned() const;
-			
-	private:
-					AForm();
 	protected:
 			const std::string	_name;
-			const int16_t		_signGrade;
-			const int16_t		_execGrade;
+			const short			_signGrade;
+			const short			_execGrade;
 			bool				_isSigned;
 };
 

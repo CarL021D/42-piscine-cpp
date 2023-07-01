@@ -1,7 +1,6 @@
 
 #pragma once
 #include <iostream>
-#include <cstdint>
 #include <exception>
 #include "AForm.hpp"
 
@@ -19,27 +18,29 @@ class Bureaucrat {
 							virtual const char* what() const throw();
 			};
 
-			class UnsignedFormulary : std::exception {
+			class UnsignedFormularyException : std::exception {
 				public:
 						virtual const char* what() const throw();
 			};
 
-			Bureaucrat(const std::string name, int16_t grade);
+			Bureaucrat(const std::string name, short grade);
 			~Bureaucrat();
 			Bureaucrat (const Bureaucrat& cpy);
 			Bureaucrat& operator=(const Bureaucrat& rhs);
 
-			void 				upgradeGrade();
-			void				demoteGrade();
-			void				signForm(const AForm& form) const;
+			void	upgradeGrade();
+			void	demoteGrade();
+			void	signForm(const AForm& form) const;
+			void	executeForm(const AForm& form);
+
 
 			std::string const	getName() const;
-			int16_t				getGrade() const;
+			short				getGrade() const;
 	private:
 			Bureaucrat();
-			
+
 			const std::string	_name;
-			int16_t				_grade;
+			short				_grade;
 
 };
 
