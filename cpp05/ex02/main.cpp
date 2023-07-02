@@ -18,7 +18,12 @@ int main() {
 		// Test 1: every Methods are executed
 		Bureaucrat bureaucrat00("Bureaucrat00", 2);
 
-		president.execute(bureaucrat00);
+		// president.beSigned(bureaucrat00);
+		// president.execute(bureaucrat00);
+
+
+		roboto.beSigned(bureaucrat00);
+		roboto.execute(bureaucrat00);
 
 		// // Test 2: unsigned formulary excecption caught
 		// bureaucrat00("Bureaucrat00", toSet);
@@ -30,7 +35,12 @@ int main() {
 		// bureaucrat00("Bureaucrat00", toSet);
 
 
-	} catch (std::exception const & e) {
-		std::cout << "Exception caught: [" << e.what() << "]" << std::endl;
+	// } catch (std::exception const & e) {
+	} catch (AForm::UnsignedFormularyException const & e) {
+		std::cout << "Exception caught: [ " << e.what() << " ]" << std::endl;
+	} catch (AForm::GradeTooHighException const & e) {
+		std::cout << "Exception caught: [ " << e.what() << " ]" << std::endl;
+	} catch (AForm::GradeTooLowException const & e) {
+		std::cout << "Exception caught: [ " << e.what() << " ]" << std::endl;
 	}
 }

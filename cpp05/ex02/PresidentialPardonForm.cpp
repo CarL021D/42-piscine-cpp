@@ -24,6 +24,8 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	else if (this->_isSigned == false)
 		throw UnsignedFormularyException();
 
+	std::cout << std::endl << "HERE" << std::endl;
+
 	std::ofstream file((this->_target + "_shrubbery").c_str());
 	if (file.is_open()) {
 		printTree(file);

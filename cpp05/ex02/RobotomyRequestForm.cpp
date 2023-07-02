@@ -33,8 +33,8 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 
 	srand(time(NULL));
 	int randomNumber = rand() % 2;
-	if (randomNumber)
-		std::cout << this->_target << "has been robotized with success!" << std::endl;
+	if (randomNumber % 2)
+		std::cout << this->_target << " has been robotized with success!" << std::endl;
 	else
 		std::cout << "Robotized operation on " << this->_target << " failed!" << std::endl;
 }
