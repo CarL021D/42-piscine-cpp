@@ -50,11 +50,12 @@ void Bureaucrat::signForm(const AForm& form) const {
 } 
 
 void Bureaucrat::executeForm(const AForm& form) {
-	this->signForm(form);
-	form.execute(*this);
 
-	if ((this->getGrade() <= form.getGrade()) && form.getIsSigned() == true)
+	if ((this->getGrade() <= form.getGrade()) && form.getIsSigned() == true) {
 		std::cout << this->_name << " executed " << form.getName() << std::endl;
+		form.execute(*this);
+	} else 
+		std::cout << "Error, I can't execute the form." << std::endl;
 }
 
 std::string const	Bureaucrat::getName() const { return this->_name; }
