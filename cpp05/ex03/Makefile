@@ -10,13 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	main.cpp			\
-				Animal.cpp			\
-				Dog.cpp				\
-				Cat.cpp				\
-				WrongAnimal.cpp		\
-				WrongCat.cpp		\
-				
+SRCS		=	main.cpp					\
+				Bureaucrat.cpp				\
+				AForm.cpp					\
+				PresidentialPardonForm.cpp	\
+				RobotomyRequestForm.cpp		\
+				ShrubberyCreationForm.cpp	\
 
 OBJS		=	$(SRCS:%.cpp=%.o)
 
@@ -24,11 +23,11 @@ CC			=	c++
 
 RM			=	rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror -I./
+CFLAGS		= 	-Wall -Wextra -Werror -I./includes
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex01
+NAME		= 	ex03
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
