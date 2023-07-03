@@ -28,6 +28,33 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	else if (this->_isSigned == false)
 		throw UnsignedFormularyException();
 
-    std::cout << this->_target << " has been forgiven by Zaphod Beeblebrox" << std::endl;
+	std::cout << std::endl << "HERE" << std::endl;
+
+	std::ofstream file((this->_target + "_shrubbery").c_str());
+	if (file.is_open()) {
+		printTree(file);
+	   file.close();
+	}
+	else
+		std::cout << "The file could not be created" << std::endl;
 }
 
+void ShrubberyCreationForm::printTree(std::ofstream& os) const {
+	os	<< "             * *" << std::endl
+		<< "           *    *  *" << std::endl
+		<< "	  *  *    *     *  *" << std::endl
+		<< "	 *     *    *  *    *" << std::endl
+		<< " * *   *    *    *    *   *" << std::endl
+		<< " *     *  *    * * .#  *   *" << std::endl
+		<< " *   *     * #.  .# *   *" << std::endl
+		<< "  *     \"#.  #: #\" * *    *" << std::endl
+		<< " *   * * \"#. ##\"       *" << std::endl
+		<< "   *       \"###" << std::endl
+		<< "			 \"##" << std::endl
+		<< "			  ##." << std::endl
+		<< "			  .##:" << std::endl
+		<< "			  :###" << std::endl
+		<< "			  ;###" << std::endl
+		<< "			,####." << std::endl
+		<< "/\\/\\/\\/\\/\\/.######.\\/\\/\\/\\/\\" << std::endl;
+}

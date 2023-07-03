@@ -14,7 +14,6 @@ class PresidentialPardonForm : public AForm {
             void	execute(const Bureaucrat& executor) const;
 	private:
 			PresidentialPardonForm();
-			void	printTree(std::ofstream& os) const;
 
 			const std::string	_target;
 };

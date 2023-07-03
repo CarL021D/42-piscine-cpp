@@ -15,24 +15,28 @@ int main() {
 
 	try {
 
-		// Test 1: every Methods are executed
 		Bureaucrat bureaucrat00("Bureaucrat00", 2);
 
-		// president.beSigned(bureaucrat00);
+		// Test 1
+		president.beSigned(bureaucrat00);
+		president.execute(bureaucrat00);
+
+		// // Test 2
+		// roboto.beSigned(bureaucrat00);
+		// roboto.execute(bureaucrat00);
+
+		// // Test 3
+		// shrubbery.beSigned(bureaucrat00);
+		// shrubbery.execute(bureaucrat00);
+
+		// // Test 4
 		// president.execute(bureaucrat00);
 
+		// // Test 5
+		// president.execute(bureaucrat00);
 
-		roboto.beSigned(bureaucrat00);
-		roboto.execute(bureaucrat00);
-
-		// // Test 2: unsigned formulary excecption caught
-		// bureaucrat00("Bureaucrat00", toSet);
-
-		// // Test 3: grade to low exception caught 
-		// bureaucrat00("Bureaucrat00", toSet);
-
-		// // Test 4: grade exception caught
-		// bureaucrat00("Bureaucrat00", toSet);
+		// // Test 6
+		// president.execute(bureaucrat00);
 
 
 	// } catch (std::exception const & e) {

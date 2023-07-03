@@ -15,6 +15,8 @@ class ShrubberyCreationForm : public AForm {
 	private:
 			ShrubberyCreationForm();
 
+			void	printTree(std::ofstream& os) const;
+
 			const std::string	_target;
 };
 
