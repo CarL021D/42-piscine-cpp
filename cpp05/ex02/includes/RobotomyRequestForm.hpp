@@ -17,3 +17,5 @@ class RobotomyRequestForm : public AForm {
 			
 			const std::string	_target;
 };
+
+std::ostream& operator<<(std::ostream& os, const AForm& rhs);

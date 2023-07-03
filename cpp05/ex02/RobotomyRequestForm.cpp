@@ -20,10 +20,10 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& r
 	return *this;
 }
 
-// std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm& rhs) {
-// 	os << rhs.getName() << " RobotomyRequestForm grade " << rhs.getGrade() << std::endl;
-// 	return os;
-// }
+std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm& rhs) {
+	os << rhs.getName() << " RobotomyRequestForm grade " << rhs.getGrade() << std::endl;
+	return os;
+}
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->_execGrade)

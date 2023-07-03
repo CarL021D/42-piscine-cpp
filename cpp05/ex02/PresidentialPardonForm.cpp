@@ -18,6 +18,11 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& rhs) {
+	os << rhs.getName() << " PresidentialPardonForm grade " << rhs.getGrade() << std::endl;
+	return os;
+}
+
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->_execGrade)
 		throw GradeTooLowException();

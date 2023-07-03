@@ -17,6 +17,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return *this;
 }
 
+std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& rhs) {
+	os << rhs.getName() << " RobotomyRequestForm grade " << rhs.getGrade() << std::endl;
+	return os;
+}
+
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	if (executor.getGrade() > this->_execGrade)
 		throw GradeTooLowException();
