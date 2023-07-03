@@ -7,7 +7,7 @@
 class RobotomyRequestForm : public AForm {
 	public:
 			~RobotomyRequestForm();
-			RobotomyRequestForm(const RobotomyRequestForm& cpy);
+			RobotomyRequestForm(const RobotomyRequestForm& src);
 			RobotomyRequestForm(const std::string target);
 			RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
 

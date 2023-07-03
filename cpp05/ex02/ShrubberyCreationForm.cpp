@@ -9,7 +9,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubC
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& cpy) { *this = cpy; }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) { *this = src; }
 
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {

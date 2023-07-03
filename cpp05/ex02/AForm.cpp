@@ -12,7 +12,7 @@ AForm::AForm(const std::string& name, const short signGrade, const short execGra
 
 AForm::~AForm() {}
 
-AForm::AForm(const AForm& cpy) : _name(cpy._name), _signGrade(cpy._signGrade), _execGrade(cpy._execGrade) { *this = cpy; }
+AForm::AForm(const AForm& src) : _name(src._name), _signGrade(src._signGrade), _execGrade(src._execGrade) { *this = src; }
 
 AForm& AForm::operator=(const AForm& rhs) {
 	this->_isSigned = rhs._isSigned;

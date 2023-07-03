@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat(const std::string name, short grade) : _name(name), _grad
 
 Bureaucrat::~Bureaucrat() {}
 
-Bureaucrat::Bureaucrat(const Bureaucrat& cpy) { *this = cpy; }
+Bureaucrat::Bureaucrat(const Bureaucrat& src) { *this = src; }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
 	this->_grade = rhs._grade;

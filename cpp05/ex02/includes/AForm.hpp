@@ -26,7 +26,7 @@ class AForm {
 			AForm();
 			AForm(const std::string& name, const short signGrade, const short _execGrade);
 			virtual ~AForm();
-			AForm(const AForm& cpy);
+			AForm(const AForm& src);
 			AForm& operator=(const AForm& rhs);
 
 			void			beSigned(Bureaucrat& bureaucrat);

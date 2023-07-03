@@ -12,7 +12,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Trob", 72,
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& cpy) { *this = cpy; }
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) { *this = src; }
 
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) {

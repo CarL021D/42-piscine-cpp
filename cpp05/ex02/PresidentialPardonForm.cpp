@@ -11,7 +11,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cpy) { *this = cpy; }
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src) { *this = src; }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) {
 	this->_isSigned = rhs._isSigned;

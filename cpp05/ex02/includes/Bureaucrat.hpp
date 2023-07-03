@@ -25,7 +25,7 @@ class Bureaucrat {
 
 			Bureaucrat(const std::string name, short grade);
 			~Bureaucrat();
-			Bureaucrat (const Bureaucrat& cpy);
+			Bureaucrat (const Bureaucrat& src);
 			Bureaucrat& operator=(const Bureaucrat& rhs);
 
 			void	upgradeGrade();
