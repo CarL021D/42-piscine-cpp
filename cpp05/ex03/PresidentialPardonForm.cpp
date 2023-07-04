@@ -5,9 +5,7 @@
 
 PresidentialPardonForm::PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {
-	// this->_isSigned = false;
-}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
