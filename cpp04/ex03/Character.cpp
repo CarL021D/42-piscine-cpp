@@ -1,6 +1,7 @@
 #include "includes/includes.hpp"
 
-Character::Character() {
+Character::Character() : _name("default name") {
+	// this->_name = "default name"
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 	this->_name = "";
@@ -13,8 +14,7 @@ Character::~Character() {
 	_unequippedItems.clear();
 }
 
-Character::Character(std::string name) {
-	this->_name = name;
+Character::Character(std::string name) : _name(name) {
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
