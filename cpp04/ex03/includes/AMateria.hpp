@@ -19,7 +19,7 @@ class AMateria {
 	public:
 			AMateria();
 			virtual ~AMateria();
-			AMateria(const AMateria& cpy);
+			AMateria(const AMateria& src);
 			AMateria(const std::string& type);
 			AMateria& operator=(const AMateria& rhs);
 

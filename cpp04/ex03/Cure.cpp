@@ -1,19 +1,10 @@
 #include "includes/Cure.hpp"
 
-Cure::Cure() { this->_type = "cure"; }
+Cure::Cure() : AMateria("cure") {}
 
 Cure::~Cure() {}
 
-Cure::Cure(const Cure& cpy) { *this = cpy; }
-
-Cure::Cure(const std::string& type) {
-	if (type != "cure")
-	{
-		std::cout << "Wrong type name, must be called cure" << std::endl;
-		return;
-	}
-	_type = type;
-}
+Cure::Cure(const Cure& src) { *this = src; }
 
 Cure& Cure::operator=(const Cure& rhs) {
 	this->_type = rhs.getType();

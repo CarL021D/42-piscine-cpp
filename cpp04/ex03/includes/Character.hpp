@@ -6,7 +6,7 @@ class Character : public ICharacter {
 			Character();
 			virtual ~Character();
 			Character(std::string name);
-			Character(const Character& cpy);
+			Character(const Character& src);
 			Character& operator=(const Character& rhs);
 
 			std::string const & getName() const;

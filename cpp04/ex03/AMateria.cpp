@@ -16,7 +16,7 @@ AMateria::AMateria() {}
 
 AMateria::~AMateria() {}
 
-AMateria::AMateria(const AMateria& cpy) { *this = cpy; }
+AMateria::AMateria(const AMateria& src) { *this = src; }
 
 AMateria::AMateria(const std::string& type) : _type(type) {}
 

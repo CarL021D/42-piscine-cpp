@@ -5,7 +5,7 @@ MateriaSource::MateriaSource() {
 		_inventory[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& cpy) { *this = cpy; }
+MateriaSource::MateriaSource(const MateriaSource& src) { *this = src; }
 
 MateriaSource::~MateriaSource() {
 	for (short i = 0; i < 4; i++)

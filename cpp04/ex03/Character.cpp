@@ -19,7 +19,7 @@ Character::Character(std::string name) {
 		this->_items[i] = NULL;
 }
 
-Character::Character(const Character& cpy) { *this = cpy; }
+Character::Character(const Character& src) { *this = src; }
 
 Character& Character::operator=(const Character& rhs) {
 	// this->_name = rhs.getName();

@@ -9,7 +9,7 @@ class MateriaSource : public IMateriaSource {
             MateriaSource();
 			~MateriaSource();
 			MateriaSource(std::string name);
-			MateriaSource(const MateriaSource& cpy);
+			MateriaSource(const MateriaSource& src);
 			MateriaSource& operator=(const MateriaSource& rhs);
 
 			void learnMateria(AMateria*);

@@ -1,19 +1,10 @@
 #include "includes/Ice.hpp"
 
-Ice::Ice() { this->_type = "ice"; }
+Ice::Ice() : AMateria("ice") {}
 
 Ice::~Ice() {}
 
-Ice::Ice(const Ice& cpy) { *this = cpy; }
-
-Ice::Ice(const std::string& type) {
-	if (type != "ice")
-	{
-		std::cout << "Wrong type name, must be called ice" << std::endl;
-		return;
-	}
-	_type = type;
-}
+Ice::Ice(const Ice& src) { *this = src; }
 
 Ice& Ice::operator=(const Ice& rhs) {
 	this->_type = rhs.getType();
