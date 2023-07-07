@@ -12,7 +12,11 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap() {}
+ScavTrap::ScavTrap() : ClapTrap() {
+	std::cout << "ScavTrap created!" << std::endl;
+	this->_energy = 50;
+	this->_hp = 20;
+}
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 	std::cout << "ScavTrap created!" << std::endl;

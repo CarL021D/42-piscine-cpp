@@ -12,7 +12,12 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {}
+ClapTrap::ClapTrap() {
+	std::cout << "ClapTrap created!" << std::endl;
+	this->_name = "clapDefaultName";
+	this->_energy = 10;
+	this->_hp = 10;
+}
 
 ClapTrap::ClapTrap(std::string name) {
 	std::cout << "ClapTrap created!" << std::endl;

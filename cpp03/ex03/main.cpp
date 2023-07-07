@@ -17,12 +17,14 @@
 
 int main() {
 	
-	ClapTrap		player1 = ClapTrap("player1");
-	DiamondTrap		player2 = DiamondTrap("player2");
+	ClapTrap		player1 = ClapTrap("ClapPlayer");
+	DiamondTrap		player2 = DiamondTrap("diamondPlayer");
 	
 	player2.whoAmI();
+	std::cout << std::endl;
 	for (uint8_t i = 0; i < 2; i++) {
 		player2.attack("player1");
 		player1.takeDamage(player2.getAttackDamage());
+		// std::cout << std::endl;
 	}
 }

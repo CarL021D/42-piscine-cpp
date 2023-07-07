@@ -12,7 +12,12 @@
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap() {}
+FragTrap::FragTrap() : ClapTrap() {
+	std::cout << "FragTrap created!" << std::endl;
+	this->_energy = 100;
+	this->_hp = 100;
+	this->_attackDamage = 100;
+}
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	std::cout << "FragTrap created!" << std::endl;
