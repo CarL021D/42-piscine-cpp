@@ -2,31 +2,31 @@
 
 int main()
 {
-	AMateria* ice = new Ice();
-	std::cout << "<<" << ice->getType() << std::endl;
+	ICharacter* char1 = new Character("char1");
+	ICharacter* char2 = new Character("Rob");
+
+	IMateriaSource* src = new MateriaSource();
+
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	// Equip/Unequip materia
+	std::cout << std::endl;
+	char1->equip(new Ice());
+	char1->use(0, *char1);
+	char1->unequip(0);
+	char1->use(0, *char1);
+	std::cout << std::endl;
+
+	char1->equip(src->createMateria("ice"));
+	char1->equip(src->createMateria("cure"));
+	char1->equip(src->createMateria("ice"));
+	char1->use(0, *char2);
+	char1->use(1, *char2);
+	char1->use(2, *char2);
+
+	// Character index error
+	char1->use(3, *char2);
+	char1->use(4, *char2);
+
 }
-
-// int main()
-// {
-// 	// ICharacter* ken = new Character("Ken");
-// 	// ICharacter* lee = new Character("Lee");
-
-// 	// IMateriaSource* src = new MateriaSource();
-
-// 	AMateria* ice = new Ice();
-// 	std::cout << "<<" << ice->getType() << std::endl;
-
-// 	// src->learnMateria(new Ice());
-// 	// src->learnMateria(new Cure());
-
-// 	// // std::cout << std::endl;
-// 	// // ken->equip(new Ice());
-// 	// // ken->use(0, *lee);
-// 	// // ken->unequip(0);
-// 	// // ken->use(0, *lee);
-
-// 	// std::cout << std::endl;
-// 	// ken->equip(src->createMateria("ice"));
-// 	// ken->equip(src->createMateria("cure"));
-// 	// ken->use(0, *lee);
-// }

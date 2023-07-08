@@ -20,8 +20,6 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs) {
 }
 
 void MateriaSource::learnMateria(AMateria* materia) {
-	
-	std::cout << ">>" << materia->getType() << std::endl;
 	for (short i = 0; i < 4; i++) {
 		if (!_inventory[i]) {
 			_inventory[i] = materia;

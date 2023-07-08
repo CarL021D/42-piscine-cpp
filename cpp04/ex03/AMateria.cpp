@@ -21,7 +21,7 @@ AMateria::AMateria(const AMateria& src) { *this = src; }
 AMateria::AMateria(const std::string& type) : _type(type) {}
 
 AMateria& AMateria::operator=(const AMateria& rhs) {
-	this->_type = rhs.getType();
+	this->_type = rhs._type;
 	return *this;
 }
 

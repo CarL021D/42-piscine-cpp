@@ -7,7 +7,7 @@ Ice::~Ice() {}
 Ice::Ice(const Ice& src) { *this = src; }
 
 Ice& Ice::operator=(const Ice& rhs) {
-	this->_type = rhs.getType();
+	this->_type = rhs._type;
 	return *this;
 }
 

@@ -7,7 +7,7 @@ Cure::~Cure() {}
 Cure::Cure(const Cure& src) { *this = src; }
 
 Cure& Cure::operator=(const Cure& rhs) {
-	this->_type = rhs.getType();
+	this->_type = rhs._type;
 	return *this;
 }
 

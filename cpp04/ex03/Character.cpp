@@ -1,7 +1,6 @@
 #include "includes/includes.hpp"
 
 Character::Character() : _name("default name") {
-	// this->_name = "default name"
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 	this->_name = "";
@@ -28,12 +27,7 @@ Character& Character::operator=(const Character& rhs) {
 	// this->_unequippedItems = rhs.copyUnequippedItems(rhs._unequippedItems);
 	
 
-	this->_name = rhs.getName();
-	for (short i = 0; i < 4; i++)
-	{
-		if (this->_items[i])
-			this->_items[i] = rhs.getItems(i)->clone();
-	}
+	this->_name = rhs._name;
 	return *this;
 }
 
@@ -66,8 +60,10 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx > 3 || !_items[idx])
-		std::cout << "Item usage failed, empty index" << std::endl;
+	if (idx < 0 || idx > 3)
+		std::cout << "Item usage failed" << std::endl;
+	else if (!_items[idx])
+		std::cout << "Error, empty index" << std::endl; 
 	else
 		this->_items[idx]->use(target);	
 }
