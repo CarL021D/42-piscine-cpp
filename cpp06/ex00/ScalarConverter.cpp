@@ -11,10 +11,14 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) {
 	return *this;
 }
 
+// bool ScalarConverter::strIsFloat(std::string str) {
+
+// }
+
 
 bool ScalarConverter::strIsInt(std::string str) {
 	int		nb;
-	int 	sign = 1;
+	short 	sign = 1;
 	size_t	offset = 0;
 
 	while (str[offset] == '+' || str[offset] == '-') {
@@ -23,8 +27,9 @@ bool ScalarConverter::strIsInt(std::string str) {
 		offset++;
 	}
 	for (; offset < str.length(); offset++)
-		if (!std::isdigit(str[offset]))
+		if (!std::isdigit(str[offset])) {
 			return false;
+		}
 	for (size_t i = 0; i < str.length(); i++) {
 		if (str[i] == '+' || str[i] == '-') {
 			str.erase(i, 1);
@@ -49,12 +54,10 @@ bool ScalarConverter::strIsInt(std::string str) {
 bool ScalarConverter::strIsChar(std::string str) {
 	char c;
 	
-
-	if (str.length() != 1 || str[0] < 32 || str[0] > 126 )
+	if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] + 48) > 126 )
 		return false;
 
 	c = str[0];
-
 	std::cout << "char: " << c << std::endl;
 	std::cout << "int: " << static_cast<int>(c - 48) << std::endl; 
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c - 48) << "f" << std::endl; 
@@ -65,6 +68,6 @@ bool ScalarConverter::strIsChar(std::string str) {
 void ScalarConverter::convert(std::string str) {
 	if (str.empty())
 		return ;
-	if (!strIsChar(str))
+	if (!strIsChar(str) && !strIsInt(str))
 		std::cout << str << " couldn't be converted" << std::endl;
 }
