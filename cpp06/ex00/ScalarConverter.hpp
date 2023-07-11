@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
+#include <climits>
 #include "ScalarConverter.hpp"
 
 
@@ -16,4 +17,5 @@ class  ScalarConverter {
 
 	private:
 			static bool		strIsChar(std::string str);
+			static bool		strIsInt(std::string str);
 };
