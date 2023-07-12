@@ -21,4 +21,7 @@ class  ScalarConverter {
 			static bool		strIsChar(std::string str);
 			static bool		strIsInt(std::string str);
 			static bool		strIsFloat(std::string str);
+			static bool		strIsDouble(std::string str);
+			static bool		specialAttribut(std::string str);
+			static void		displaySpecialInputMessage(std::string& str);
 };
