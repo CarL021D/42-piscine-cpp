@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <iomanip>
-#include "ScalarConverter.hpp"
+#include "includes/ScalarConverter.hpp"
 
 int main(int ac, char **av) {
 	std::string input;

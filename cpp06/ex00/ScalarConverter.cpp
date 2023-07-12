@@ -1,4 +1,4 @@
-#include "ScalarConverter.hpp"
+#include "includes/ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() {}
 
@@ -137,14 +137,14 @@ bool ScalarConverter::strIsInt(std::string str) {
 bool ScalarConverter::strIsChar(std::string str) {
 	char c;
 	
-	if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] + 48) > 126 )
+	if (str.length() != 1 || (str[0]) < 32 || (str[0]) > 126 )
 		return false;
 
 	c = str[0];
 	std::cout << "char: " << c << std::endl;
-	std::cout << "int: " << static_cast<int>(c - 48) << std::endl; 
-	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c - 48) << "f" << std::endl; 
-	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c - 48) << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl; 
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl; 
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
 	return true;
 }
 
