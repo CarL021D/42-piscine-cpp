@@ -29,12 +29,9 @@ void MateriaSource::learnMateria(AMateria* materia) {
 }
 
 AMateria* MateriaSource::createMateria(const std::string& type) {
-	for (short i = 0; i < 4; i++) {
-		if (_inventory[i] && type == _inventory[i]->getType()) {
-			std::cout << std::endl << "TRUE" << std::endl;
+	for (short i = 0; i < 4; i++)
+		if (_inventory[i] && type == _inventory[i]->getType())
 			return _inventory[i]->clone();
-		}
-	}
 	return NULL; 
 }
 

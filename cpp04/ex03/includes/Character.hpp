@@ -19,6 +19,7 @@ class Character : public ICharacter {
 
 	private:
 			std::string				_name;
-			std::list<AMateria*>	_unequippedItems;
 			AMateria*				_items[4];
+			AMateria**				_unequippedItems;
+			int						_unequippedItemsCount;
 };

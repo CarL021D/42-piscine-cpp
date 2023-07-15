@@ -1,19 +1,22 @@
 #include "includes/includes.hpp"
 
-Character::Character() : _name("default name") {
+Character::Character() : _name("default name"), _unequippedItemsCount(0) {
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
-	this->_name = "";
 }
 
 Character::~Character() {
 	for (short i = 0; i < 4; i++)
 		if (this->_items[i])
 			delete _items[i];
-	_unequippedItems.clear();
+	if (this->_unequippedItemsCount) {
+		for (int i = 0; i < this->_unequippedItemsCount; i++)
+			delete this->_unequippedItems[i];
+		delete this->_unequippedItems;
+	}
 }
 
-Character::Character(std::string name) : _name(name) {
+Character::Character(std::string name) : _name(name), _unequippedItemsCount(0) {
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
@@ -41,10 +44,8 @@ std::list<AMateria*> Character::copyUnequippedItems(std::list<AMateria*> sourceL
 }
 
 void Character::equip(AMateria* m) {	
-	for (short i = 0; i < 4; i++)
-	{
-		if (!this->_items[i])
-		{
+	for (short i = 0; i < 4; i++) {
+		if (!this->_items[i]) {
 			this->_items[i] = m;
 			return;
 		}
@@ -55,8 +56,17 @@ void Character::equip(AMateria* m) {
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3 || this->_items[idx] == NULL)
 		return;
-	this->_unequippedItems.push_back(this->_items[idx]);
+
+	AMateria** tmp = new AMateria*[this->_unequippedItemsCount +  1];
+
+	for (int i = 0; i < this->_unequippedItemsCount; i++)
+		tmp[i] = this->_unequippedItems[i];
+	delete[] this->_unequippedItems;
+	tmp[this->_unequippedItemsCount] = this->_items[idx];
 	this->_items[idx] = NULL;
+	this->_unequippedItems = tmp;
+	tmp = NULL;
+	this->_unequippedItemsCount++;
 }
 
 void Character::use(int idx, ICharacter& target) {
@@ -69,9 +79,16 @@ void Character::use(int idx, ICharacter& target) {
 }
 
 void Character::displayUnequippedEquipment() const {
-	std::list<AMateria*>::const_iterator it;
-    for (it = _unequippedItems.begin(); it != _unequippedItems.end(); ++it) {
-        AMateria* item = *it;
-        std::cout << item->getType() << std::endl;
+	if (!this->_unequippedItemsCount) {
+		std::cout << "Nothing was dropped" << std::endl;
+		return ;
+	}
+
+	std::cout << this->_unequippedItemsCount << std::endl << std::endl;
+
+	std::cout << this->_name << ":" << std::endl;
+    for (int i = 0; i < this->_unequippedItemsCount; i++) {
+		std::cout	<< "Unequipped item " << i << " of type "
+					<< this->_unequippedItems[i]->getType() << std::endl;
     }
 }
