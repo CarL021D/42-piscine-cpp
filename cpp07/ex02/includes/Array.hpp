@@ -9,7 +9,7 @@ class Array {
 			};
 			Array();
 			~Array();
-			Array(ubnsigned int size);
+			Array(unsigned int size);
 			Array(const Array& src);
 			Array& operator=(const Array& rhs);
 

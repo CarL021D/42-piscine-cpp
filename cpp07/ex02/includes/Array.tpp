@@ -6,7 +6,7 @@ template<typename T>
 Array<T>::Array() : _array(new T[0]), _size(0) {}
 
 template<typename T>
-Array<T>::~Array() { delete[] _array; }
+Array<T>::~Array() { delete[] this->_array; }
 
 template<typename T>
 Array<T>::Array(unsigned int size) : _array(new T[size]), _size(size) {}
@@ -16,7 +16,7 @@ Array<T>::Array(const Array<T>& src) {
 	this->_array = new T[src._size];
 	this->_size = src._size;
 	for (unsigned int i = 0; i < this->_size; i++)
-		this->_array[i] = src->_array[i];
+		this->_array[i] = src._array[i];
 }
 
 template<typename T>
@@ -24,7 +24,7 @@ Array<T>& Array<T>::operator=(const Array<T>& rhs) {
 	this->_array = new T[rhs._size];
 	this->_size = rhs._size;
 	for (unsigned int i = 0; i < this->_size; i++)
-		this->_array[i] = rhs->_array[i];
+		this->_array[i] = rhs._array[i];
 	return *this;
 }
 
