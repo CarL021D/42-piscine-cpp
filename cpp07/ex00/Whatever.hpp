@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 
 template< typename T >
 void swap(T& lhs, T& rhs) {

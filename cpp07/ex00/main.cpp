@@ -1,6 +1,5 @@
 #include "Whatever.hpp"
 #include <iostream>
-#include <iomanip>
 
 int main( void ) {
 	int a = 2;
