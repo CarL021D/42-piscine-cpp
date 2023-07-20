@@ -15,9 +15,9 @@
 
 int main(int ac, char **av)
 {
-	if (ac < 2)
+	if (ac == 1)
 	{
-		std::cout << "Only 1 argument is required" << std::endl;
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return 1;
 	}
 	for (int i = 1; i < ac; i++)
