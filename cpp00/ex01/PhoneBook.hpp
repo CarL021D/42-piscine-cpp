@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:20 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/25 15:36:44 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:33:43 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,21 @@
 
 class PhoneBook {
 	
-public:
-	PhoneBook();
-	~PhoneBook();
-	void			add_contact(Contact contact);
-	void			look_for_contact_info();
+	public:
+			PhoneBook();
+			~PhoneBook();
+			void			add_contact(Contact contact);
+			void			look_for_contact_info();
 
-private:
+	private:
+			Contact			_contact[8];
 
-	Contact			_contact[8];
-
-	short			space_count(std::string str) const;
-	bool			contact_index_error(std::string index_str) const;
-	std::string		truncate_str(std::string str) const;
-	void			display_contacts_info() const;
-	void			print_content(std::string input) const;
-	void			single_contact_info_display(std::string input) const;
+			short			space_count(std::string str) const;
+			bool			contact_index_error(std::string index_str) const;
+			std::string		truncate_str(std::string str) const;
+			void			display_contacts_info() const;
+			void			print_content(std::string input) const;
+			void			single_contact_info_display(std::string input) const;
 };
 
 #endif
