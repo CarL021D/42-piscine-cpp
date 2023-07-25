@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:16 by caboudar          #+#    #+#             */
-/*   Updated: 2023/06/13 16:06:23 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:26:00 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	PhoneBook::display_contacts_info() const
 		print_content(_contact[i].nickname);
 		std::cout << "|" << std::endl;
 	}
-		std::cout << std::endl;
+	std::cout << std::endl;
 }
 
 void	PhoneBook::single_contact_info_display(std::string input) const

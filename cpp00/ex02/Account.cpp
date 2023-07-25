@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:31 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:32 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 13:47:53 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,7 @@ int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
-int	Account::getNbAccounts() { return _nbAccounts; }
-
-int	Account::getTotalAmount() { return _totalAmount; }
-
-int	Account::getNbDeposits() { return _totalNbDeposits; }
-
-int	Account::getNbWithdrawals() { return _totalNbWithdrawals; }
+Account::Account(void) {}
 
 Account::Account(int initial_deposit) {
 	_accountIndex = _nbAccounts;
@@ -42,8 +36,6 @@ Account::~Account() {
 				<< _amount << ";closed" << std::endl;
 	_nbAccounts--;
 }
-
-
 
 void	Account::makeDeposit(int deposit) {
 	_amount += deposit;
@@ -100,4 +92,7 @@ void	Account::displayAccountsInfos() {
 				<< ";nb_withdrawals:" << getNbWithdrawals() << std::endl;
 }
 
-Account::Account(void) {}
+int	Account::getNbAccounts() { return _nbAccounts; }
+int	Account::getTotalAmount() { return _totalAmount; }
+int	Account::getNbDeposits() { return _totalNbDeposits; }
+int	Account::getNbWithdrawals() { return _totalNbWithdrawals; }
