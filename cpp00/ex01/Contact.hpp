@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:05 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:06 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:19:23 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,23 @@
 #include <stdint.h>
 
 class Contact {
+	public:
+		Contact();
+		~Contact();
 
-public:
-	std::string		first_name;
-	std::string		last_name;
-	std::string		nickname;
-	std::string		phone_number;
-	std::string		darkest_secret;
+	void			create_contact();
+	std::string		getFirstName() const;
+	std::string		getLastName() const;
+	std::string		getNickName() const;
+	std::string		getPhoneNumber() const;
+	std::string		getDarketSecret() const;
 
-	Contact();
-	~Contact();
-
-	void 		create_contact();
-
-private:
-
+	private:
+			std::string		_firstName;
+			std::string		_lastName;
+			std::string		_nickName;
+			std::string		_phoneNumber;
+			std::string		_darkestSecret;
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:42:38 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/15 16:42:39 by caboudar         ###   ########.fr        #
+#    Updated: 2023/07/25 16:26:46 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex02
+NAME		= 	account
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:01 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:42:02 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:22:20 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Contact::~Contact(void) {
 	return;
 }
 
-void		Contact::create_contact()
+void	Contact::create_contact()
 {
 	std::string		input;
 
@@ -33,21 +33,22 @@ void		Contact::create_contact()
 	{
 		std::cout << "Insert your first name:" << std::endl;
 		std::getline(std::cin, input);
-		first_name = input;
+			return ;
+		this->_firstName = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert your last name:" << std::endl;
 		std::getline(std::cin, input);
-		last_name = input;
+		this->_lastName = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert a nickname name:" << std::endl;
 		std::getline(std::cin, input);
-		nickname = input;
+		this->_nickName = input;
 	}
 	input.clear();
 	while (input.empty())
@@ -63,13 +64,19 @@ void		Contact::create_contact()
 			}
 			break;
 		}
-		phone_number = input;
+		this->_phoneNumber = input;
 	}
 	input.clear();
 	while (input.empty())
 	{
 		std::cout << "Insert your darkest secret:" << std::endl;
 		std::getline(std::cin, input);
-		darkest_secret = input;
+		this->_darkestSecret = input;
 	}
 }
+
+std::string		Contact::getFirstName() const { return this->_firstName; }
+std::string		Contact::getLastName() const { return this->_lastName; }
+std::string		Contact::getNickName() const { return this->_nickName; }
+std::string		Contact::getPhoneNumber() const { return this->_phoneNumber; }
+std::string		Contact::getDarketSecret() const { return this->_darkestSecret; }

@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:16 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/25 13:26:00 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:45:53 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	PhoneBook::contact_index_error(std::string input) const
 		}
 	}
 	int_input = std::atoi(input.c_str());
-	if ((int_input < 0 || int_input > 7) || _contact[int_input].first_name.empty())
+	if ((int_input < 0 || int_input > 7) || _contact[int_input].getFirstName().empty())
 	{
 		std::cout << "Wrong input!" << std::endl;
 		return true;
@@ -102,11 +102,11 @@ void	PhoneBook::display_contacts_info() const
 	for (short i = 0; i < 8; i++)
 	{
 		std::cout << "|         " << i << "|";		
-		print_content(_contact[i].first_name);
+		print_content(_contact[i].getFirstName());
 		std::cout << "|";
-		print_content(_contact[i].last_name);
+		print_content(_contact[i].getLastName());
 		std::cout << "|";
-		print_content(_contact[i].nickname);
+		print_content(_contact[i].getNickName());
 		std::cout << "|" << std::endl;
 	}
 	std::cout << std::endl;
@@ -116,11 +116,11 @@ void	PhoneBook::single_contact_info_display(std::string input) const
 {
 	int32_t index = std::atoi(input.c_str());
 
-	std::cout << std::endl << "first name: " << _contact[index].first_name << std::endl;
-	std::cout << "last name: " << _contact[index].last_name << std::endl;
-	std::cout << "nickname: " << _contact[index].nickname << std::endl;
-	std::cout << "phone number: " << _contact[index].phone_number << std::endl;
-	std::cout << "darkest secret: " << _contact[index].darkest_secret << std::endl << std::endl;
+	std::cout << std::endl << "first name: " << _contact[index].getFirstName() << std::endl;
+	std::cout << "last name: " << _contact[index].getLastName() << std::endl;
+	std::cout << "nickname: " << _contact[index].getNickName() << std::endl;
+	std::cout << "phone number: " << _contact[index].getPhoneNumber() << std::endl;
+	std::cout << "darkest secret: " << _contact[index].getDarketSecret() << std::endl << std::endl;
 
 }
 

@@ -6,7 +6,7 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:42:13 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/15 16:42:14 by caboudar         ###   ########.fr        #
+#    Updated: 2023/07/25 16:25:27 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex01
+NAME		= 	phonebook
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
