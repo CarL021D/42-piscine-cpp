@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:42:31 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/25 13:47:53 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:22:04 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Account::Account(void) {}
 Account::Account(int initial_deposit) {
 	_accountIndex = _nbAccounts;
 	_displayTimestamp();
-	std::cout << "index:" <<_accountIndex << ";amount:" << initial_deposit << ";created" << std::endl;
+	std::cout << " index:" <<_accountIndex << ";amount:" << initial_deposit << ";created" << std::endl;
 	_nbAccounts++;
 	_amount = initial_deposit;
 	_totalAmount += initial_deposit;
