@@ -29,7 +29,6 @@ void	Contact::create_contact()
 	{
 		std::cout << "Insert your first name:" << std::endl;
 		std::getline(std::cin, input);
-			return ;
 		this->_firstName = input;
 	}
 	input.clear();
