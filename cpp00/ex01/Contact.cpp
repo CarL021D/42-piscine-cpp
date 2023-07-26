@@ -17,13 +17,9 @@
 #include <cstdlib>
 #include "Contact.hpp"
 
-Contact::Contact(void) {
-	return;
-}
+Contact::Contact(void) {}
 
-Contact::~Contact(void) {
-	return;
-}
+Contact::~Contact(void) {}
 
 void	Contact::create_contact()
 {

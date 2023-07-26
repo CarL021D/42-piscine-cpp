@@ -17,9 +17,9 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-PhoneBook::PhoneBook(void) { return; }
+PhoneBook::PhoneBook(void) {}
 
-PhoneBook::~PhoneBook(void) { return; }
+PhoneBook::~PhoneBook(void) {}
 
 void	PhoneBook::add_contact(Contact contact)
 {
