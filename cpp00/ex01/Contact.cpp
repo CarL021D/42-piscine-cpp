@@ -54,10 +54,10 @@ void	Contact::create_contact()
 		{
 			if (!isdigit(input[i]))
 			{
-				std::cout << "Insert digits only" << std::endl;
+				std::cout << "Please insert digits only" << std::endl << std::endl;
 				input.clear();
+				break;
 			}
-			break;
 		}
 		this->_phoneNumber = input;
 	}
