@@ -14,16 +14,16 @@
 #include <iostream>
 
 class Zombie {
-
 	public:
-		Zombie();
-		~Zombie();
+			Zombie();
+			Zombie(std::string name);
+			~Zombie();
 
-		void	announce();
-		void    setName(std::string name);
+			void	announce();
+			void    setName(std::string name);
 
 	private:
-		std::string     _name;
+			std::string     _name;
 };
 
 Zombie* newZombie(std::string name);

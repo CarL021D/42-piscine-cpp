@@ -14,12 +14,10 @@
 
 Zombie::Zombie() {}
 
-Zombie::~Zombie() {
-	std::cout << "Destructor called by: " << _name << std::endl;
-}
+Zombie::Zombie(std::string name) : _name(name) {}
 
-void	Zombie::setName(std::string name) { _name = name; }
+Zombie::~Zombie() { std::cout << _name << " destructor called" << std::endl; }
 
-void	Zombie::announce() {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+void Zombie::setName(std::string name) { _name = name; }
+
+void Zombie::announce() { std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl; }
