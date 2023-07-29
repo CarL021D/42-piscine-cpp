@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 21:15:40 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/17 17:07:43 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/29 16:38:47 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	Harl::complain(std::string level) {
 	int i = 0;
 	
 	while (i < 4 && funcArr[i].level != level) { i++; }
-		
 	switch (i)
 	{
 		case 0:

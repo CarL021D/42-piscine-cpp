@@ -6,7 +6,7 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:45:55 by caboudar          #+#    #+#              #
-#    Updated: 2023/05/17 16:07:17 by caboudar         ###   ########.fr        #
+#    Updated: 2023/07/29 12:26:32 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS		= 	-Wall -Wextra -Werror -I./
 
 CPPFLAGS	= 	-std=c++98
 
-NAME		= 	ex06
+NAME		= 	HarlFilter
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
