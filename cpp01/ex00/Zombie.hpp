@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:43:23 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:43:24 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/29 12:31:28 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ class Zombie {
 			~Zombie();
 
 			void	announce();
-			void    setName(std::string name);
-
 	private:
 			std::string     _name;
 };
