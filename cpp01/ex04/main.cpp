@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:45:51 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/29 18:55:13 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/29 18:55:57 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int main(int ac, char **av)
 
 	infile.close();
 	outfile.close();
-
 	std::cout << "Find and replace operation completed successfully!" << std::endl;
-
 	return 0;
 }

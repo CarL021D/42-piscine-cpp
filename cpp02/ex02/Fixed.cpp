@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:31:25 by caboudar          #+#    #+#             */
-/*   Updated: 2023/06/02 04:46:50 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:24:28 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed(float value) { _value = (int)roundf(value * (1 << _fractionalBits))
 
 Fixed::~Fixed() {}
 
-Fixed::Fixed(Fixed const &cpy) { *this = cpy; }
+Fixed::Fixed(Fixed const &src) { *this = src; }
 
 Fixed &Fixed::operator=(Fixed const &rhs) {
 	_value = rhs.getRawBits();

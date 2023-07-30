@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 21:31:25 by caboudar          #+#    #+#             */
-/*   Updated: 2023/06/02 04:46:50 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:21:29 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Fixed::Fixed(Fixed const &cpy) {
 
 Fixed &Fixed::operator=(Fixed const &rhs) {
 	std::cout << "Copy assignment operator called" << std::endl;
-	_value = rhs.getRawBits();
+	_value = rhs._value;
 	return *this;
 }
 
