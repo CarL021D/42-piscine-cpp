@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:53:10 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/29 14:37:12 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:11:29 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ FragTrap::FragTrap() : ClapTrap() {
 	std::cout << "FragTrap created!" << std::endl;
 	this->_energy = 100;
 	this->_hp = 100;
-	this->_attackDamage = 100;
+	this->_attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
@@ -24,7 +24,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	this->_name = name;
 	this->_energy = 100;
 	this->_hp = 100;
-	this->_attackDamage = 100;
+	this->_attackDamage = 30;
 }
 
 FragTrap::~FragTrap() {

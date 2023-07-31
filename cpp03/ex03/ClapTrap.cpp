@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/29 15:31:33 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 12:48:13 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 ClapTrap::ClapTrap() {
 	std::cout << "ClapTrap created!" << std::endl;
-	this->_name = "clapDefaultName";
+	this->_name = "DefaultClapName";
 	this->_energy = 10;
 	this->_hp = 10;
+	this->_attackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name) {
@@ -24,6 +25,7 @@ ClapTrap::ClapTrap(std::string name) {
 	this->_name = name;
 	this->_energy = 10;
 	this->_hp = 10;
+	this->_attackDamage = 0;
 }
 
 ClapTrap::~ClapTrap() {
