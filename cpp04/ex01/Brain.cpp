@@ -2,20 +2,23 @@
 
 Brain::Brain() {
 	std::cout << "Brain constructor called" << std::endl;
-	this->ideas = new std::string[100];
-	for (short i = 0; i < 100; i++)
-		this->ideas[i] = "code: idea: " + std::to_string(i + 1);
+	// this->ideas = new std::string[100];
+	for (short i = 0; i < 100; i++) {
+		std::stringstream str;
+		str << "code idea number: " << (i + 1);
+		this->ideas[i] = str.str();
+	}
 }
 
-Brain::~Brain() {
-	std::cout << "Brain destructor called" << std::endl;
-	delete[] this->ideas;
-}
+Brain::~Brain() { std::cout << "Brain destructor called" << std::endl; }
 
 Brain::Brain(const Brain& cpy) { *this = cpy; }
 
 Brain& Brain::operator=(const Brain& rhs) {
+	if (this == &rhs)
+		return *this;
 
-	this->ideas = rhs.ideas;
+	for (short i = 0; i < 100; i++)
+		this->ideas[i] = rhs.ideas[i];
 	return *this;
 }
