@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:12:27 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:25:34 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& src) { *this = src; }
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void ScavTrap::guardGate() { std::cout << "Guard gate mode activated" << std::endl; }

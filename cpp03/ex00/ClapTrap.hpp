@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:50:04 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:18:46 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ class ClapTrap {
 
 		ClapTrap();
 		~ClapTrap();
+		ClapTrap(const ClapTrap& src);
+		ClapTrap& operator=(const ClapTrap& rhs);
 		ClapTrap(std::string name);
 	
 		void attack(const std::string& target);

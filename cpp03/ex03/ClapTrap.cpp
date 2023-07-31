@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 12:48:13 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:22:26 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ ClapTrap::ClapTrap(std::string name) {
 
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& src) { *this = src; }
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void ClapTrap::attack(const std::string& target) {

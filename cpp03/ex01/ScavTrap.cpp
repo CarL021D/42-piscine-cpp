@@ -6,15 +6,21 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 16:53:58 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:23:24 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap() {}
+ScavTrap::ScavTrap() : ClapTrap() {
+	std::cout << "ScavTrap created!" << std::endl;
+	this->_name = "DefaultScavName";
+	this->_energy = 50;
+	this->_hp = 100;
+	this->_attackDamage = 20;
+}
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap() {
 	std::cout << "ScavTrap created!" << std::endl;
 	this->_name = name;
 	this->_energy = 50;
@@ -24,6 +30,16 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& src) { *this = src; }
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void ScavTrap::guardGate() { std::cout << "Guard gate mode activated" << std::endl; }

@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:53:03 by caboudar          #+#    #+#             */
-/*   Updated: 2023/05/24 17:41:09 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:28:30 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ class FragTrap: virtual public ClapTrap {
 			FragTrap();
 			FragTrap(std::string name);
 			~FragTrap();
+			FragTrap(const FragTrap& src);
+			FragTrap& operator=(const FragTrap& rhs);
+
 
 			void highFiveGuys();
 };

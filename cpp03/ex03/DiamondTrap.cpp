@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:03:10 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:10:53 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:24:43 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name") {
 
 DiamondTrap::~DiamondTrap() {
 	std::cout << "DiamondTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap& src) { *this = src; }
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void DiamondTrap::whoAmI() {

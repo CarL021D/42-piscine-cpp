@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 10:53:10 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:11:29 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:25:08 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 
 FragTrap::~FragTrap() {
 	std::cout << "FragTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+FragTrap::FragTrap(const FragTrap& src) { *this = src; }
+
+FragTrap& FragTrap::operator=(const FragTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void FragTrap::highFiveGuys() {

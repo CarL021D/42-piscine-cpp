@@ -6,13 +6,19 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 11:48:25 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:20:09 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {}
+ClapTrap::ClapTrap() {
+	std::cout << "ClapTrap created!" << std::endl;
+	this->_name = "Default Name";
+	this->_energy = 10;
+	this->_hp = 10;
+	this->_attackDamage = 0;
+}
 
 ClapTrap::ClapTrap(std::string name) {
 	std::cout << "ClapTrap created!" << std::endl;
@@ -24,6 +30,16 @@ ClapTrap::ClapTrap(std::string name) {
 
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& src) { *this = src; }
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) {
+	this->_name = rhs._name;
+	this->_energy = rhs._energy;
+	this->_hp = rhs._hp;
+	this->_attackDamage = rhs._attackDamage;
+	return *this;
 }
 
 void ClapTrap::setDamage(unsigned int amount) { this->_attackDamage = amount; }
