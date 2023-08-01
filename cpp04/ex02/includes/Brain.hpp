@@ -1,6 +1,7 @@
 
 #pragma once
 #include <iostream>
+#include <sstream>
 
 class Brain {
 
@@ -9,6 +10,6 @@ class Brain {
 			~Brain();
 			Brain(const Brain& cpy);
 			Brain& operator=(const Brain& rhs);
-			std::string *ideas;
-	protected:
+
+			std::string ideas[100];
 };

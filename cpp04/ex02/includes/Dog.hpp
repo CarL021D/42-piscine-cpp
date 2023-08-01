@@ -9,9 +9,11 @@ class Dog : public IAnimal {
 			~Dog();
 			Dog(const Dog& cpy);
 			Dog& operator=(const Dog& rhs);
+			
 			void makeSound() const;
-			virtual std::string	getType() const;
-			void				displayIdea(short i) const;
+			void displayIdea(short i) const;
+			void setNewIdea(short i, std::string new_idea);
+			std::string&	getIdea(short i) const;
 	private:
-			Brain	*brain;
+			Brain	*_brain;
 };

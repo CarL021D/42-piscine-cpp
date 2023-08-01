@@ -10,9 +10,8 @@ class Cat : public IAnimal {
 			~Cat();
 			Cat(const Cat& cpy);
 			Cat& operator=(const Cat& rhs);
+			
 			void makeSound() const;
-			virtual std::string	getType() const;
-			void 				displayIdea(short i) const;
+			void displayIdea(short i) const;
 	private:
-			Brain	*brain;
-};
+			Brain	*_brain;};

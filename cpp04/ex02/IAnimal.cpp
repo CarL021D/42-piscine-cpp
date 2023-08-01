@@ -12,5 +12,3 @@ IAnimal& IAnimal::operator=(const IAnimal& rhs) {
 }
 
 std::string IAnimal::getType() const { return this->_type; }
-
-void IAnimal::makeSound() const { std::cout << "....." << std::endl; }
