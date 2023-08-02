@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:21:06 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:00:39 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class ClapTrap {
 			virtual	void 	attack(const std::string& target);
 			void			takeDamage(unsigned int amount);
 			void			beRepaired(unsigned int amount);
-			unsigned int	getAttackDamage();
-
+			void 			setDamage(unsigned int amount);
+			unsigned int 	getDamage();
 	protected:
 			std::string		_name;
 			int				_hp;

@@ -13,9 +13,9 @@ int main()
 	// Equip/Unequip materia
 	std::cout << std::endl;
 	char1->equip(new Ice());
-	char1->use(0, *char1);
+	char1->use(0, *char2);
 	char1->unequip(0);
-	char1->use(0, *char1);
+	char1->use(0, *char2);
 	std::cout << std::endl;
 
 	char1->equip(src->createMateria("ice"));

@@ -2,7 +2,6 @@
 
 Brain::Brain() {
 	std::cout << "Brain constructor called" << std::endl;
-	// this->ideas = new std::string[100];
 	for (short i = 0; i < 100; i++) {
 		std::stringstream str;
 		str << "code idea number: " << (i + 1);

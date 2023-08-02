@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:43 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 11:58:25 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:00:58 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int main() {
 	std::cout << std::endl;
 	for (uint8_t i = 0; i < 2; i++) {
 		player1.attack("player2");
-		player2.takeDamage(player1.getAttackDamage());
+		player2.takeDamage(player1.getDamage());
 	}
 	player2.beRepaired(8);
 	for (uint8_t i = 0; i < 2; i++) {
 		player2.attack("player1");
-		player1.takeDamage(player2.getAttackDamage());
+		player1.takeDamage(player2.getDamage());
 	}
 }

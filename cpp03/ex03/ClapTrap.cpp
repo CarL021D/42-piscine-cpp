@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:35 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:22:26 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:04:49 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void ClapTrap::attack(const std::string& target) {
 	
 }
 
-unsigned int ClapTrap::getAttackDamage() { return this->_attackDamage; }
-
 void ClapTrap::takeDamage(unsigned int amount) {
 	if (this->_hp == 0)
 	{
@@ -81,3 +79,5 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	std::cout << this->_name << " has " <<  this->_hp << " hp(s)" << std::endl;
 	std::cout << this->_name << " has " << this->_energy << " energy left" << std::endl << std::endl;
 }
+
+unsigned int ClapTrap::getDamage() { return this->_attackDamage; }
