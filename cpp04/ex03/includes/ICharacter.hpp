@@ -11,4 +11,5 @@ class ICharacter {
 			virtual void use(int idx, ICharacter& target) = 0;
 			
 			virtual void displayUnequippedEquipment() const = 0;
+			virtual void displayEquipment() const = 0;
 };

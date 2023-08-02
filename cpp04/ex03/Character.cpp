@@ -46,6 +46,7 @@ std::list<AMateria*> Character::copyUnequippedItems(std::list<AMateria*> sourceL
 void Character::equip(AMateria* m) {	
 	for (short i = 0; i < 4; i++) {
 		if (!this->_items[i]) {
+			std::cout << m->getType() << " equiped" << std::endl;
 			this->_items[i] = m;
 			return;
 		}
@@ -55,10 +56,14 @@ void Character::equip(AMateria* m) {
 
 void Character::unequip(int idx) {
 	if (idx < 0 || idx > 3 || this->_items[idx] == NULL)
+	{
+		std::cout << "No Amateria at this index, you can not use it" << std::endl;
 		return;
+	}
 
 	AMateria** tmp = new AMateria*[this->_unequippedItemsCount +  1];
 
+	std::cout << _items[idx]-> getType() << " unequiped at indedex [" << idx << "]" << std::endl;
 	for (int i = 0; i < this->_unequippedItemsCount; i++)
 		tmp[i] = this->_unequippedItems[i];
 	delete[] this->_unequippedItems;
@@ -78,17 +83,21 @@ void Character::use(int idx, ICharacter& target) {
 		this->_items[idx]->use(target);	
 }
 
+void Character::displayEquipment() const {
+	for (short i = 0; i < 4; i++)
+		std::cout << "[" << i << "] " << _items[i]->getType() << std::endl;
+	std::cout << std::endl;
+}
+
 void Character::displayUnequippedEquipment() const {
 	if (!this->_unequippedItemsCount) {
 		std::cout << "Nothing was dropped" << std::endl;
 		return ;
 	}
 
-	std::cout << this->_unequippedItemsCount << std::endl << std::endl;
-
-	std::cout << this->_name << ":" << std::endl;
+	std::cout << this->_name << " unquipped item list:" << std::endl;
     for (int i = 0; i < this->_unequippedItemsCount; i++) {
-		std::cout	<< "Unequipped item " << i << " of type "
+		std::cout	<< "unequipped item " << i << " of type "
 					<< this->_unequippedItems[i]->getType() << std::endl;
     }
 }
