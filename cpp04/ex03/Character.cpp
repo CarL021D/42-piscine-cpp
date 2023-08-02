@@ -21,16 +21,38 @@ Character::Character(std::string name) : _name(name), _unequippedItemsCount(0) {
 		this->_items[i] = NULL;
 }
 
-Character::Character(const Character& src) { *this = src; }
+Character::Character(const Character& src) {
+	this->_name = src._name;
+	for (short i = 0; i < 4; i++)
+		this->_items[i] = src._items[i];
+	this->_unequippedItems = src._unequippedItems;
+	this->_unequippedItemsCount = src._unequippedItemsCount;
+	*this = src;
+}
 
 Character& Character::operator=(const Character& rhs) {
-	// this->_name = rhs.getName();
+	this->_name = rhs._name;
+
+	for (short i = 0; i < 4; i++) {
+ 		if (rhs._items[i]->getType() == "ice")
+			this->_items[i] = new Ice();
+		else if (rhs._items[i]->getType() == "cure")
+			this->_items[i] = new Cure();
+	}
+
+	this->_unequippedItems = new AMateria*[this->_unequippedItemsCount];
+	for (short i = 0; i < this->_unequippedItemsCount; i++) {
+		if (rhs._unequippedItems[i]->getType() == "ice")
+			this->_unequippedItems[i] = new Ice();
+		else if (rhs._unequippedItems[i]->getType() == "cure")
+			this->_unequippedItems[i] = new Cure();
+	}
+
+	// this->
 	// for (short i = 0; i < 4; i++)
 	// 	this->_items[i] = rhs.getItems(i);
 	// this->_unequippedItems = rhs.copyUnequippedItems(rhs._unequippedItems);
 	
-
-	this->_name = rhs._name;
 	return *this;
 }
 
