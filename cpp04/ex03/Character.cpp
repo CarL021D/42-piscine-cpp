@@ -32,7 +32,7 @@ Character::Character(const Character& src) {
 
 Character& Character::operator=(const Character& rhs) {
 	this->_name = rhs._name;
-
+	this->_unequippedItemsCount = rhs._unequippedItemsCount;
 	for (short i = 0; i < 4; i++) {
  		if (rhs._items[i]->getType() == "ice")
 			this->_items[i] = new Ice();
@@ -47,12 +47,6 @@ Character& Character::operator=(const Character& rhs) {
 		else if (rhs._unequippedItems[i]->getType() == "cure")
 			this->_unequippedItems[i] = new Cure();
 	}
-
-	// this->
-	// for (short i = 0; i < 4; i++)
-	// 	this->_items[i] = rhs.getItems(i);
-	// this->_unequippedItems = rhs.copyUnequippedItems(rhs._unequippedItems);
-	
 	return *this;
 }
 
@@ -117,7 +111,7 @@ void Character::displayUnequippedEquipment() const {
 		return ;
 	}
 
-	std::cout << this->_name << " unquipped item list:" << std::endl;
+	std::cout << this->_name << " unequipped item list:" << std::endl;
     for (int i = 0; i < this->_unequippedItemsCount; i++) {
 		std::cout	<< "unequipped item " << i << " of type "
 					<< this->_unequippedItems[i]->getType() << std::endl;
