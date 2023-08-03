@@ -7,12 +7,12 @@ Character::Character() : _name("default name"), _unequippedItemsCount(0) {
 
 Character::~Character() {
 	for (short i = 0; i < 4; i++)
-		if (this->_items[i])
+		if (this->_items[i] != NULL)
 			delete _items[i];
 	if (this->_unequippedItemsCount) {
 		for (int i = 0; i < this->_unequippedItemsCount; i++)
 			delete this->_unequippedItems[i];
-		delete this->_unequippedItems;
+		delete[] this->_unequippedItems;
 	}
 }
 
@@ -67,6 +67,7 @@ void Character::equip(AMateria* m) {
 			return;
 		}
 	}
+	delete m;
 	std::cout << "Not enough space in the inventory" << std::endl;
 }
 

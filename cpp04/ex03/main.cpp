@@ -19,6 +19,7 @@ int main()
 	char1->use(0, *char2);
 	std::cout << std::endl;
 
+	// Equipe mateira using materiasource
 	char1->equip(src->createMateria("ice"));
 	char1->equip(src->createMateria("cure"));
 	char1->equip(src->createMateria("ice"));

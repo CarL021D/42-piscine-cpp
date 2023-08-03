@@ -9,7 +9,7 @@ MateriaSource::MateriaSource(const MateriaSource& src) { *this = src; }
 
 MateriaSource::~MateriaSource() {
 	for (short i = 0; i < 4; i++)
-		if (_inventory[i])
+		if (_inventory[i] != NULL)
 			delete _inventory[i];	
 }
 
