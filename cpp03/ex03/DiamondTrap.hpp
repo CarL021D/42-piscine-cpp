@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 12:03:06 by caboudar          #+#    #+#             */
-/*   Updated: 2023/07/31 13:28:09 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:14:30 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class DiamondTrap: virtual public ScavTrap, virtual public FragTrap {
 		DiamondTrap(const DiamondTrap& src);
 		DiamondTrap& operator=(const DiamondTrap& rhs);
 
-
+		void displayAttribut();
 		void whoAmI();
 		using ScavTrap::attack;
 
