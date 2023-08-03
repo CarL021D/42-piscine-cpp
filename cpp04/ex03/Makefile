@@ -6,7 +6,7 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:43:10 by caboudar          #+#    #+#              #
-#    Updated: 2023/06/16 11:23:13 by caboudar         ###   ########.fr        #
+#    Updated: 2023/08/03 12:14:10 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CC			=	c++
 
 RM			=	rm -f
 
-CFLAGS		= 	-Wall -Wextra -Werror -I./
+CFLAGS		= 	-Wall -Wextra -Werror -g3 -I./
 #CFLAGS		= 	-I./
 
 CPPFLAGS	= 	-std=c++98

@@ -1,6 +1,6 @@
 #include "includes/includes.hpp"
 
-Character::Character() : _name("default name"), _unequippedItemsCount(0) {
+Character::Character() : _name("default name"),  _unequippedItems(NULL), _unequippedItemsCount(0) {
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
@@ -11,12 +11,13 @@ Character::~Character() {
 			delete _items[i];
 	if (this->_unequippedItemsCount) {
 		for (int i = 0; i < this->_unequippedItemsCount; i++)
-			delete this->_unequippedItems[i];
+			if (this->_unequippedItems[i])
+				delete this->_unequippedItems[i];
 		delete[] this->_unequippedItems;
 	}
 }
 
-Character::Character(std::string name) : _name(name), _unequippedItemsCount(0) {
+Character::Character(std::string name) : _name(name), _unequippedItems(NULL), _unequippedItemsCount(0) {
 	for (short i = 0; i < 4; i++)
 		this->_items[i] = NULL;
 }
@@ -31,13 +32,24 @@ Character::Character(const Character& src) {
 }
 
 Character& Character::operator=(const Character& rhs) {
-	this->_name = rhs._name;
-	this->_unequippedItemsCount = rhs._unequippedItemsCount;
+	std::string	itemsTypeStr[4];
+
 	for (short i = 0; i < 4; i++) {
- 		if (rhs._items[i]->getType() == "ice")
+		if (rhs._items[i] != NULL) {
+			itemsTypeStr[i] = rhs._items[i]->getType();
+			delete rhs._items[i];
+		}
+		else
+			itemsTypeStr[i] = "null";
+	}
+
+	for (short i = 0; i < 4; i++) {
+ 		if (itemsTypeStr[i] == "ice")
 			this->_items[i] = new Ice();
-		else if (rhs._items[i]->getType() == "cure")
+		else if (itemsTypeStr[i] == "cure")
 			this->_items[i] = new Cure();
+		else
+			this->_items[i] = NULL;
 	}
 
 	this->_unequippedItems = new AMateria*[this->_unequippedItemsCount];
@@ -47,17 +59,15 @@ Character& Character::operator=(const Character& rhs) {
 		else if (rhs._unequippedItems[i]->getType() == "cure")
 			this->_unequippedItems[i] = new Cure();
 	}
+	this->_name = rhs._name;
+	this->_unequippedItemsCount = rhs._unequippedItemsCount;
+
 	return *this;
 }
 
 std::string const & Character::getName() const { return this->_name; }
 
 AMateria* Character::getItems(short i) const { return this->_items[i]; }
-
-std::list<AMateria*> Character::copyUnequippedItems(std::list<AMateria*> sourceList) {
-	std::list<AMateria*> copyList(sourceList);
-	return copyList;
-}
 
 void Character::equip(AMateria* m) {	
 	for (short i = 0; i < 4; i++) {
@@ -83,7 +93,9 @@ void Character::unequip(int idx) {
 	std::cout << _items[idx]-> getType() << " unequiped at indedex [" << idx << "]" << std::endl;
 	for (int i = 0; i < this->_unequippedItemsCount; i++)
 		tmp[i] = this->_unequippedItems[i];
-	delete[] this->_unequippedItems;
+	
+	if (this->_unequippedItems != NULL)
+		delete[] this->_unequippedItems;
 	tmp[this->_unequippedItemsCount] = this->_items[idx];
 	this->_items[idx] = NULL;
 	this->_unequippedItems = tmp;
@@ -101,8 +113,9 @@ void Character::use(int idx, ICharacter& target) {
 }
 
 void Character::displayEquipment() const {
+	std::cout << this->_name << " equipped items list:" << std::endl;
 	for (short i = 0; i < 4; i++)
-		std::cout << "[" << i << "] " << _items[i]->getType() << std::endl;
+		std::cout << "\t[" << i << "] " << _items[i]->getType() << std::endl;
 	std::cout << std::endl;
 }
 
@@ -112,9 +125,12 @@ void Character::displayUnequippedEquipment() const {
 		return ;
 	}
 
-	std::cout << this->_name << " unequipped item list:" << std::endl;
+	std::cout << this->_name << " unequipped items list:" << std::endl;
+
+
+
     for (int i = 0; i < this->_unequippedItemsCount; i++) {
-		std::cout	<< "unequipped item " << i << " of type "
+		std::cout	<< "\tunequipped item " << i << " -> "
 					<< this->_unequippedItems[i]->getType() << std::endl;
     }
 }

@@ -4,7 +4,8 @@ int main()
 {
 	ICharacter* char1 = new Character("Lee");
 	ICharacter* char2 = new Character("Rob");
-
+	// ICharacter* char3 = new Character("Test");
+	
 	IMateriaSource* src = new MateriaSource();
 
 	src->learnMateria(new Ice());
@@ -18,6 +19,10 @@ int main()
 	char1->unequip(0);
 	char1->use(0, *char2);
 	std::cout << std::endl;
+
+
+	// char3 = char1;
+	// char3->displayEquipment();
 
 	// Equipe mateira using materiasource
 	char1->equip(src->createMateria("ice"));
@@ -45,7 +50,11 @@ int main()
 	char1->use(3, *char2);
 	char1->use(4, *char2);
 
+
+
 	delete char1;
-	delete char2;
-	delete src;
+	// delete char2;
+	// delete char3;
+// std::cout << "BUGG" << std::endl << std::endl;
+	// delete src;
 }
