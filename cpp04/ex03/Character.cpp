@@ -33,6 +33,11 @@ Character::Character(const Character& src) {
 
 Character& Character::operator=(const Character& rhs) {
 	std::string	itemsTypeStr[4];
+	std::string	unequippedItemsTypeStr[rhs._unequippedItemsCount];
+
+
+	this->_name = rhs._name;
+	this->_unequippedItemsCount = rhs._unequippedItemsCount;
 
 	for (short i = 0; i < 4; i++) {
 		if (rhs._items[i] != NULL) {
@@ -52,16 +57,25 @@ Character& Character::operator=(const Character& rhs) {
 			this->_items[i] = NULL;
 	}
 
-	this->_unequippedItems = new AMateria*[this->_unequippedItemsCount];
+
+	if (rhs._unequippedItemsCount) {
+		for (short i = 0; i < 4; i++) {
+			if (rhs._items[i] != NULL) {
+				unequippedItemsTypeStr[i] = rhs._items[i]->getType();
+				delete rhs._items[i];
+			}
+			else
+				unequippedItemsTypeStr[i] = "null";
+		}
+	}
+
+	this->_unequippedItems = new AMateria*[rhs._unequippedItemsCount];
 	for (short i = 0; i < this->_unequippedItemsCount; i++) {
-		if (rhs._unequippedItems[i]->getType() == "ice")
+		if (unequippedItemsTypeStr[i] == "ice")
 			this->_unequippedItems[i] = new Ice();
-		else if (rhs._unequippedItems[i]->getType() == "cure")
+		else if (unequippedItemsTypeStr[i] == "cure")
 			this->_unequippedItems[i] = new Cure();
 	}
-	this->_name = rhs._name;
-	this->_unequippedItemsCount = rhs._unequippedItemsCount;
-
 	return *this;
 }
 
@@ -115,7 +129,8 @@ void Character::use(int idx, ICharacter& target) {
 void Character::displayEquipment() const {
 	std::cout << this->_name << " equipped items list:" << std::endl;
 	for (short i = 0; i < 4; i++)
-		std::cout << "\t[" << i << "] " << _items[i]->getType() << std::endl;
+		if (_items[i])
+			std::cout << "\t[" << i << "] " << _items[i]->getType() << std::endl;
 	std::cout << std::endl;
 }
 
