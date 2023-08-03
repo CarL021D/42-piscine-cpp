@@ -2,8 +2,8 @@
 
 int main()
 {
-	// ICharacter* char1 = new Character("Lee");
-	// ICharacter* char2 = new Character("Rob");
+	// Character* char1 = new Character("Lee");
+	// Character* char2 = new Character("Rob");
 	// IMateriaSource* src = new MateriaSource();
 
 	// src->learnMateria(new Ice());
@@ -27,6 +27,8 @@ int main()
 	// std::cout << std::endl;
 
 	// char1->displayEquipment();
+	// std::cout << std::endl;
+
 	// char1->use(0, *char2);
 	// char1->use(3, *char2);
 	// char1->use(4, *char2);
@@ -42,7 +44,6 @@ int main()
 
 	// // Character index error
 	// char1->use(3, *char2);
-	// char1->use(4, *char2);
 
 	// delete char1;
 	// delete char2;
@@ -51,26 +52,42 @@ int main()
 
 
 	Character* char1 = new Character("Lee");
-	Character* char3 = new Character(*char1);
-	// ICharacter* char3 = new Character();
+	Character* char3;
 
+	std::cout << "char1" << std::endl;
 	char1->equip(new Ice());
 	char1->equip(new Ice());
 	char1->equip(new Cure());
 	char1->equip(new Cure());
+	std::cout << std::endl;
 
-	// *char3 = *char1;
+	char3 = new Character(*char1);
+
+	std::cout << "char1" << std::endl;
+	char1->displayEquipment();
 	char1->unequip(2);
+	char1->unequip(3);
+	std::cout << std::endl;
 
-	// std::cout << std::endl;
-	// char1->displayEquipment();
+	std::cout << "char1" << std::endl;
+	char1->displayEquipment();
+
+	std::cout << "char3" << std::endl;
 	char3->displayEquipment();
+	std::cout << std::endl;
 
-	// std::cout << std::endl;
-	// char3->displayUnequippedEquipment();
-	// char1->displayUnequippedEquipment();
+	std::cout << "char1" << std::endl;
+	char1->displayUnequippedEquipment();
+	std::cout << std::endl;
+	
+	std::cout << "char3" << std::endl;
+	char3->unequip(0);
+	char3->displayEquipment();
+	
+	std::cout << "char3" << std::endl;
+	char3->displayUnequippedEquipment();
+	std::cout << std::endl;
 
-
-	// delete char1;
-	// delete char3;
+	delete char1;
+	delete char3;
 }

@@ -9,10 +9,10 @@ Character::~Character() {
 	for (short i = 0; i < 4; i++)
 		if (this->_items[i] != NULL)
 			delete _items[i];
+	
 	if (this->_unequippedItemsCount) {
 		for (int i = 0; i < this->_unequippedItemsCount; i++)
-			if (this->_unequippedItems[i])
-				delete this->_unequippedItems[i];
+			delete this->_unequippedItems[i];
 		delete[] this->_unequippedItems;
 	}
 }
@@ -35,19 +35,18 @@ Character& Character::operator=(const Character& rhs) {
 	std::string	itemsTypeStr[4];
 	std::string	unequippedItemsTypeStr[rhs._unequippedItemsCount];
 
-
-	this->_name = rhs._name;
-	this->_unequippedItemsCount = rhs._unequippedItemsCount;
-
 	for (short i = 0; i < 4; i++) {
 		if (rhs._items[i] != NULL) {
 			itemsTypeStr[i] = rhs._items[i]->getType();
-			delete rhs._items[i];
+			if (this->_items[i]) {
+				delete this->_items[i];
+				this->_items[i] = NULL;
+			}
 		}
 		else
 			itemsTypeStr[i] = "null";
 	}
-
+	
 	for (short i = 0; i < 4; i++) {
  		if (itemsTypeStr[i] == "ice")
 			this->_items[i] = new Ice();
@@ -57,23 +56,21 @@ Character& Character::operator=(const Character& rhs) {
 			this->_items[i] = NULL;
 	}
 
+	if (!this->_unequippedItemsCount)
+		return *this;
 
-	if (rhs._unequippedItemsCount) {
-		for (short i = 0; i < 4; i++) {
-			if (rhs._items[i] != NULL) {
-				unequippedItemsTypeStr[i] = rhs._items[i]->getType();
-				delete rhs._items[i];
-			}
-			else
-				unequippedItemsTypeStr[i] = "null";
-		}
-	}
+	this->_name = rhs._name;
+	this->_unequippedItemsCount = rhs._unequippedItemsCount;
 
-	this->_unequippedItems = new AMateria*[rhs._unequippedItemsCount];
+	for (short i = 0; i < this->_unequippedItemsCount; i++)
+		unequippedItemsTypeStr[i] = rhs._items[i]->getType();
+
+	this->_unequippedItems = new AMateria*[this->_unequippedItemsCount];
+
 	for (short i = 0; i < this->_unequippedItemsCount; i++) {
 		if (unequippedItemsTypeStr[i] == "ice")
 			this->_unequippedItems[i] = new Ice();
-		else if (unequippedItemsTypeStr[i] == "cure")
+		else
 			this->_unequippedItems[i] = new Cure();
 	}
 	return *this;
@@ -96,24 +93,28 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-	if (idx < 0 || idx > 3 || this->_items[idx] == NULL)
-	{
-		std::cout << "No Amateria at this index, you can not use it" << std::endl;
+	AMateria** tmp;
+
+	if (idx < 0 || idx > 3 || this->_items[idx] == NULL) {
+		std::cout << "No Amateria at this index, you can not unequipped it" << std::endl;
 		return;
 	}
 
-	AMateria** tmp = new AMateria*[this->_unequippedItemsCount +  1];
+	tmp = new AMateria*[this->_unequippedItemsCount + 1];
 
-	std::cout << _items[idx]-> getType() << " unequiped at indedex [" << idx << "]" << std::endl;
+	std::cout	<< this->_name << " " << _items[idx]-> getType()
+				<< " unequiped at indedex [" << idx << "]" << std::endl;
+	
 	for (int i = 0; i < this->_unequippedItemsCount; i++)
 		tmp[i] = this->_unequippedItems[i];
 	
-	if (this->_unequippedItems != NULL)
+	if (this->_unequippedItems != NULL) {
 		delete[] this->_unequippedItems;
+		this->_unequippedItems = NULL;
+	}
 	tmp[this->_unequippedItemsCount] = this->_items[idx];
 	this->_items[idx] = NULL;
 	this->_unequippedItems = tmp;
-	tmp = NULL;
 	this->_unequippedItemsCount++;
 }
 
