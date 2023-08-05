@@ -6,7 +6,7 @@
 /*   By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 01:49:39 by caboudar          #+#    #+#             */
-/*   Updated: 2023/08/02 12:00:39 by caboudar         ###   ########.fr       */
+/*   Updated: 2023/08/05 02:09:08 by caboudar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdint.h>
 
 class ClapTrap {
-
 	public:
 			ClapTrap();
 			ClapTrap(std::string name);
