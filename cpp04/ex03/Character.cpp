@@ -7,7 +7,7 @@ Character::Character() : _name("default name"),  _unequippedItems(NULL), _unequi
 
 Character::~Character() {
 	for (short i = 0; i < 4; i++)
-		if (this->_items[i] != NULL)
+		if (this->_items[i])
 			delete _items[i];
 	
 	if (this->_unequippedItemsCount) {
@@ -24,24 +24,53 @@ Character::Character(std::string name) : _name(name), _unequippedItems(NULL), _u
 
 Character::Character(const Character& src) {
 	this->_name = src._name;
-	for (short i = 0; i < 4; i++)
-		this->_items[i] = src._items[i];
-	this->_unequippedItems = src._unequippedItems;
 	this->_unequippedItemsCount = src._unequippedItemsCount;
+
+	for (short i = 0; i < 4; i++) {
+
+ 		if (src._items[i] && src._items[i]->getType() == "ice")
+			this->_items[i] = new Ice();
+		else if (src._items[i] && src._items[i]->getType() == "cure")
+			this->_items[i] = new Cure();
+		else
+			this->_items[i] = NULL;
+	}
+
+	std::cout << "SEGFAULT" << std::endl << std::endl;
+
+
+	if (src._unequippedItemsCount == 0)
+	{
+		this->_unequippedItems = NULL;
+		*this = src;
+		return ;
+	}
+
+	this->_unequippedItems = new AMateria*[this->_unequippedItemsCount];
+
+	for (short i = 0; i < this->_unequippedItemsCount; i++) {
+		if (src._items[i]->getType() == "ice")
+			this->_unequippedItems[i] = new Ice();
+		else
+			this->_unequippedItems[i] = new Cure();
+	}
 	*this = src;
 }
 
 Character& Character::operator=(const Character& rhs) {
 	std::string	itemsTypeStr[4];
 	std::string	unequippedItemsTypeStr[rhs._unequippedItemsCount];
+	
+	this->_name = rhs._name;
+	this->_unequippedItemsCount = rhs._unequippedItemsCount;
 
 	for (short i = 0; i < 4; i++) {
+		if (this->_items[i]) {
+			delete this->_items[i];
+			this->_items[i] = NULL;
+		}
 		if (rhs._items[i] != NULL) {
 			itemsTypeStr[i] = rhs._items[i]->getType();
-			if (this->_items[i]) {
-				delete this->_items[i];
-				this->_items[i] = NULL;
-			}
 		}
 		else
 			itemsTypeStr[i] = "null";
@@ -56,11 +85,12 @@ Character& Character::operator=(const Character& rhs) {
 			this->_items[i] = NULL;
 	}
 
-	if (!this->_unequippedItemsCount)
+	if (this->_unequippedItemsCount == 0)
+	{
+		this->_unequippedItems = NULL;
 		return *this;
+	}
 
-	this->_name = rhs._name;
-	this->_unequippedItemsCount = rhs._unequippedItemsCount;
 
 	for (short i = 0; i < this->_unequippedItemsCount; i++)
 		unequippedItemsTypeStr[i] = rhs._items[i]->getType();
