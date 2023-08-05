@@ -3,9 +3,8 @@
 
 int main()
 {
-	// IAnimal animal;
-
-	IAnimal* animalArr[4];
+	// AAnimal animal;
+	AAnimal* animalArr[4];
 
 	std::cout << std::endl << "Animal array construction:" << std::endl;
 	for (short i = 0; i < 4 ; i++) {

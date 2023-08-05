@@ -36,9 +36,6 @@ Character::Character(const Character& src) {
 			this->_items[i] = NULL;
 	}
 
-	std::cout << "SEGFAULT" << std::endl << std::endl;
-
-
 	if (src._unequippedItemsCount == 0)
 	{
 		this->_unequippedItems = NULL;
@@ -133,7 +130,7 @@ void Character::unequip(int idx) {
 	tmp = new AMateria*[this->_unequippedItemsCount + 1];
 
 	std::cout	<< this->_name << " " << _items[idx]-> getType()
-				<< " unequiped at indedex [" << idx << "]" << std::endl;
+				<< " unequiped at index [" << idx << "]" << std::endl;
 	
 	for (int i = 0; i < this->_unequippedItemsCount; i++)
 		tmp[i] = this->_unequippedItems[i];

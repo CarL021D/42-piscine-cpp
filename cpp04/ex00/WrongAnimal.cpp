@@ -1,6 +1,6 @@
 #include "includes/WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() { std::cout << "Wrong aninmal constructor called" << std::endl; }
+WrongAnimal::WrongAnimal() : _type("Wrong type") { std::cout << "Wrong aninmal constructor called" << std::endl; }
 
 WrongAnimal::~WrongAnimal() { std::cout << "Wrong aninmal destructor called" << std::endl; }
 

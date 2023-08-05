@@ -6,12 +6,12 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:43:10 by caboudar          #+#    #+#              #
-#    Updated: 2023/06/13 19:02:29 by caboudar         ###   ########.fr        #
+#    Updated: 2023/08/05 15:10:14 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	main.cpp			\
-				IAnimal.cpp			\
+				AAnimal.cpp			\
 				Dog.cpp				\
 				Cat.cpp				\
 				WrongAnimal.cpp		\

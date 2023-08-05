@@ -13,46 +13,46 @@ Dog::~Dog() {
 
 Dog::Dog(const Dog& cpy)
 {
-    _brain = new Brain();
+	_brain = new Brain();
 
 	for (short i = 0; i < 100; i++)
 		this->_brain->ideas[i] = cpy._brain->ideas[i];
 	*this = cpy;
 }
 
-//shallow copy
+// // shallow copy
 // Dog::Dog(const Dog& cpy) {
-//     _brain = new Brain();
+// 	_brain = new Brain();
 // 	*this = cpy;
 // }
 
-//shallow copy
-// Dog& Dog::operator=(const Dog& rhs) {
-//     if (this == &rhs)
-//         return (*this);
-// 	this->_brain = rhs._brain;
-//     return *this;
-// }
-
 Dog& Dog::operator=(const Dog& rhs) {
-    if (this == &rhs) {
+	if (this == &rhs) {
 		return (*this);
 	}
 
 	this->_type = rhs._type;
-    delete this->_brain;
-    this->_brain = new Brain();
+	delete this->_brain;
+	this->_brain = new Brain();
 	for (short i = 0; i < 100; i++)
 		this->_brain->ideas[i] = rhs.getIdea(i);
 	return *this;
 }
+
+// // shallow copy
+// Dog& Dog::operator=(const Dog& rhs) {
+// 	if (this == &rhs)
+// 		return (*this);
+// 	this->_brain = rhs._brain;
+// 	return *this;
+// }
 
 void Dog::makeSound() const { std::cout << "Bark Bark" << std::endl; }
 
 void Dog::displayIdea(short i) const {
 	if (i < 1 || i > 100)
 		return;
-	std::cout << this->_brain->ideas[i - 1] << std::endl;
+	std::cout << "\t" << this->_brain->ideas[i - 1] << std::endl;
 }
 
 void Dog::setNewIdea(short i, std::string new_idea) {

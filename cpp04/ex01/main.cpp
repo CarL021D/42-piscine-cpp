@@ -26,29 +26,45 @@ int main()
 		delete animalArr[i];
 	std::cout << std::endl;
 
-	// // TEST 2 Shallow copy 
+
+
+	// // Copy constructor test
 	// Dog *dog1 = new Dog();
-	// dog1->setNewIdea(21, "Nerf Jp");
 	// Dog dog2(*dog1);
+
 	// std::cout << "---" << std::endl;
+	// std::cout << "dog1:" << std::endl;
 	// dog1->displayIdea(21);
-	// dog2.displayIdea(21);
-	// std::cout << std::endl;
-	// delete dog1;
-	// std::cout << std::endl;
+	// std::cout << "dog2:" << std::endl;
 	// dog2.displayIdea(21);
 
-	// // TESET 3 Deep copy
+	// std::cout << "dog1 new idea:" << std::endl;
+	// dog1->setNewIdea(21, "Go Lee");
+	// dog1->displayIdea(21);
+
+	// std::cout << "dog2:" << std::endl;
+	// dog2.displayIdea(21);
+	// std::cout << std::endl;
+
+	// delete dog1;
+	// std::cout << std::endl;
+	
+	// std::cout << "dog2:" << std::endl;
+	// dog2.displayIdea(21);
+
+	// // Assignment construcot Test
 	// {
 	// 	Dog dog0;
 
 	// 	std::cout << std::endl;
 	// 	dog0.setNewIdea(21, "Let's create a program");
-	// 	dog1 = dog0;
+	// 	dog1 = &dog0;
+	// 	std::cout << std::endl;
+
+	// 	std::cout << "dog0:" << std::endl;
 	// 	dog0.displayIdea(21);
-	// 	dog1.displayIdea(21);
+	// 	std::cout << "dog1:" << std::endl;
+	// 	dog1->displayIdea(21);
 	// 	std::cout << std::endl;
 	// }
-
-	// dg1(dog1);
 }

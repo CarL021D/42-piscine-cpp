@@ -4,10 +4,13 @@ int main()
 {
 	Character char1("Lee");
 	Character char2("Rob");
+	AMateria* materiaIce = new Ice(); 
+	AMateria* materiaCure = new Cure(); 
+
 	IMateriaSource* src = new MateriaSource();
 
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
+	src->learnMateria(materiaIce->clone());
+	src->learnMateria(materiaCure->clone());
 
 	// Equip/Unequip materia
 	std::cout << std::endl;
@@ -36,7 +39,7 @@ int main()
 
 	char1.unequip(1);
 	char1.use(1, char2);
-	char1.unequip(1);
+	char1.unequip(0);
 	std::cout << std::endl;
 
 	char1.displayUnequippedEquipment();
@@ -44,8 +47,12 @@ int main()
 
 	// Character index error
 	char1.use(3, char2);
+	char1.displayEquipment();
+	char1.displayUnequippedEquipment();
 
 	delete src;
+	delete materiaIce;
+	delete materiaCure;
 
 
 // ---------------------------------------------------------

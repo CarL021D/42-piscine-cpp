@@ -2,13 +2,13 @@
 #pragma once
 #include <iostream>
 
-class IAnimal {
+class AAnimal {
 
 	public:
-			IAnimal();
-			virtual ~IAnimal();
-			IAnimal(const IAnimal& cpy);
-			IAnimal& operator=(const IAnimal& cpy);
+			AAnimal();
+			virtual ~AAnimal();
+			AAnimal(const AAnimal& cpy);
+			AAnimal& operator=(const AAnimal& cpy);
 
 			std::string 	getType() const;
 			virtual void	makeSound() const = 0;

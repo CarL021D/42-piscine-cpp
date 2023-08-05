@@ -1,9 +1,9 @@
 
 #pragma once
-#include "IAnimal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public IAnimal {
+class Cat : public AAnimal {
 
 	public:
 			Cat();
