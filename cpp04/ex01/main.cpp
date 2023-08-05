@@ -28,8 +28,8 @@ int main()
 
 
 
-	// // Copy constructor test
-	// Dog *dog1 = new Dog();
+	// Copy constructor test
+	Dog *dog1 = new Dog();
 	// Dog dog2(*dog1);
 
 	// std::cout << "---" << std::endl;
@@ -52,19 +52,21 @@ int main()
 	// std::cout << "dog2:" << std::endl;
 	// dog2.displayIdea(21);
 
-	// // Assignment construcot Test
-	// {
-	// 	Dog dog0;
+	// Assignment constructor Test
+	{
+		Dog* dog0 = new Dog();
 
-	// 	std::cout << std::endl;
-	// 	dog0.setNewIdea(21, "Let's create a program");
-	// 	dog1 = &dog0;
-	// 	std::cout << std::endl;
+		std::cout << std::endl;
+		dog0->setNewIdea(21, "Let's create a program");
+		*dog1 = *dog0;
+		std::cout << std::endl;
 
-	// 	std::cout << "dog0:" << std::endl;
-	// 	dog0.displayIdea(21);
-	// 	std::cout << "dog1:" << std::endl;
-	// 	dog1->displayIdea(21);
-	// 	std::cout << std::endl;
-	// }
+		std::cout << "dog0:" << std::endl;
+		dog0->displayIdea(21);
+		std::cout << "dog1:" << std::endl;
+		dog1->displayIdea(21);
+		std::cout << std::endl;
+		delete dog0;
+		delete dog1;
+	}
 }
