@@ -19,5 +19,5 @@ void easyFind(const T& container, int nb) {
 			return;
 		}
 	}
-	throw NoOcccurenceException();
+	throw NoOccurenceException();
 }
