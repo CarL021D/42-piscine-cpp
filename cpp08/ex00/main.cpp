@@ -16,9 +16,9 @@ int main() {
 		list.push_back(2);
 		list.push_back(3);
 		list.push_back(4);
-		easyFind(list, 4);
-
-	} catch (const NoOccurenceException &e) {
+		easyFind(list, 6);
+	}
+	catch (const NoOccurenceException &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 }
