@@ -10,8 +10,13 @@ Span::Span(const Span& src) { *this = src; }
 
 Span& Span::operator=(const Span& rhs) {
 	(void)rhs;
-	// _sizeMax = rhs._sizeMax;	
 	return *this;
+}
+
+void Span::operator<<(int nbr) {
+	if (_vec.size() == _sizeMax)
+		throw IndexErrorException();
+	_vec.push_back(nbr);
 }
 
 void	Span::addNumber(int nbr) {
