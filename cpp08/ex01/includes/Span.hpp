@@ -18,11 +18,12 @@ class Span {
 			Span(size_t sizeMax);
 			Span(const Span& src);
 			Span& operator=(const Span& rhs);
-			void  operator<<(int nbr);
 
 			void	addNumber(int nbr);
-			int		shortestSpan();
-			int		longestSpan();
+			int		shortestSpan() const;
+			int		longestSpan() const;
+			int		begin() const;
+			int		end() const;
 	private:
 			std::vector<int>	_vec;
 			size_t				_sizeMax;

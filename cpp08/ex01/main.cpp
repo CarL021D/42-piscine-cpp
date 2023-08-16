@@ -8,11 +8,13 @@ int main()
 	try {
 		Span sp = Span(5);
 		// Span sp = Span(0);
-		sp << 6;
-		sp << 129;
-		sp.addNumber(2);
-		sp.addNumber(17);
-		sp.addNumber(34);
+		sp.addNumber(100);
+		sp.addNumber(6);
+		sp.addNumber(0);
+		int value1 = sp.begin() + 20;
+		int value2	 = sp.end() - 20;
+		sp.addNumber(value1);
+		sp.addNumber(value2);
 		// sp.addNumber(9);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;

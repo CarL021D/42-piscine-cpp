@@ -13,19 +13,13 @@ Span& Span::operator=(const Span& rhs) {
 	return *this;
 }
 
-void Span::operator<<(int nbr) {
-	if (_vec.size() == _sizeMax)
-		throw IndexErrorException();
-	_vec.push_back(nbr);
-}
-
 void	Span::addNumber(int nbr) {
 	if (_vec.size() == _sizeMax)
 		throw IndexErrorException();
 	_vec.push_back(nbr);
 }
 
-int	Span::longestSpan() {
+int	Span::longestSpan() const {
 	if (_sizeMax < 2)
 		throw IndexErrorException();
 	int maxRange = std::numeric_limits<int>::min();
@@ -38,7 +32,7 @@ int	Span::longestSpan() {
 	return maxRange;
 }
 
-int	Span::shortestSpan() {
+int	Span::shortestSpan() const {
 	if (_sizeMax < 2)
 		throw IndexErrorException();
 	int minRange = std::numeric_limits<int>::max();
@@ -49,4 +43,16 @@ int	Span::shortestSpan() {
 		}
 	}
 	return minRange;
+}
+
+int Span::begin() const {
+	if (_sizeMax < 1)
+		throw IndexErrorException();
+	return _vec[0];	
+}
+
+int Span::end() const {
+	if (_sizeMax < 1)
+		throw IndexErrorException();
+	return _vec.back();	
 }
