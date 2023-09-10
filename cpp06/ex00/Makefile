@@ -6,7 +6,7 @@
 #    By: caboudar <caboudar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/15 16:43:10 by caboudar          #+#    #+#              #
-#    Updated: 2023/06/13 15:14:16 by caboudar         ###   ########.fr        #
+#    Updated: 2023/09/10 23:14:05 by caboudar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM			=	rm -f
 
 CFLAGS		= 	-Wall -Wextra -Werror -I./
 
-CPPFLAGS	= 	-std=c++98
+# CPPFLAGS	= 	-std=c++98
 
 NAME		= 	ex00
 

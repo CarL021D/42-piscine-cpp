@@ -65,6 +65,7 @@ bool ScalarConverter::strIsFloat(std::string str) {
 	short 	sign = 1;
 	size_t	offset = 0;
 
+	// inf and nan are real values, instructions are not respected
 	if (str == "-inff" || str == "+inff" || str == "nan") {
 		displaySpecialInputMessage(str);
 		return true;
@@ -119,6 +120,7 @@ bool ScalarConverter::strIsInt(std::string str) {
 			i--;
 		}
 	}
+	// overflow to check here
 	_int = std::atoi(str.c_str()) * sign;
 	if (_int > INT_MAX || _int < INT_MIN) {
 		std::cout << "Int overflow" << std::endl;
