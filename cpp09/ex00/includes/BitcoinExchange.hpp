@@ -9,11 +9,10 @@ class BitcoinExchange {
 			~BitcoinExchange();
 			BitcoinExchange(std::ifstream infile);
 			BitcoinExchange(const BitcoinExchange& src);
-			&BitcoinExchange operator=(const BitcoinExchange& rhs);
+			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
-			void storeFileContent(char *inFile) {
-
-			void	displayBtcPrice();
+			bool	storeFileContentIfValidFormat(char *inFile);
+			void	displayBtcStockExchangePrice();
 	private:
-			std::map<std::string, std:string> _data;
-}
+			std::map<std::string, std::string> _data;
+};
