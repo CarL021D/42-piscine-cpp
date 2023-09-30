@@ -11,8 +11,8 @@ class BitcoinExchange {
 			BitcoinExchange(const BitcoinExchange& src);
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
-			bool	storeFileContentIfValidFormat(char *inFile);
-			void	displayBtcStockExchangePrice();
+			bool	checkValidFormatFile(char *inFile);
+			void	displayBtcStockExchangePrice(char *btcDB, char *inFile);
 	private:
 			std::map<std::string, std::string> _data;
 };
