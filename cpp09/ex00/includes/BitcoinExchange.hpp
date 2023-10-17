@@ -22,8 +22,8 @@ class BitcoinExchange {
 
 			const std::string removeFrontAndTraillingWhiteSpaces(const std::string& str);
 			const bool lineFormatErrorCheck(std::string value);
-			const bool	dateCheckError(std::string dateStr);
-			const bool valueCheckError(std::string& value);
+			const bool dateErrorCheck(std::string dateStr);
+			bool valueErrorCheck(std::string& value);
 
 			const bool dateAintOnlyDigits(const std::string& dateStr);
 			const bool wrongDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day);

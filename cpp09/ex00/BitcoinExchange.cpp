@@ -60,7 +60,8 @@ void BitcoinExchange::displayBtcStockExchangeRate(char *btcDB, char *inFile) {
 
 		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end(); ++it) {
 
-			if (!lineFormatErrorCheck(line) || !dateCheckError(it->first))
+			if (!lineFormatErrorCheck(line) && !dateErrorCheck(it->first) && !valueErrorCheck(it->second))
+				std::cout << std::endl;
 		}
 		// TODO: - check date
 
@@ -92,7 +93,7 @@ const bool BitcoinExchange::lineFormatErrorCheck(std::string value) {
 	return value.empty();
 }
 
-const bool BitcoinExchange::dateCheckError(std::string dateStr) {
+const bool BitcoinExchange::dateErrorCheck(std::string dateStr) {
 	
 	std::string		year, month, day;
 	size_t			delPos;
@@ -127,7 +128,7 @@ const bool BitcoinExchange::dateCheckError(std::string dateStr) {
 }
 
 
-const bool BitcoinExchange::valueCheckError(std::string& value) {
+bool BitcoinExchange::valueErrorCheck(std::string& value) {
 
 	std::string truncValue = removeFrontAndTraillingWhiteSpaces(value);
 
@@ -136,7 +137,7 @@ const bool BitcoinExchange::valueCheckError(std::string& value) {
 		return true;
 	}
 
-	if (isFloat(truncValue)) {
+	if (!isFloat(truncValue)) {
 		_val = std::stof(truncValue);
 	} else {
 		std::cout << "Error: bad input => " << value << "." << std::endl;
