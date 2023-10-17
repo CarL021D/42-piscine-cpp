@@ -4,11 +4,11 @@
 int main(int ac, char **av)
 {
     BitcoinExchange btcExchange;
+    std::ifstream   inputFile;
+    std::ifstream   btcDataBase;
     
-    if (ac != 2)
-        std::cerr << "Error: could not open file" << std::endl; 
-    else if (btcExchange.checkValidFormatFile(av[1]))
-       return 1;
+    if (btcExchange.checkValidFileFormat(ac, av[1]))
+       std::cout << std::endl << "Success" << std::endl;
        // btcExchange.displayBtcStocks(av[1]);
 
 
