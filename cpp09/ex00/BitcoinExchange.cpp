@@ -2,7 +2,13 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::~BitcoinExchange() {}
+BitcoinExchange::~BitcoinExchange() {
+
+	if (_inputFile.is_open())
+		_inputFile.close();
+	 if (_btcDataBase.is_open())
+		_btcDataBase.close();
+}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
 
@@ -17,17 +23,24 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 
 bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 
-	std::ifstream	inputFile(inFile);
-	std::ifstream 	btcDataBase("data.csv");
 	std::string 	line;
 
-	if (ac != 2 || !inputFile.is_open(), !btcDataBase.is_open()) {
+	if (ac != 2) {
+		std::cout << "Error: wrong number of arguments" << std::endl;
+		return false;
+	}
+
+	_inputFile.open(inFile);
+	_btcDataBase.open("data.csv");
+
+	if (!_inputFile.is_open() || !_btcDataBase.is_open()) {
 		std::string str(inFile);
+
 		std::cerr << "Error: could not open file." << std::endl;
 		return false; 
 	}
 
-	if (std::getline(inputFile, line)) {
+	if (std::getline(_inputFile, line)) {
 		if (line != "date | value") {
 			std::cerr << "Error: - wrong file format." << std::endl;
 			return false;
@@ -56,7 +69,7 @@ void BitcoinExchange::displayBtcStockExchangeRate(char *btcDB, char *inFile) {
 		std::string key = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
 		std::string value = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
 
-		_data.insert(std::make_pair(key, value));
+		_data.insert(std::pair<std::string,std::string>(key, value));
 
 		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end(); ++it) {
 
@@ -88,12 +101,12 @@ void BitcoinExchange::displayBtcStockExchangeRate(char *btcDB, char *inFile) {
 	}
 }
 
-const bool BitcoinExchange::lineFormatErrorCheck(std::string value) {
+bool BitcoinExchange::lineFormatErrorCheck(std::string value) const {
 	std::cout << "Error: bad format." << std::endl;
 	return value.empty();
 }
 
-const bool BitcoinExchange::dateErrorCheck(std::string dateStr) {
+bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
 	
 	std::string		year, month, day;
 	size_t			delPos;
@@ -121,14 +134,14 @@ const bool BitcoinExchange::dateErrorCheck(std::string dateStr) {
 		return true;
 	}
 
-	if (wrongDateError(dateStr, year, month, day))
+	if (nonExistentDateError(dateStr, year, month, day))
 		return true;	
 
 	return false;
 }
 
 
-bool BitcoinExchange::valueErrorCheck(std::string& value) {
+bool BitcoinExchange::valueErrorCheck(const std::string& value) const {
 
 	std::string truncValue = removeFrontAndTraillingWhiteSpaces(value);
 
@@ -137,8 +150,8 @@ bool BitcoinExchange::valueErrorCheck(std::string& value) {
 		return true;
 	}
 
-	if (!isFloat(truncValue)) {
-		_val = std::stof(truncValue);
+	if (isFloat(truncValue)) {
+		_btcValue = std::stof(truncValue);
 	} else {
 		std::cout << "Error: bad input => " << value << "." << std::endl;
 		return true;
@@ -151,7 +164,7 @@ bool BitcoinExchange::valueErrorCheck(std::string& value) {
 
 // UTILS
 
-const bool BitcoinExchange::dateAintOnlyDigits(const std::string& dateStr) {
+bool BitcoinExchange::dateAintOnlyDigits(const std::string& dateStr) const {
 
 	for (std::string::const_iterator it = dateStr.begin(); it != dateStr.end(); ++it) {
 		if (!isdigit(*it))
@@ -160,7 +173,7 @@ const bool BitcoinExchange::dateAintOnlyDigits(const std::string& dateStr) {
 	return false;
 }
 
-const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std::string& str) {
+const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std::string& str) const {
 
 	std::string truncStr;
 
@@ -173,7 +186,7 @@ const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std:
 	}
 }
 
-const bool BitcoinExchange::wrongDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) {
+bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) const {
 
 	long yearDigits = std::stol(year);
 	long monthDigits = std::stol(month);
@@ -195,7 +208,7 @@ const bool BitcoinExchange::wrongDateError(const std::string& dateStr, const std
 	}
 		
 	if (dayDigits < 1 || ((monthDigits % 2) && dayDigits > 31) ||
-		!(monthDigits % 2) && dayDigits > 30 || (monthDigits == 2) && dayDigits > 28) {
+		!((monthDigits % 2) && dayDigits > 30) || ((monthDigits == 2) && dayDigits > 28)) {
 			
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 			return true;
@@ -203,7 +216,7 @@ const bool BitcoinExchange::wrongDateError(const std::string& dateStr, const std
 
 }
 
-const bool BitcoinExchange::isFloat(const std::string &str) {
+bool BitcoinExchange::isFloat(const std::string &str) const {
     
 	float value;
     return sscanf(str.c_str(), "%f", &value) == 1;
