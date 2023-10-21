@@ -118,6 +118,7 @@ bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
 	month = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
 	day = (delPos != std::string::npos) ? dateStr.substr(delPos +  1) : ""; 
 
+	// To remove ???
 	year = removeFrontAndTraillingWhiteSpaces(year);
 	month = removeFrontAndTraillingWhiteSpaces(month);
 	day = removeFrontAndTraillingWhiteSpaces(day);
@@ -128,7 +129,7 @@ bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
 		return true;	
 	}
 
-	if (dateAintOnlyDigits(year) || dateAintOnlyDigits(month) || dateAintOnlyDigits(day)) {
+	if (valueIsOnlyDigits(year) || valueIsOnlyDigits(month) || valueIsOnlyDigits(day)) {
 		
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
@@ -145,32 +146,30 @@ bool BitcoinExchange::valueErrorCheck(const std::string& value) const {
 
 	std::string truncValue = removeFrontAndTraillingWhiteSpaces(value);
 
-	if (!dateAintOnlyDigits(value)) {
+	if (!valueIsOnlyDigits(value)) {
 		std::cout << "Error: bad input => " << value << "." << std::endl;
 		return true;
 	}
 
-	if (isFloat(truncValue)) {
-		_btcValue = std::stof(truncValue);
-	} else {
+	if (!isFloat(truncValue) ) {
 		std::cout << "Error: bad input => " << value << "." << std::endl;
 		return true;
 	}
-
 	return false;
 }
 
+		// _btcValue = stringIntoFloat(truncValue);
 
 
 // UTILS
 
-bool BitcoinExchange::dateAintOnlyDigits(const std::string& dateStr) const {
+bool BitcoinExchange::valueIsOnlyDigits(const std::string& dateStr) const {
 
 	for (std::string::const_iterator it = dateStr.begin(); it != dateStr.end(); ++it) {
 		if (!isdigit(*it))
-			return true;
+			return false;
 	}
-	return false;
+	return true;
 }
 
 const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std::string& str) const {
@@ -184,19 +183,19 @@ const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std:
 		if (endPos != std::string::npos)
 			truncStr = truncStr.substr(0, endPos + 1 ); // endPos is the last character that is not a white space
 	}
+	return truncStr;
 }
 
 bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) const {
 
-	long yearDigits = std::stol(year);
-	long monthDigits = std::stol(month);
-	long dayDigits = std::stol(day);
+	long yearDigits = stringIntoLong(year);
+	long monthDigits = stringIntoLong(month);
+	long dayDigits = stringIntoLong(day);
 
 	if (month.size() > 2 || day.size() > 2)
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 
-	if (yearDigits > INT32_MAX || yearDigits < INT32_MIN || monthDigits > INT32_MAX
-		|| monthDigits < INT32_MIN || dayDigits > INT32_MAX || dayDigits < INT32_MIN) {
+	if (!intMaxIntMinInrangeCheck(yearDigits) || !intMaxIntMinInrangeCheck(monthDigits) || !intMaxIntMinInrangeCheck(dayDigits)) {
 			std::cout << "Error: too large a number." << std::endl;
 			return true;
 	}
@@ -213,11 +212,47 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 			return true;
 	}
-
+	return false;
 }
 
 bool BitcoinExchange::isFloat(const std::string &str) const {
-    
+	
 	float value;
-    return sscanf(str.c_str(), "%f", &value) == 1;
+	return sscanf(str.c_str(), "%f", &value) == 1;
+}
+
+float BitcoinExchange::stringIntoFloat(std::string& str) const {
+	
+	char* end;
+	const char* cstr = str.c_str();
+	double result = std::strtod(cstr, &end);
+
+	// Check for conversion errors
+	if (*end != '\0') {
+		// Handle the conversion error here, e.g., throw an exception or return a default value
+		std::cerr << "Conversion error: " << str << std::endl;
+		return -1.0; // Default value as a float
+	}
+
+	return static_cast<float>(result);
+}
+
+long BitcoinExchange::stringIntoLong(const std::string& str) const {
+    char* end;
+    const char* cstr = str.c_str();
+    long result = std::strtol(cstr, &end, 10);
+
+    // Check for conversion errors
+    if (*end != '\0') {
+        // Handle the conversion error here, e.g., throw an exception or return a default value
+        std::cerr << "Conversion error: " << str << std::endl;
+        return -1; // Default value as a long
+    }
+
+    return result;
+}
+
+bool BitcoinExchange::intMaxIntMinInrangeCheck(long nb) const {
+
+	return (nb <= std::numeric_limits<int>::max() && nb >= std::numeric_limits<int>::min());
 }

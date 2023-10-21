@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <map>
 #include <fstream>
 #include <string>
@@ -27,7 +28,11 @@ class BitcoinExchange {
 			bool dateErrorCheck(std::string dateStr) const;
 			bool valueErrorCheck(const std::string& value) const;
 
-			bool dateAintOnlyDigits(const std::string& dateStr) const;
+			bool valueIsOnlyDigits(const std::string& dateStr) const;
 			bool nonExistentDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) const;
+			bool intMaxIntMinInrangeCheck(long nb) const;
 			bool isFloat(const std::string &str) const;
+			long stringIntoLong(const std::string& str) const;
+			float stringIntoFloat(std::string& str) const;
+
 };
