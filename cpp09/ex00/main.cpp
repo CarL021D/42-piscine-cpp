@@ -4,12 +4,13 @@
 int main(int ac, char **av)
 {
     BitcoinExchange btcExchange;
-    std::ifstream   inputFile;
-    std::ifstream   btcDataBase;
     
-    if (btcExchange.checkValidFileFormat(ac, av[1]))
+    if (btcExchange.checkValidFileFormat(ac, av[1])) {
        std::cout << std::endl << "Success" << std::endl;
-       // btcExchange.displayBtcStocks(av[1]);
+       btcExchange.displayBtcStockExchangeRate();
+    }
+    else
+       std::cout << std::endl << "Failure" << std::endl;
 
 
 }

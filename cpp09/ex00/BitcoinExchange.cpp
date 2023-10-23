@@ -4,10 +4,10 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {
 
-	if (_inputFile.is_open())
-		_inputFile.close();
-	 if (_btcDataBase.is_open())
-		_btcDataBase.close();
+	if (_inFile.is_open())
+		_inFile.close();
+	 if (_btcDB.is_open())
+		_btcDB.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
@@ -30,17 +30,17 @@ bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 		return false;
 	}
 
-	_inputFile.open(inFile);
-	_btcDataBase.open("data.csv");
+	_inFile.open(inFile);
+	_btcDB.open("data.csv");
 
-	if (!_inputFile.is_open() || !_btcDataBase.is_open()) {
+	if (!_inFile.is_open() || !_btcDB.is_open()) {
 		std::string str(inFile);
 
 		std::cerr << "Error: could not open file." << std::endl;
 		return false; 
 	}
 
-	if (std::getline(_inputFile, line)) {
+	if (std::getline(_inFile, line)) {
 		if (line != "date | value") {
 			std::cerr << "Error: - wrong file format." << std::endl;
 			return false;
@@ -52,18 +52,19 @@ bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 
 
 
-void BitcoinExchange::displayBtcStockExchangeRate(char *btcDB, char *inFile) {
+void BitcoinExchange::displayBtcStockExchangeRate() {
 	
-	(void)btcDB;
-	(void)inFile;
-	return ;
+	// (void)_btcDB;
+	// (void)inFile;
+	// return ;
 	
 
-	std::ifstream	inputFile(inFile);
+	// std::ifstream	inputFile(inFile);
+	// inFile(inFile);
 	std::string line;
 
-	std::getline(inputFile, line);
-	while (std::getline(inputFile, line)) {
+	std::getline(_inFile, line);
+	while (std::getline(_inFile, line)) {
 		size_t delPos = line.find('|');
 
 		std::string key = (delPos != std::string::npos) ? line.substr(0, delPos) : line;

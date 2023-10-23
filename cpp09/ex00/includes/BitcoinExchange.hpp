@@ -15,12 +15,12 @@ class BitcoinExchange {
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
 			bool	checkValidFileFormat(int ac, char *inFile);
-			void	displayBtcStockExchangeRate(char *btcDB, char *inFile);
+			void	displayBtcStockExchangeRate();
 
 	private:
 			std::map<std::string, std::string> _data;
-			std::ifstream _inputFile;
-			std::ifstream _btcDataBase;
+			std::ifstream _inFile;
+			std::ifstream _btcDB;
 			float _btcValue;
 
 			const std::string removeFrontAndTraillingWhiteSpaces(const std::string& str) const;
