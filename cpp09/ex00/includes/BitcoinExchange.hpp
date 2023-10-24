@@ -24,9 +24,9 @@ class BitcoinExchange {
 			float _btcValue;
 
 			const std::string removeFrontAndTraillingWhiteSpaces(const std::string& str) const;
-			bool lineFormatErrorCheck(std::string value) const;
-			bool dateErrorCheck(std::string dateStr) const;
-			bool valueErrorCheck(const std::string& value) const;
+			bool lineFormatError(std::string& key, std::string& value) const;
+			bool dateFormatError(std::string dateStr) const;
+			bool valueFormatError(const std::string& value) const;
 
 			bool valueIsOnlyDigits(const std::string& dateStr) const;
 			bool nonExistentDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) const;

@@ -63,7 +63,6 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 	// inFile(inFile);
 	std::string line;
 
-	std::getline(_inFile, line);
 	while (std::getline(_inFile, line)) {
 		size_t delPos = line.find('|');
 
@@ -72,10 +71,15 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 
 		_data.insert(std::pair<std::string,std::string>(key, value));
 
-		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end(); ++it) {
+		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end();) {
 
-			if (!lineFormatErrorCheck(line) && !dateErrorCheck(it->first) && !valueErrorCheck(it->second))
-				std::cout << std::endl;
+			if (lineFormatError(key, value) || dateFormatError(it->first) || valueFormatError(it->second)) {
+				it = _data.erase(it);
+				continue ;
+			}
+			// display btc closest value
+			// std::cout << "SUCCESS" << std::endl;
+			it = _data.erase(it);
 		}
 		// TODO: - check date
 
@@ -102,15 +106,28 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 	}
 }
 
-bool BitcoinExchange::lineFormatErrorCheck(std::string value) const {
-	std::cout << "Error: bad format." << std::endl;
-	return value.empty();
+bool BitcoinExchange::lineFormatError(std::string& key, std::string& value) const {
+
+	if (key.empty() || value.empty()) {
+		std::cout << "Error: bad format." << std::endl;
+		return true;
+	}
+	return false;
 }
 
-bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
+bool BitcoinExchange::dateFormatError(std::string dateStr) const {
 	
 	std::string		year, month, day;
 	size_t			delPos;
+
+
+	if (dateStr.back() != ' ') {
+		std::cout << "Error: bad format." << std::endl;
+		return true;
+	}
+	dateStr.pop_back();
+
+	// std::cout << "[" << dateStr << "]" << std::endl;
 
 	delPos = dateStr.find('-');
 	year = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
@@ -125,12 +142,13 @@ bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
 	day = removeFrontAndTraillingWhiteSpaces(day);
 
 	if (year.empty() || month.empty() || day.empty()) {
-
+		std::cout << "1" << std::endl;
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;	
 	}
 
-	if (valueIsOnlyDigits(year) || valueIsOnlyDigits(month) || valueIsOnlyDigits(day)) {
+	if (!valueIsOnlyDigits(year) || !valueIsOnlyDigits(month) || !valueIsOnlyDigits(day)) {
+		std::cout << "2" << std::endl;
 		
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
@@ -143,16 +161,25 @@ bool BitcoinExchange::dateErrorCheck(std::string dateStr) const {
 }
 
 
-bool BitcoinExchange::valueErrorCheck(const std::string& value) const {
+bool BitcoinExchange::valueFormatError(const std::string& value) const {
 
-	std::string truncValue = removeFrontAndTraillingWhiteSpaces(value);
-
-	if (!valueIsOnlyDigits(value)) {
-		std::cout << "Error: bad input => " << value << "." << std::endl;
+	if (value[0] != ' ') {
+		std::cout << "Error: bad format." << std::endl;
 		return true;
 	}
 
+	std::string truncValue = removeFrontAndTraillingWhiteSpaces(value);
+
+	std::cout << "truc value [" << truncValue << "]" << std::endl;
+
+	// if (!valueIsOnlyDigits(truncValue)) {
+	// 	std::cout << "1" << std::endl;
+	// 	std::cout << "Error: bad input => " << value << "." << std::endl;
+	// 	return true;
+	// }
+
 	if (!isFloat(truncValue) ) {
+		std::cout << "3" << std::endl;
 		std::cout << "Error: bad input => " << value << "." << std::endl;
 		return true;
 	}
@@ -193,8 +220,19 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 	long monthDigits = stringIntoLong(month);
 	long dayDigits = stringIntoLong(day);
 
-	if (month.size() > 2 || day.size() > 2)
+	// std::cout << "years " << yearDigits << std::endl;
+	// std::cout << "month " << monthDigits << std::endl;
+	// std::cout << "day " << dayDigits << std::endl;
+
+	// std::cout << "[" << dateStr << "]" << std::endl;
+
+	if (month.size() > 2 || day.size() > 2) {
+
+		std::cout << "4" << std::endl;
+
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
+		return true;	
+	}
 
 	if (!intMaxIntMinInrangeCheck(yearDigits) || !intMaxIntMinInrangeCheck(monthDigits) || !intMaxIntMinInrangeCheck(dayDigits)) {
 			std::cout << "Error: too large a number." << std::endl;
@@ -202,14 +240,16 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 	}
 
 	if (monthDigits < 1 || monthDigits > 12) {
+		std::cout << "6" << std::endl;
 	
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
 	}
 		
 	if (dayDigits < 1 || ((monthDigits % 2) && dayDigits > 31) ||
-		!((monthDigits % 2) && dayDigits > 30) || ((monthDigits == 2) && dayDigits > 28)) {
+		(!(monthDigits % 2) && dayDigits > 30) || ((monthDigits == 2) && dayDigits > 28)) {
 			
+			std::cout << "7" << std::endl;
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 			return true;
 	}
@@ -231,7 +271,7 @@ float BitcoinExchange::stringIntoFloat(std::string& str) const {
 	// Check for conversion errors
 	if (*end != '\0') {
 		// Handle the conversion error here, e.g., throw an exception or return a default value
-		std::cerr << "Conversion error: " << str << std::endl;
+		std::cout << "Conversion error: " << str << std::endl;
 		return -1.0; // Default value as a float
 	}
 
