@@ -80,7 +80,6 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 			// display btc closest value
 			// std::cout << "SUCCESS" << std::endl;
 
-			if ()
 			displayBtcValue();
 			it = _data.erase(it);
 		}
@@ -220,12 +219,16 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 
 bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 
-	if (value[0] != ' ') {
+	if (valueStr[0] != ' ') {
 		std::cout << "Error: bad format." << std::endl;
 		return true;
 	}
 
-	if (intMaxIntMinInrangeCheck)
+	if (!intMaxIntMinInrangeCheck(stringIntoLong(valueStr))) {
+		std::cout << "Error: too large a number." << std::endl;
+		return true;
+	}
+
 
 	std::string truncValue = removeFrontAndTraillingWhiteSpaces(valueStr);
 
