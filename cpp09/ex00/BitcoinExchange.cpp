@@ -106,6 +106,52 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 	}
 }
 
+void	BitcoinExchange::displayBtcValue() const {
+
+	std::string line, dbYear, dbMonth, dbDay;
+	long yearDigits, monthDigits, dayDigits, prevYear, prevMonth, prevDay;
+	size_t delPos;
+
+	_btcDB.seekg(0, std::ios::beg);
+	std::getline(_btcDB, line);
+
+	while (std::getline(_btcDB, line)) {
+		
+		size_t delPos = line.find(',');
+		std::string dbDate = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
+		std::string dbValue = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
+
+		delPos = line.find('-');
+		dbYear = line.substr(0, delPos);
+		size_t tmp = delPos + 1;
+		delPos = line.find('-', tmp);
+		dbMonth = line.substr(tmp, delPos - tmp); 
+		dbDay = line.substr(delPos +  1); 
+
+		yearDigits = stringIntoLong(dbYear);
+		monthDigits = stringIntoLong(dbMonth);
+		dayDigits = stringIntoLong(dbDay);
+
+		if (yearDigits == _year && monthDigits == _month && dayDigits == _day) {
+			std::cout << _year << "-" << _month << "-" << _day << " => " << _value << " = " << _value * dbValue << std::endl;
+			return ;
+		}
+		
+		if (yearDigits >= _year && monthDigits >= _month && dayDigits >= _day) {
+			std::cout << prevYear << "-" << prevMonth << "-" << prevDay << " => " << _value << " = " << _value * dbValue << std::endl;
+			return ;
+		}
+
+		prevYear = yearDigits;
+		prevMonth = monthDigits;
+		prevDay = dayDigits;
+	}
+
+}
+
+
+
+
 bool BitcoinExchange::lineFormatError(std::string& key, std::string& value) const {
 
 	if (key.empty() || value.empty()) {
@@ -117,7 +163,7 @@ bool BitcoinExchange::lineFormatError(std::string& key, std::string& value) cons
 
 bool BitcoinExchange::dateFormatError(std::string dateStr) const {
 	
-	std::string		year, month, day;
+	std::string		yearStr, monthStr, dayStr;
 	size_t			delPos;
 
 
@@ -130,36 +176,35 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) const {
 	// std::cout << "[" << dateStr << "]" << std::endl;
 
 	delPos = dateStr.find('-');
-	year = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
+	yearStr = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
 	size_t tmp = delPos + 1;
 	delPos = dateStr.find('-', tmp);
-	month = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
-	day = (delPos != std::string::npos) ? dateStr.substr(delPos +  1) : ""; 
+	monthStr = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
+	dayStr = (delPos != std::string::npos) ? dateStr.substr(delPos +  1) : ""; 
 
 	// To remove ???
-	year = removeFrontAndTraillingWhiteSpaces(year);
-	month = removeFrontAndTraillingWhiteSpaces(month);
-	day = removeFrontAndTraillingWhiteSpaces(day);
+	yearStr = removeFrontAndTraillingWhiteSpaces(yearStr);
+	monthStr = removeFrontAndTraillingWhiteSpaces(monthStr);
+	dayStr = removeFrontAndTraillingWhiteSpaces(dayStr);
 
-	if (year.empty() || month.empty() || day.empty()) {
+	if (yearStr.empty() || monthStr.empty() || dayStr.empty()) {
 		std::cout << "1" << std::endl;
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;	
 	}
 
-	if (!valueIsOnlyDigits(year) || !valueIsOnlyDigits(month) || !valueIsOnlyDigits(day)) {
+	if (!valueIsOnlyDigits(yearStr) || !valueIsOnlyDigits(monthStr) || !valueIsOnlyDigits(dayStr)) {
 		std::cout << "2" << std::endl;
 		
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
 	}
 
-	if (nonExistentDateError(dateStr, year, month, day))
+	if (nonExistentDateError(dateStr, yearStr, monthStr, dayStr))
 		return true;	
 
 	return false;
 }
-
 
 bool BitcoinExchange::valueFormatError(const std::string& value) const {
 
@@ -178,15 +223,16 @@ bool BitcoinExchange::valueFormatError(const std::string& value) const {
 	// 	return true;
 	// }
 
-	if (!isFloat(truncValue) ) {
+	if (!isFloat(truncValue) || truncValue[0] == '-') {
 		std::cout << "3" << std::endl;
 		std::cout << "Error: bad input => " << value << "." << std::endl;
 		return true;
 	}
+
+	_value = stringIntoFloat(truncValue);
 	return false;
 }
 
-		// _btcValue = stringIntoFloat(truncValue);
 
 
 // UTILS
@@ -214,11 +260,11 @@ const std::string BitcoinExchange::removeFrontAndTraillingWhiteSpaces(const std:
 	return truncStr;
 }
 
-bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std::string& year, const std::string& month, const std::string& day) const {
+bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std::string& yearStr, const std::string& monthStr, const std::string& dayStr) const {
 
-	long yearDigits = stringIntoLong(year);
-	long monthDigits = stringIntoLong(month);
-	long dayDigits = stringIntoLong(day);
+	_year = stringIntoLong(yearStr);
+	_month = stringIntoLong(monthStr);
+	_day = stringIntoLong(dayStr);
 
 	// std::cout << "years " << yearDigits << std::endl;
 	// std::cout << "month " << monthDigits << std::endl;
@@ -226,7 +272,7 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 
 	// std::cout << "[" << dateStr << "]" << std::endl;
 
-	if (month.size() > 2 || day.size() > 2) {
+	if (monthStr.size() > 2 || dayStr.size() > 2) {
 
 		std::cout << "4" << std::endl;
 
@@ -234,20 +280,20 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 		return true;	
 	}
 
-	if (!intMaxIntMinInrangeCheck(yearDigits) || !intMaxIntMinInrangeCheck(monthDigits) || !intMaxIntMinInrangeCheck(dayDigits)) {
+	if (!intMaxIntMinInrangeCheck(_year) || !intMaxIntMinInrangeCheck(_month) || !intMaxIntMinInrangeCheck(_day)) {
 			std::cout << "Error: too large a number." << std::endl;
 			return true;
 	}
 
-	if (monthDigits < 1 || monthDigits > 12) {
+	if (_moonth < 1 || _month > 12) {
 		std::cout << "6" << std::endl;
 	
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
 	}
 		
-	if (dayDigits < 1 || ((monthDigits % 2) && dayDigits > 31) ||
-		(!(monthDigits % 2) && dayDigits > 30) || ((monthDigits == 2) && dayDigits > 28)) {
+	if (_day < 1 || ((_month % 2) && _day > 31) ||
+		(!(_month % 2) && _day > 30) || ((_month == 2) && _day > 28)) {
 			
 			std::cout << "7" << std::endl;
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
