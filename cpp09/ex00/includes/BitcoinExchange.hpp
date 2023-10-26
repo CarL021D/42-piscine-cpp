@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <cctype>
+#include <cstdint>
 #include <limits>
 
 class BitcoinExchange {
@@ -21,9 +22,9 @@ class BitcoinExchange {
 			std::map<std::string, std::string> _data;
 			std::ifstream _inFile;
 			std::ifstream _btcDB;
-			long _year;
-			long _month;
-			long _day;
+			int64_t _year;
+			int64_t _month;
+			int64_t _day;
 			float _btcCount;
 
 			void displayBtcValue(void);
@@ -37,7 +38,7 @@ class BitcoinExchange {
 			bool intMaxIntMinInrangeCheck(long nb) const;
 			bool isFloat(const std::string &str) const;
 			bool strValFormatError(std::string& str) const;
-			long stringIntoLong(const std::string& str) const;
+			int64_t stringIntoLong(const std::string& str) const;
 			float stringIntoFloat(std::string& str) const;
 
 };

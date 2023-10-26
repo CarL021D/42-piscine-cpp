@@ -73,25 +73,14 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 
 		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end();) {
 
-			if (lineFormatError(key, value) || dateFormatError(it->first) || valueFormatError(it->second)) {
+			if (dateFormatError(it->first) || lineFormatError(key, value) || valueFormatError(it->second)) {
 				it = _data.erase(it);
 				continue ;
 			}
-			// display btc closest value
-			// std::cout << "SUCCESS" << std::endl;
 
 			displayBtcValue();
 			it = _data.erase(it);
 		}
-		// TODO: - check date
-
-		// TODO: - check value format
-
-		// TODO: - look for the valid date
-
-		/* if (dateValueCheck && valueFormatcheck)
-				printBtcStockExchangeRate();
-		*/
 
 
 
@@ -178,19 +167,23 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	size_t			delPos;
 
 
+	// std::cout << "[" << dateStr << "]" << std::endl;
+
+
 	// if (dateStr.back() != ' ') {
 	// 	std::cout << "Error: bad format." << std::endl;
 	// 	return true;
 	// }
 
-	dateStr.pop_back();
+	if (dateStr.back() == ' ')
+		dateStr.pop_back();
 
 	delPos = dateStr.find('-');
 	yearStr = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
 	size_t tmp = delPos + 1;
 	delPos = dateStr.find('-', tmp);
 	monthStr = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
-	dayStr = (delPos != std::string::npos) ? dateStr.substr(delPos +  1) : ""; 
+	dayStr = (delPos != std::string::npos) ? dateStr.substr(delPos + 1) : ""; 
 
 	// std::cout << "[" << yearStr << "]" << std::endl;
 	// std::cout << "[" << monthStr << "]" << std::endl;
@@ -217,7 +210,7 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	}
 
 	if (nonExistentDateError(dateStr, yearStr, monthStr, dayStr))
-		return true;	
+		return true;
 
 	return false;
 }
@@ -315,7 +308,7 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 		return true;
 	}
 		
-	if (_day < 1 || ((_month % 2) && _day > 31) ||
+	if ((_month < 1 || _month > 12) || _day < 1 || ((_month % 2) && _day > 31) ||
 		(!(_month % 2) && _day > 30) || ((_month == 2) && _day > 28)) {
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 			return true;
@@ -355,7 +348,7 @@ float BitcoinExchange::stringIntoFloat(std::string& str) const {
 	return static_cast<float>(result);
 }
 
-long BitcoinExchange::stringIntoLong(const std::string& str) const {
+int64_t BitcoinExchange::stringIntoLong(const std::string& str) const {
 
     char* end;
     const char* cstr = str.c_str();
