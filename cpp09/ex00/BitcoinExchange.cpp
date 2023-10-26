@@ -54,13 +54,6 @@ bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 
 void BitcoinExchange::displayBtcStockExchangeRate() {
 	
-	// (void)_btcDB;
-	// (void)inFile;
-	// return ;
-	
-
-	// std::ifstream	inputFile(inFile);
-	// inFile(inFile);
 	std::string line;
 
 	while (std::getline(_inFile, line)) {
@@ -81,19 +74,6 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 			displayBtcValue();
 			it = _data.erase(it);
 		}
-
-
-
-
-
-		// Prints the value and the key of the infile
-		// std::map<std::string, std::string>::iterator it;
-		// for (it = _data.begin(); it != _data.end(); ++it) {
-		// 	std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
-		// }
-
-		// it = _data.begin();
-		// _data.erase(it);
 	}
 }
 
@@ -118,16 +98,10 @@ void	BitcoinExchange::displayBtcValue() {
 		dbMonth = dbDate.substr(tmp, delPos - tmp); 
 		dbDay = dbDate.substr(delPos +  1); 
 
-		// std::cout << std::endl << "dbVal: " << dbValue << std::endl;
-		// std::cout << "btcCount: " << _btcCount << std::endl;
-		// std::cout << "res: " << _btcCount * stringIntoLong(dbValue) << std::endl;
-
 		yearDigits = stringIntoFloat(dbYear);
 		monthDigits = stringIntoFloat(dbMonth);
 		dayDigits = stringIntoFloat(dbDay);
 
-		//  float result = _btcCount * stringIntoFloat(dbValue);
-		// std::cout << "res as float " << result << std::endl;
 		if (yearDigits == _year && monthDigits == _month && dayDigits == _day) {
 			std::cout << _year << "-" << _month << "-" << _day << " => " << _btcCount << " = " << _btcCount * stringIntoFloat(dbValue) << std::endl;
 			return ;
@@ -138,19 +112,11 @@ void	BitcoinExchange::displayBtcValue() {
 			return ;
 		}
 
-		// (void)prevYear;
-		// (void)prevMonth;
-		// (void)prevDay;
-
 		prevYear = yearDigits;
 		prevMonth = monthDigits;
 		prevDay = dayDigits;
 	}
-
 }
-
-
-
 
 bool BitcoinExchange::lineFormatError(std::string& key, std::string& value) const {
 
@@ -166,15 +132,6 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	std::string		yearStr, monthStr, dayStr;
 	size_t			delPos;
 
-
-	// std::cout << "[" << dateStr << "]" << std::endl;
-
-
-	// if (dateStr.back() != ' ') {
-	// 	std::cout << "Error: bad format." << std::endl;
-	// 	return true;
-	// }
-
 	if (dateStr.back() == ' ')
 		dateStr.pop_back();
 
@@ -184,18 +141,6 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	delPos = dateStr.find('-', tmp);
 	monthStr = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
 	dayStr = (delPos != std::string::npos) ? dateStr.substr(delPos + 1) : ""; 
-
-	// std::cout << "[" << yearStr << "]" << std::endl;
-	// std::cout << "[" << monthStr << "]" << std::endl;
-	// std::cout << "[" << dayStr << "]" << std::endl;
-
-	// yearStr = removeFrontAndTraillingWhiteSpaces(yearStr);
-	// monthStr = removeFrontAndTraillingWhiteSpaces(monthStr);
-	// dayStr = removeFrontAndTraillingWhiteSpaces(dayStr);
-
-	// std::cout << "[" << yearStr << "]" << std::endl;
-	// std::cout << "[" << monthStr << "]" << std::endl;
-	// std::cout << "[" << dayStr << "]" << std::endl;
 
 	if (yearStr.empty() || monthStr.empty() || dayStr.empty()) {
 
@@ -217,22 +162,15 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 
 bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 
-	// std::cout << "valueStr [" << valueStr << "]" << std::endl;
-	
 	std::string val = "";
-	// std::cout << "val [" << val << "]" << std::endl;
 
 	if (valueStr[0] == ' ')
 		val = valueStr.substr(1);
 
-		// std::cout << "HERE" << std::endl;
 	if (strValFormatError(val)) {
 		std::cout << "-> Error: bad format." << std::endl;
 		return true;
 	}
-	
-	
-
 
 	if (!isFloat(val)) {
 		std::cout << "Error: bad format." << std::endl;
@@ -243,9 +181,6 @@ bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 		std::cout << "Error: too large a number." << std::endl;
 		return true;
 	}
-
-
-	// std::string truncValue = removeFrontAndTraillingWhiteSpaces(val);
 
 	if (!isFloat(val)) {
 		std::cout << "Error: bad input => " << val << "." << std::endl;
