@@ -36,6 +36,7 @@ class BitcoinExchange {
 			bool nonExistentDateError(const std::string& dateStr, const std::string& yearStr, const std::string& monthStr, const std::string& dayStr);
 			bool intMaxIntMinInrangeCheck(long nb) const;
 			bool isFloat(const std::string &str) const;
+			bool strValFormatError(std::string& str) const;
 			long stringIntoLong(const std::string& str) const;
 			float stringIntoFloat(std::string& str) const;
 

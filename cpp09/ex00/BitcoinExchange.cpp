@@ -178,13 +178,12 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	size_t			delPos;
 
 
-	if (dateStr.back() != ' ') {
-		std::cout << "Error: bad format." << std::endl;
-		return true;
-	}
-	dateStr.pop_back();
+	// if (dateStr.back() != ' ') {
+	// 	std::cout << "Error: bad format." << std::endl;
+	// 	return true;
+	// }
 
-	// std::cout << "[" << dateStr << "]" << std::endl;
+	dateStr.pop_back();
 
 	delPos = dateStr.find('-');
 	yearStr = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
@@ -193,20 +192,26 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	monthStr = (delPos != std::string::npos) ? dateStr.substr(tmp, delPos - tmp) : ""; 
 	dayStr = (delPos != std::string::npos) ? dateStr.substr(delPos +  1) : ""; 
 
-	// To remove ???
-	yearStr = removeFrontAndTraillingWhiteSpaces(yearStr);
-	monthStr = removeFrontAndTraillingWhiteSpaces(monthStr);
-	dayStr = removeFrontAndTraillingWhiteSpaces(dayStr);
+	// std::cout << "[" << yearStr << "]" << std::endl;
+	// std::cout << "[" << monthStr << "]" << std::endl;
+	// std::cout << "[" << dayStr << "]" << std::endl;
+
+	// yearStr = removeFrontAndTraillingWhiteSpaces(yearStr);
+	// monthStr = removeFrontAndTraillingWhiteSpaces(monthStr);
+	// dayStr = removeFrontAndTraillingWhiteSpaces(dayStr);
+
+	// std::cout << "[" << yearStr << "]" << std::endl;
+	// std::cout << "[" << monthStr << "]" << std::endl;
+	// std::cout << "[" << dayStr << "]" << std::endl;
 
 	if (yearStr.empty() || monthStr.empty() || dayStr.empty()) {
-		// std::cout << "1" << std::endl;
+
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;	
 	}
 
 	if (!valueIsOnlyDigits(yearStr) || !valueIsOnlyDigits(monthStr) || !valueIsOnlyDigits(dayStr)) {
-		// std::cout << "2" << std::endl;
-		
+
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
 	}
@@ -219,40 +224,52 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 
 bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 
-	if (valueStr[0] != ' ') {
+	// std::cout << "valueStr [" << valueStr << "]" << std::endl;
+	
+	std::string val = "";
+	// std::cout << "val [" << val << "]" << std::endl;
+
+	if (valueStr[0] == ' ')
+		val = valueStr.substr(1);
+
+		// std::cout << "HERE" << std::endl;
+	if (strValFormatError(val)) {
+		std::cout << "-> Error: bad format." << std::endl;
+		return true;
+	}
+	
+	
+
+
+	if (!isFloat(val)) {
 		std::cout << "Error: bad format." << std::endl;
 		return true;
 	}
 
-	if (!intMaxIntMinInrangeCheck(stringIntoLong(valueStr))) {
+	if (!intMaxIntMinInrangeCheck(stringIntoLong(val))) {
 		std::cout << "Error: too large a number." << std::endl;
 		return true;
 	}
 
 
-	std::string truncValue = removeFrontAndTraillingWhiteSpaces(valueStr);
+	// std::string truncValue = removeFrontAndTraillingWhiteSpaces(val);
 
-	// std::cout << "truc value [" << truncValue << "]" << std::endl;
-
-	// if (!valueIsOnlyDigits(truncValue)) {
-	// 	std::cout << "1" << std::endl;
-	// 	std::cout << "Error: bad input => " << value << "." << std::endl;
-	// 	return true;
-	// }
-
-	if (!isFloat(truncValue) || truncValue[0] == '-') {
-		// std::cout << "3" << std::endl;
-		std::cout << "Error: bad input => " << valueStr << "." << std::endl;
+	if (!isFloat(val)) {
+		std::cout << "Error: bad input => " << val << "." << std::endl;
 		return true;
 	}
 
-	_btcCount = stringIntoFloat(truncValue);
+	_btcCount = stringIntoFloat(val);
+	
+	if (_btcCount < 0) {
+		std::cout << "Error: not a positive number." << std::endl;
+		return true;
+	}
 	return false;
 }
 
 
-
-// UTILS
+/* -------- UTILS --------*/
 
 bool BitcoinExchange::valueIsOnlyDigits(const std::string& dateStr) const {
 
@@ -283,16 +300,7 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 	_month = stringIntoLong(monthStr);
 	_day = stringIntoLong(dayStr);
 
-	// std::cout << "years " << yearDigits << std::endl;
-	// std::cout << "month " << monthDigits << std::endl;
-	// std::cout << "day " << dayDigits << std::endl;
-
-	// std::cout << "[" << dateStr << "]" << std::endl;
-
 	if (monthStr.size() > 2 || dayStr.size() > 2) {
-
-		// std::cout << "4" << std::endl;
-
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;	
 	}
@@ -303,17 +311,27 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 	}
 
 	if (_month < 1 || _month > 12) {
-		// std::cout << "6" << std::endl;
-	
 		std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 		return true;
 	}
 		
 	if (_day < 1 || ((_month % 2) && _day > 31) ||
 		(!(_month % 2) && _day > 30) || ((_month == 2) && _day > 28)) {
-			
-			// std::cout << "7" << std::endl;
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
+			return true;
+	}
+	return false;
+}
+
+bool BitcoinExchange::strValFormatError(std::string& str) const {
+
+	size_t multipleDotCount = 0;
+
+	for (size_t i = 0; i < str.length(); ++i) {
+
+		if (str[i] == '.')
+			multipleDotCount++;
+		if ((str[0] != '-' && !std::isdigit(str[i]) && str[i] != '.') || multipleDotCount == 2)
 			return true;
 	}
 	return false;
@@ -331,30 +349,20 @@ float BitcoinExchange::stringIntoFloat(std::string& str) const {
 	const char* cstr = str.c_str();
 	double result = std::strtod(cstr, &end);
 
-	// Check for conversion errors
-	if (*end != '\0') {
-		// Handle the conversion error here, e.g., throw an exception or return a default value
-		std::cout << "Conversion error: " << str << "." << std::endl;
-		return -1.0; // Default value as a float
-	}
+	if (*end != '\0')
+		return -1.0;
 
 	return static_cast<float>(result);
 }
 
 long BitcoinExchange::stringIntoLong(const std::string& str) const {
-   
-	// std::cout << "-> " << str << std::endl;
-	
+
     char* end;
     const char* cstr = str.c_str();
     long result = std::strtol(cstr, &end, 10);
 
-    // Check for conversion errors
-    if (*end != '\0') {
-        // Handle the conversion error here, e.g., throw an exception or return a default value
-        // std::cout << "Conversion error: " << str << std::endl;
-        return -1; // Default value as a long
-    }
+    if (*end != '\0')
+        return -1;
 
     return result;
 }
