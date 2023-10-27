@@ -12,7 +12,6 @@ class BitcoinExchange {
 	public:
 			BitcoinExchange(void);
 			~BitcoinExchange(void);
-			BitcoinExchange(std::ifstream infile);
 			BitcoinExchange(const BitcoinExchange& src);
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
