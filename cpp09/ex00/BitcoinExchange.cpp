@@ -10,10 +10,7 @@ BitcoinExchange::~BitcoinExchange() {
 		_btcDB.close();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-
-	*this = src;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) { *this = src; }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 	 
