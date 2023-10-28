@@ -5,13 +5,6 @@
 
 	RPN rpn;
 
-	if (rpn.commandLineError(ac, av[1])) {
-
-		std::cout << "failure" << std::endl;
-	}
-	else {
+	if (!rpn.commandLineError(ac, av[1]))
 		rpn.displayOperationResult(av[1]);
-		std::cout << "success" << std::endl;
-	}
-
 }

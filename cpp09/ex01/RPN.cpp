@@ -72,46 +72,16 @@ void RPN::displayOperationResult(std::string line) {
 			res = nb1 - nb2;
 		else if (_signStack.top() == '*')
 			res = nb1 * nb2;
-		else if (_signStack.top() == '/')
+		else
 			res = nb1 / nb2;
 
 		_signStack.pop();
-		_valueStack.push(res);
+
 		if (_valueStack.empty() && _signStack.empty()) {
 			std::cout << res << std::endl;
 			return ;
 		}
 
-		// _valueStack.push(res);
+		_valueStack.push(res);
 	}
-
 }
-
-
-// 	while (1) {
-
-// 		while (i < line.length()) {
-
-// 			if (isdigit(line[i]) && _stack.size != 2) {
-// 				_stack.pushback(line[i] - 48);
-// 				i += 2;
-// 			}
-// 			else if (!isdigit(line[i]))
-// 				i += 2;
-// 			else
-// 				break ;
-// 		}
-
-// 		while (j < line.length()) {
-			
-// 			if (!isdigit(line[j]) && sign == '\0') {
-// 					sign = static_cast<char>(line[j]);
-// 					j += 2;
-// 					break ;
-// 			}
-// 			j += 2;
-// 		}
-// 	}
-// }
-
-
