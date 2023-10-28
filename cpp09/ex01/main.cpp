@@ -8,9 +8,10 @@
 	if (rpn.commandLineError(ac, av[1])) {
 
 		std::cout << "failure" << std::endl;
-		std::cout << '2' - 48 << std::endl;
 	}
-	else
+	else {
+		rpn.displayOperationResult(av[1]);
 		std::cout << "success" << std::endl;
+	}
 
 }

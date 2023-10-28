@@ -37,36 +37,81 @@ bool RPN::commandLineError(int32_t ac, std::string line) {
 	return false;
 }
 
-void RPN::displayOPerationResult(std::string& line) {
+void RPN::displayOperationResult(std::string line) {
 
-	uint16_t i = line.length - 1;
-	uint16_t j = line.length - 1;
-	char sign = '\0';
+	int16_t i = line.length() - 1;
+
+	while (i >= 0) {
+
+		if (isdigit(line[i]))
+			_valueStack.push(line[i] - 48);
+		else
+			_signStack.push(line[i]);
+		i -= 2;
+	}
+
+	if (_valueStack.size() != _signStack.size() + 1) {
+		std::cerr << "Error" << std::endl;
+		return ;
+	}
 
 	while (1) {
 
-		while (i < line.length()) {
+		int32_t res;
+		int32_t nb1;
+		int32_t nb2;
 
-			if (isdigit(line[i]) && _stack.size != 2) {
-				_stack.pushback(line[i] - 48);
-				i += 2;
-			}
-			else if (!isdigit(line[i]))
-				i += 2;
-			else
-				break ;
+		nb1 = _valueStack.top();
+		_valueStack.pop();
+		nb2 = _valueStack.top();
+		_valueStack.pop();
+
+		if (_signStack.top() == '+')
+			res = nb1 + nb2;
+		else if (_signStack.top() == '-')
+			res = nb1 - nb2;
+		else if (_signStack.top() == '*')
+			res = nb1 * nb2;
+		else if (_signStack.top() == '/')
+			res = nb1 / nb2;
+
+		_signStack.pop();
+		_valueStack.push(res);
+		if (_valueStack.empty() && _signStack.empty()) {
+			std::cout << res << std::endl;
+			return ;
 		}
 
-		while (j < line.length()) {
-			
-			if (!isdigit(line[j]) && sign == '\0') {
-					sign = static_cast<char>(line[j]);
-					j += 2;
-					break ;
-			}
-			j += 2;
-		}
+		// _valueStack.push(res);
 	}
+
 }
+
+
+// 	while (1) {
+
+// 		while (i < line.length()) {
+
+// 			if (isdigit(line[i]) && _stack.size != 2) {
+// 				_stack.pushback(line[i] - 48);
+// 				i += 2;
+// 			}
+// 			else if (!isdigit(line[i]))
+// 				i += 2;
+// 			else
+// 				break ;
+// 		}
+
+// 		while (j < line.length()) {
+			
+// 			if (!isdigit(line[j]) && sign == '\0') {
+// 					sign = static_cast<char>(line[j]);
+// 					j += 2;
+// 					break ;
+// 			}
+// 			j += 2;
+// 		}
+// 	}
+// }
 
 

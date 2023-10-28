@@ -12,9 +12,9 @@ class RPN {
 			RPN& operator=(const RPN& rhs);
 
 			bool commandLineError(int32_t ac, std::string line);
-			void displayOPerationResult(std::string& line);
+			void displayOperationResult(std::string line);
 
 	private:
 			std::stack<int32_t> _valueStack;
-			std::stack<char> _sign stack;
+			std::stack<char> _signStack;
 };
