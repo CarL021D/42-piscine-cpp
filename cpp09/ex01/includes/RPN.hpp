@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <stack>
-#include <cstdint>
+#include <stdint.h>
 
 class RPN {
 
@@ -11,10 +11,10 @@ class RPN {
 			RPN(const RPN& src);
 			RPN& operator=(const RPN& rhs);
 
-			bool commandLineError(int32_t ac, std::string line);
+			bool commandLineError(__int32_t ac, std::string line);
 			void displayOperationResult(std::string line);
 
 	private:
-			std::stack<int32_t> _valueStack;
+			std::stack<__int32_t> _valueStack;
 			std::stack<char> _signStack;
 };

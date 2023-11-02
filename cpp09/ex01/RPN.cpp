@@ -68,10 +68,14 @@ void RPN::displayOperationResult(std::string line) {
 			res = nb1 + nb2;
 		else if (_signStack.top() == '-')
 			res = nb1 - nb2;
-		else if (_signStack.top() == '*')
-			res = nb1 * nb2;
-		else
+		else if (_signStack.top() == '/') {
+			if (!nb1 || !nb2) {
+				std::cerr << "Error: division by zero." << std::endl;
+				return ;
+			}
 			res = nb1 / nb2;
+		} else
+			res = nb1 * nb2;
 
 		_signStack.pop();
 
