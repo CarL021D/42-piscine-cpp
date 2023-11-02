@@ -57,9 +57,7 @@ void RPN::displayOperationResult(std::string line) {
 
 	while (1) {
 
-		int32_t res;
-		int32_t nb1;
-		int32_t nb2;
+		int32_t res, nb1, nb2;
 
 		nb1 = _valueStack.top();
 		_valueStack.pop();
