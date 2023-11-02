@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 #include <cctype>
-#include <cstdint>
+#include <stdint.h>
 #include <limits>
 
 class BitcoinExchange {
@@ -28,7 +28,7 @@ class BitcoinExchange {
 			float _btcCount;
 
 			void displayBtcValue(void);
-			bool lineFormatError(std::string& key, std::string& value) const;
+			bool lineFormatError(const std::string& key, const std::string& value) const;
 			bool dateFormatError(std::string dateStr);
 			bool valueFormatError(const std::string& valueStr);
 

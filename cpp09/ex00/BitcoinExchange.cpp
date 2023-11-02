@@ -46,9 +46,6 @@ bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 	return true;
 }
 
-
-
-
 void BitcoinExchange::displayBtcStockExchangeRate() {
 	
 	std::string line;
@@ -60,17 +57,14 @@ void BitcoinExchange::displayBtcStockExchangeRate() {
 		std::string value = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
 
 		_data.insert(std::pair<std::string,std::string>(key, value));
-
+	
 		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end();) {
 
-			if (dateFormatError(it->first) || lineFormatError(key, value) || valueFormatError(it->second)) {
-				it = _data.erase(it);
-				continue ;
-			}
-
-			displayBtcValue();
-			it = _data.erase(it);
+			if (!(dateFormatError(it->first) || lineFormatError(it->first, it->second) || valueFormatError(it->second)))
+				displayBtcValue();
+			break ;
 		}
+		_data.erase(_data.begin());
 	}
 }
 
@@ -115,7 +109,7 @@ void	BitcoinExchange::displayBtcValue() {
 	}
 }
 
-bool BitcoinExchange::lineFormatError(std::string& key, std::string& value) const {
+bool BitcoinExchange::lineFormatError(const std::string& key, const std::string& value) const {
 
 	if (key.empty() || value.empty()) {
 		std::cout << "Error: bad format." << std::endl;
@@ -129,8 +123,8 @@ bool BitcoinExchange::dateFormatError(std::string dateStr) {
 	std::string		yearStr, monthStr, dayStr;
 	size_t			delPos;
 
-	if (dateStr.back() == ' ')
-		dateStr.pop_back();
+	if (dateStr[dateStr.length() - 1] == ' ')
+		dateStr.resize(dateStr.length() - 1);
 
 	delPos = dateStr.find('-');
 	yearStr = (delPos != std::string::npos) ? dateStr.substr(0, delPos) : "";
