@@ -25,10 +25,9 @@ bool RPN::commandLineError(int32_t ac, std::string line) {
 			return true;
 		}
 
-		if (i + 1 >= line.length() || line[i + 1] == ' ') {
+		if (i + 1 >= line.length() || line[i + 1] == ' ')
 			i++;
-			continue;
-		} else {		
+		else {		
 			std::cerr << "Error" << std::endl;
 			return true;
 		}
