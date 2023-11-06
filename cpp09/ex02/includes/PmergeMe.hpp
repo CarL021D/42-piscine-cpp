@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
+#include <cstdlib>
 #include <stdint.h>
 #include <vector>
 #include <deque>
-#include <pair>
+#include <utility>
 #include <climits>
 
 class PmergeMe {
@@ -15,11 +16,14 @@ class PmergeMe {
 			PmergeMe& operator=(const PmergeMe& rhs);
 	
 			bool commandLineError(int32_t ac, std::string line);
+			void vMakePairs(const std::string& line);
 
 	private:
 			std::vector<uint32_t> _vec;
-			std::vector<std::pair> _vPairs;
+			std::vector<std::pair<uint32_t, uint32_t> > _vPairs;
 			
 			std::deque<uint32_t> _deq;
-			std::deque<std::pair<uint32_t, uint32_t>> _dPairs;
+			std::deque<std::pair<uint32_t, uint32_t> > _dPairs;
+
+			uint32_t _remainingVal;
 };

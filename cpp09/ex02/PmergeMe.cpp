@@ -6,7 +6,10 @@ PmergeMe::~PmergeMe() {}
 
 PmergeMe::PmergeMe(const PmergeMe& src) { *this = src; }
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) { return *this; }
+PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
+	(void)rhs;	
+	return *this;
+}
 
 bool PmergeMe::commandLineError(int32_t ac, std::string line) {
 
@@ -23,65 +26,41 @@ bool PmergeMe::commandLineError(int32_t ac, std::string line) {
 		}
 	}
 
-	for (uint32_t  pos = 0; pos < line.length()) {
-
-		size_t startPos = str.find_first_of("0123456789", pos);
-		
-		if (startPos == std::string::npos) {
-			std::cerr << "Error: nothing to sort" << std::endl;
-			return  true;
-		}
-
-
-		// size_t startPos = str.find_first_of("0123456789", pos);
-
-		size_t endPos = str.find_first_not_of("0123456789", startPos);
-
-		std::string numStr = str.substr(startPos, endPos - startPos);
-
-	   uint32_t num = static_cast<unsigned int>(std::strtoul(numStr.c_str(), NULL, 10));
-
-		if (num > INT_MAX) {
-			std::cerr << "Error: number out of range" << std::endl;
-			return true; // The number is greater than UINT_MAX
-		}
-
-		// insertValueinPair()
-
-		pos = endPos;
-	}
-
 	return false;
 }
 
 
 void    PmergeMe::vMakePairs(const std::string& line) {
 
-	for (uint32_t  pos = 0; pos < line.length()) {
+	int32_t firstValue = -1;
+	int32_t secondValue = -1;
+	uint32_t pos = 0;
+	uint32_t count = 0;
 
-		uint32_t startPos = str.find_first_of("0123456789", pos);
-		uint32_t endPos = str.find_first_not_of("0123456789", startPos);
-		std::string numStr = str.substr(startPos, endPos - startPos);
+	while (pos < line.length()) {
+		
+		uint32_t startPos = line.find_first_of("0123456789", pos);
+		uint32_t endPos = line.find_first_not_of("0123456789", startPos);
+		std::string numStr = line.substr(startPos, endPos - startPos);
 		uint32_t num = static_cast<uint32_t>(std::strtoul(numStr.c_str(), NULL, 10));
 
-		
+		if (firstValue != -1)
+			firstValue = num;
+		else if (secondValue != -1 && pos >= line.length())
+			secondValue = num;
+		else if (endPos == line.length() && !(count % 2))
+			_remainingVal = num;
 
+		if (firstValue != -1 && secondValue != -1) {
+
+			_vPairs.push_back(std::make_pair(firstValue, secondValue));
+			firstValue = -1;
+			secondValue = -1;
+		}
 		// insertValueinPair()
 
 		pos = endPos;
+		count++;
 	}
-
-	return false;
 }
 
-uint32_t PmergeMe::stringIntoUInt(const std::string& str) const {
-	char* end;
-	const char* cstr = str.c_str();
-	uint32_t result = std::strtoul(cstr, &end, 10);
-
-	if (*end != '\0') {
-		return 0;
-	}
-
-	return static_cast<uint32_t>(result);
-}
