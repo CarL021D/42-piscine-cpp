@@ -1,16 +1,16 @@
 #include <iostream>
 #include "includes/PmergeMe.hpp"
 
-int main(int ac, char **av){
+int main(int ac, char **av) {
 
     PmergeMe vectorSort;
 
-    if (vectorSort.commandLineError(ac, av[1])) {
+    if (!vectorSort.commandLineError(ac, av)) {
 
         vectorSort.vMakePairs(av[1]);
-        std::cout << "Success" << std::endl;
+        std::cout << "Program: Success" << std::endl;
     } else
-        std::cout << "Error" << std::endl;
+        std::cout << "Program: Error" << std::endl;
     
 
 

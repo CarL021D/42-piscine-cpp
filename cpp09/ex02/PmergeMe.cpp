@@ -1,6 +1,6 @@
 #include "includes/PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() : _oddList(false) {}
 
 PmergeMe::~PmergeMe() {}
 
@@ -11,17 +11,18 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
 	return *this;
 }
 
-bool PmergeMe::commandLineError(int32_t ac, std::string line) {
+bool PmergeMe::commandLineError(int32_t ac, char **av) {
 
 	if (ac != 2) {
-		std::cerr << "Wrong number of arguments" << std::endl;
+		std::cerr << "Error: wrong number of arguments." << std::endl;
 		return true;
 	}
 
+	std::string line = av[1];
 	for (uint32_t i = 0; i < line.length(); ++i) {
 
 		if (!isdigit(line[i]) && line[i] != ' ') {
-			std::cerr << "Error" << std::endl;
+			std::cerr << "Error: wrong characters in the command line." << std::endl;
 			return true;
 		}
 	}
@@ -40,19 +41,20 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 	while (pos < line.length()) {
 		
 		uint32_t startPos = line.find_first_of("0123456789", pos);
-		uint32_t endPos = line.find_first_not_of("0123456789", startPos);
+		std::string::size_type endPos = line.find_first_not_of("0123456789", startPos);
 		std::string numStr = line.substr(startPos, endPos - startPos);
 		uint32_t num = static_cast<uint32_t>(std::strtoul(numStr.c_str(), NULL, 10));
 
-		if (firstValue != -1)
-			firstValue = num;
-		else if (secondValue != -1 && pos >= line.length())
+ 	 	if (firstValue == -1 && (endPos < line.length()))
+ 			firstValue = num;
+		else if (firstValue != -1)
 			secondValue = num;
-		else if (endPos == line.length() && !(count % 2))
+		else if (endPos == std::string::npos && !(count % 2)) {
+			_oddList = true;
 			_remainingVal = num;
+		}
 
 		if (firstValue != -1 && secondValue != -1) {
-
 			_vPairs.push_back(std::make_pair(firstValue, secondValue));
 			firstValue = -1;
 			secondValue = -1;
@@ -62,5 +64,11 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 		pos = endPos;
 		count++;
 	}
+
+	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
+		std::cout << "Pair: (" << it->first << ", " << it->second << ")" << std::endl;
+	}
+	std::cout << "remaining odd number: " << _remainingVal << std::endl;
+
 }
 
