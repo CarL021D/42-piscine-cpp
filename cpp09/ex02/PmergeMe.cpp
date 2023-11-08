@@ -34,11 +34,18 @@ void PmergeMe::vSort(const std::string& line) {
 
 	vMakePairs(line);
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it)
-		_vHigherValues.push_back(it->first);
+		_vHighestValues.push_back(it->first);
 
-	for (std::vector<uint32_t>::const_iterator it = _vHigherValues.begin(); it != _vHigherValues.end(); ++it)
-		std::cout << *it << std::endl;
+	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
+		std::cout << "v of pairs: "<< *it << std::endl;
 
+	std::cout << std::endl;
+	vMergeSort(0, _vHighestValues.size() - 1);
+
+	std::cout << std::endl << "Merge Sort" << std::endl;
+	std::cout <<  "Highest values vector" << std::endl;
+	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
+		std::cout << "val: [" << *it << "]" << std::endl;
 
 }
 
@@ -81,7 +88,39 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
 		std::cout << "Pair: (" << it->first << ", " << it->second << ")" << std::endl;
 	}
-	std::cout << "remaining odd number: " << _remainingVal << std::endl << std::endl;
-
+	std::cout << "remaining odd number: " << _remainingVal << std::endl;
 }
 
+void PmergeMe::vMergeSort(uint32_t low, uint32_t high) {
+
+	if (low >= high)
+		return ;
+
+	uint32_t mid = low + (high - low) / 2;
+	vMergeSort(low, mid); 
+	vMergeSort(mid + 1, high);
+	vMerge(low, mid, high);
+}
+
+void PmergeMe::vMerge(uint32_t low, uint32_t mid, uint32_t high) {
+
+	uint32_t tmp[mid];
+
+	for (uint32_t i = low; i <= high; i++)
+		tmp[i] = _vHighestValues.at(i);
+
+	uint32_t i = low;
+	uint32_t j = mid + 1;
+	uint32_t k = low;
+
+	while (i <= mid && j <= high) {
+		if (tmp[i] <= tmp[j])
+			_vHighestValues.at(k) = tmp[i++];
+		else
+			_vHighestValues.at(k) = tmp[j++];
+		k++;
+	}
+
+	while (i <= mid)
+		_vHighestValues.at(k++) = tmp[i++];
+}

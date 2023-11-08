@@ -20,8 +20,8 @@ class PmergeMe {
 			void vSort(const std::string& line);
 
 	private:
-			std::vector<uint32_t> _vHigherValues;
-			std::vector<uint32_t> _vlowerValues;
+			std::vector<uint32_t> _vHighestValues;
+			std::vector<uint32_t> _vLowestValues;
 			std::vector<std::pair<uint32_t, uint32_t> > _vPairs;
 			
 			std::deque<uint32_t> _deq;
@@ -31,5 +31,6 @@ class PmergeMe {
 			uint32_t _remainingVal;
 
 			void vMakePairs(const std::string& line);
-
+			void vMergeSort(uint32_t low, uint32_t high);
+			void vMerge(uint32_t low, uint32_t mid, uint32_t high);
 };
