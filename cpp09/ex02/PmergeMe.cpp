@@ -30,6 +30,17 @@ bool PmergeMe::commandLineError(int32_t ac, char **av) {
 	return false;
 }
 
+void PmergeMe::vSort(const std::string& line) {
+
+	vMakePairs(line);
+	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it)
+		_vHigherValues.push_back(it->first);
+
+	for (std::vector<uint32_t>::const_iterator it = _vHigherValues.begin(); it != _vHigherValues.end(); ++it)
+		std::cout << *it << std::endl;
+
+
+}
 
 void    PmergeMe::vMakePairs(const std::string& line) {
 
@@ -55,11 +66,13 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 		}
 
 		if (firstValue != -1 && secondValue != -1) {
+
+			if (firstValue < secondValue)
+				std::swap(firstValue, secondValue);
 			_vPairs.push_back(std::make_pair(firstValue, secondValue));
 			firstValue = -1;
 			secondValue = -1;
 		}
-		// insertValueinPair()
 
 		pos = endPos;
 		count++;
@@ -68,7 +81,7 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
 		std::cout << "Pair: (" << it->first << ", " << it->second << ")" << std::endl;
 	}
-	std::cout << "remaining odd number: " << _remainingVal << std::endl;
+	std::cout << "remaining odd number: " << _remainingVal << std::endl << std::endl;
 
 }
 

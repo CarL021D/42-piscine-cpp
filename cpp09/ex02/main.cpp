@@ -7,7 +7,7 @@ int main(int ac, char **av) {
 
     if (!vectorSort.commandLineError(ac, av)) {
 
-        vectorSort.vMakePairs(av[1]);
+        vectorSort.vSort(av[1]);
         std::cout << "Program: Success" << std::endl;
     } else
         std::cout << "Program: Error" << std::endl;
