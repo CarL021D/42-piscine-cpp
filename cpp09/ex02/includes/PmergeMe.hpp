@@ -33,4 +33,5 @@ class PmergeMe {
 			void vMakePairs(const std::string& line);
 			void vMergeSort(uint32_t low, uint32_t high);
 			void vMerge(uint32_t low, uint32_t mid, uint32_t high);
+			int32_t vBinarySearch(uint32_t target, uint32_t low, uint32_t high);
 };
