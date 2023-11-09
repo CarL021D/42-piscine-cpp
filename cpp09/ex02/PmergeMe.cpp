@@ -37,23 +37,56 @@ void PmergeMe::vSort(const std::string& line) {
 		_vHighestValues.push_back(it->first);
 
 	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
-		std::cout << "v of pairs: "<< *it << std::endl;
+		std::cout << "vector of pairs: ["<< *it << "]" << std::endl;
 
 	std::cout << std::endl;
 	vMergeSort(0, _vHighestValues.size() - 1);
 
 	std::cout << std::endl << "Merge Sort" << std::endl;
-	std::cout <<  "Highest values vector" << std::endl;
+	std::cout <<  "Highest Values Sorted" << std::endl;
 	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
 		std::cout << "val: [" << *it << "]" << std::endl;
 	std::cout << std::endl;
 
 
-	int n = sizeof(_vHighestValues) / sizeof(_vHighestValues[0]);
-	std::cout << "size " << n << " == " << _vHighestValues.size() - 1 << std::endl; 
+	// int n = sizeof(_vHighestValues) / sizeof(_vHighestValues[0]);
+	// std::cout << "size " << n << " == " << _vHighestValues.size() - 1 << std::endl;
+	// // uint32_t ret = vBinarySearch(5, 0, n - 1);
+	// uint32_t ret = vBinarySearch(5, 0, _vHighestValues.size() - 1);
+	// std::cout << "binary search: " << ret << std::endl;
 
-	// std::cout << "binary search: " << vBinarySearch(5, 0, n - 1) << std::endl;
-	std::cout << std::endl << "binary search: " << vBinarySearch(5, 0, _vHighestValues.size() - 1) << std::endl;
+	// _vHighestValues.insert(_vHighestValues.begin() + ret, 5);
+
+
+	// // uint32_t ret = vBinarySearch(5, 0, _vHighestValues.size() - 1);
+	// // std::cout << std::endl << "binary search: [" << ret << "]" << std::endl;
+
+	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
+		
+		std::cout << "Pairs(second): [" << it->second << "]" << std::endl;
+		
+		uint32_t i = vBinarySearch(it->second, 0, _vHighestValues.size() - 1);		
+	
+		// std::cout << std::endl << "binary search: [" << i << "]" << std::endl;
+
+		_vHighestValues.insert(_vHighestValues.begin() + i, it->second);
+
+
+		std::cout << std::endl << " Tmp Sorted List:" << std::endl;
+		for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
+			std::cout << "tmp: [" << *it << "]" << std::endl;
+
+		if (_oddList) {
+
+			uint32_t i = vBinarySearch(_remainingVal, 0, _vHighestValues.size() - 1);		
+	
+			_vHighestValues.insert(_vHighestValues.begin() + i, _remainingVal);
+		}
+	}
+
+	std::cout << std::endl << "Sorted List:" << std::endl;
+	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
+		std::cout << "	val: [" << *it << "]" << std::endl;
 }
 
 void    PmergeMe::vMakePairs(const std::string& line) {
@@ -90,6 +123,20 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 
 		pos = endPos;
 		count++;
+	}
+
+	if (count == 1) {
+		uint32_t startPos = line.find_first_of("0123456789", pos);
+
+
+		std::string::size_type endPos = line.find_first_not_of("0123456789", startPos);
+		std::cout << std::endl << "HERE " << std::endl << std::endl;
+		std::string numStr = line.substr(startPos, endPos - startPos);
+		uint32_t num = static_cast<uint32_t>(std::strtoul(numStr.c_str(), NULL, 10));
+		std::cout << "One value [" << num  << "]"<< std::endl;
+
+		// std::cout << "One value [" << firstValue  << "]"<< std::endl;
+		exit(0);
 	}
 
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
@@ -153,15 +200,21 @@ int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 
 	if (_vHighestValues.at(mid) == target)
 	{
-		std::cout << "FOUND !!!" << std::endl;
+		std::cout << "Found !! target " << _vHighestValues.at(mid) << " mid val " << _vHighestValues.at(mid) << std::endl;
 		return mid;
 	}
 
-	// if (high == low) {
-	// 	if (target > _vHighestValues.at(mid))
-	// 		return mid + 1;
-	// 	return mid - 1; 
-	// }
+	if (high == mid) {
+		std::cout << "high = mid -> [" << high << "] [" << mid << "]" << std::endl;
+		std::cout << "target: " << target << " mid: " << _vHighestValues.at(mid) <<std::endl;
+		if (target > _vHighestValues.at(mid)) {
+			std::cout << "	HIGH !!!!" << std::endl;
+			return mid + 1;
+		}
+
+		std::cout << "	Low !!!!" << std::endl;
+		return mid;
+	}
 
 	if (_vHighestValues.at(mid) > target) {
 

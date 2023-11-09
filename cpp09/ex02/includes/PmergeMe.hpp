@@ -21,10 +21,9 @@ class PmergeMe {
 
 	private:
 			std::vector<uint32_t> _vHighestValues;
-			std::vector<uint32_t> _vLowestValues;
 			std::vector<std::pair<uint32_t, uint32_t> > _vPairs;
 			
-			std::deque<uint32_t> _deq;
+			std::deque<uint32_t> _dHighestValues;
 			std::deque<std::pair<uint32_t, uint32_t> > _dPairs;
 
 			bool _oddList;
