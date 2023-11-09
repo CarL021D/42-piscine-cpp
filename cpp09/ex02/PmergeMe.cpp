@@ -126,17 +126,8 @@ void    PmergeMe::vMakePairs(const std::string& line) {
 	}
 
 	if (count == 1) {
-		uint32_t startPos = line.find_first_of("0123456789", pos);
-
-
-		std::string::size_type endPos = line.find_first_not_of("0123456789", startPos);
-		std::cout << std::endl << "HERE " << std::endl << std::endl;
-		std::string numStr = line.substr(startPos, endPos - startPos);
-		uint32_t num = static_cast<uint32_t>(std::strtoul(numStr.c_str(), NULL, 10));
-		std::cout << "One value [" << num  << "]"<< std::endl;
-
-		// std::cout << "One value [" << firstValue  << "]"<< std::endl;
-		exit(0);
+		std::cerr << "Error: nothing to store at least 2 numbers are required." << std::endl;
+		exit(1);
 	}
 
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
