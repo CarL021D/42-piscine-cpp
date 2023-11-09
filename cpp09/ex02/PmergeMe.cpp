@@ -76,18 +76,22 @@ void PmergeMe::vSort(const std::string& line) {
 		for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
 			std::cout << "tmp: [" << *it << "]" << std::endl;
 
+	}
 		if (_oddList) {
 
 			uint32_t i = vBinarySearch(_remainingVal, 0, _vHighestValues.size() - 1);		
 	
 			_vHighestValues.insert(_vHighestValues.begin() + i, _remainingVal);
 		}
-	}
 
 	std::cout << std::endl << "Sorted List:" << std::endl;
 	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
 		std::cout << "	val: [" << *it << "]" << std::endl;
 }
+
+// BUGG
+// TODO: - "8 6 77 44 66 13"
+// TODO: - "8 6 77 44 66 1"
 
 void    PmergeMe::vMakePairs(const std::string& line) {
 
@@ -195,21 +199,21 @@ int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 		return mid;
 	}
 
-	if (high == mid) {
-		std::cout << "high = mid -> [" << high << "] [" << mid << "]" << std::endl;
+	if (low == mid) {
+		std::cout << "low = mid -> [" << low << "] [" << mid << "]" << std::endl;
 		std::cout << "target: " << target << " mid: " << _vHighestValues.at(mid) <<std::endl;
 		if (target > _vHighestValues.at(mid)) {
-			std::cout << "	HIGH !!!!" << std::endl;
+			std::cout << "	HIGH !!!! " << mid + 1 << std::endl;
 			return mid + 1;
 		}
 
-		std::cout << "	Low !!!!" << std::endl;
+		std::cout << "	LOW !!!!" << std::endl;
 		return mid;
 	}
 
 	if (_vHighestValues.at(mid) > target) {
 
-		std::cout << "NOT FOUND !" << std::endl;
+		std::cout << "		NOT FOUND ! " << mid << std::endl;
 		 return vBinarySearch(target, low, mid - 1);
 	}
 
