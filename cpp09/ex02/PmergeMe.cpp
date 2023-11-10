@@ -11,38 +11,14 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
 	return *this;
 }
 
-bool PmergeMe::commandLineError(int32_t ac, char **av) {
-
-	if (ac != 2) {
-		std::cerr << "Error: wrong number of arguments." << std::endl;
-		return true;
-	}
-
-	std::string line = av[1];
-	for (uint32_t i = 0; i < line.length(); ++i) {
-
-		if (!isdigit(line[i]) && line[i] != ' ') {
-			std::cerr << "Error: wrong characters in the command line." << std::endl;
-			return true;
-		}
-	}
-
-	return false;
-}
-
 void PmergeMe::vSort(const std::string& line) {
 
-	// clock_t startTime = clock();
+	clock_t startTime = clock();
 
 	vMakePairs(line);
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it)
 		_vHighestValues.push_back(it->first);
 	vMergeSort(0, _vHighestValues.size() - 1);
-
-	std::cout << std::endl << "Merged List:" << std::endl;
-	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
-		std::cout << "	val: [" << *it << "]" << std::endl;
-
 
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
 		
@@ -57,15 +33,16 @@ void PmergeMe::vSort(const std::string& line) {
 		_vHighestValues.insert(_vHighestValues.begin() + i, _remainingVal);
 	}
 
-	// clock_t end_time = clock();
-	// double elapsed_time = static_cast<double>(end_time - startTime) / CLOCKS_PER_SEC * 1e6;
-	// std::cout.precision(5);
-	// std::cout << "Elapsed time: " << std::fixed << elapsed_time << " us" << std::endl;
+	clock_t end_time = clock();
+	double elapsed_time = static_cast<double>(end_time - startTime) / CLOCKS_PER_SEC * 1e6;
+	std::cout.precision(5);
 
 
-	std::cout << std::endl << "Sorted List:" << std::endl;
+	std::cout << std::endl << "After:	";
 	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
-		std::cout << "	val: [" << *it << "]" << std::endl;
+		std::cout << " " << *it;
+	std::cout << std::endl;
+	std::cout << "Elapsed time: " << std::fixed << elapsed_time << " us" << std::endl;
 }
 
 
@@ -147,23 +124,7 @@ void PmergeMe::vMerge(uint32_t low, uint32_t mid, uint32_t high) {
 
 int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 
-	std::cout << "		1 Higher " << low << " - "<< high <<std::endl;
-
 	uint32_t mid = low + (high - low) / 2;
-	
-	std::cout << "		2 Higher -> " << mid <<std::endl;
-
-
-	std::cout << std::endl << "Merged List:" << std::endl;
-	for (std::vector<uint32_t>::const_iterator it = _vHighestValues.begin(); it != _vHighestValues.end(); ++it)
-		std::cout << "	val: [" << *it << "]" << std::endl;
-		
-	std::cout << "target - " << target << std::endl;
-	std::cout << "low [" << low << " - " << mid << "] mid" << std::endl;
-	std::cout << "low [" << _vHighestValues.at(low) << " - " << _vHighestValues.at(mid) << "] mid" << std::endl;
-	std::cout << "high - " << high << std::endl;
-
-
 
 	if (_vHighestValues.size() == 2) {
 
@@ -185,11 +146,8 @@ int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 		return mid;
 	}
 
-	if (_vHighestValues.at(mid) > target) {
-		std::cout << "Higher " << low << " " << mid <<std::endl;
+	if (_vHighestValues.at(mid) > target)
 		 return vBinarySearch(target, low, mid);
-	}
 
-	std::cout << "Lower" <<std::endl;
 	return vBinarySearch(target, mid + 1, high);	
 }

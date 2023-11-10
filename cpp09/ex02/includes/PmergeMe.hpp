@@ -16,7 +16,6 @@ class PmergeMe {
 			PmergeMe(const PmergeMe& src);
 			PmergeMe& operator=(const PmergeMe& rhs);
 	
-			bool commandLineError(int32_t ac, char **av);
 			void vSort(const std::string& line);
 
 	private:
