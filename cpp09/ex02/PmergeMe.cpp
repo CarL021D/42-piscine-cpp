@@ -61,19 +61,14 @@ void PmergeMe::vSort(const std::string& line) {
 	// // uint32_t ret = vBinarySearch(5, 0, _vHighestValues.size() - 1);
 	// // std::cout << std::endl << "binary search: [" << ret << "]" << std::endl;
 
-
-
-
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
 		
-		std::cout << std::endl << "Pairs(second): [" << it->second << "]" << std::endl;
+		std::cout << "Pairs(second): [" << it->second << "]" << std::endl;
 		
-		uint32_t n = _vHighestValues.size() - 1;
-		// uint32_t n = sizeof(_vHighestValues) / sizeof(_vHighestValues[0]);
-
-		uint32_t i = vBinarySearch(it->second, 0, n);		
+		uint32_t i = vBinarySearch(it->second, 0, _vHighestValues.size() - 1);		
 	
-		std::cout << std::endl << "binary search: [" << i << "]" << std::endl;
+		// std::cout << std::endl << "binary search: [" << i << "]" << std::endl;
+
 		_vHighestValues.insert(_vHighestValues.begin() + i, it->second);
 
 
@@ -82,13 +77,10 @@ void PmergeMe::vSort(const std::string& line) {
 			std::cout << "tmp: [" << *it << "]" << std::endl;
 
 	}
+		if (_oddList) {
 
-	if (_oddList) {
-
-			std::cout << "Even list one remaining value" << std::endl;
 			uint32_t i = vBinarySearch(_remainingVal, 0, _vHighestValues.size() - 1);		
 	
-			std::cout << std::endl << "binary search: [" << i << "]" << std::endl;
 			_vHighestValues.insert(_vHighestValues.begin() + i, _remainingVal);
 		}
 
@@ -184,23 +176,22 @@ void PmergeMe::vMerge(uint32_t low, uint32_t mid, uint32_t high) {
 
 int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 
-	uint32_t mid = low + (high - low) / 2;
-			// if (_vHighestValues.size() == 3)
-			// 	return mid += 1;
-	
 		std::cout << std::endl;
-		std::cout << "high - " << high << std::endl;
-		std::cout << "low - " << low << std::endl;
-		std::cout << "mid - " << mid << std::endl;
-		std::cout << "target - " << target << std::endl;
+		std::cout << "high " << high << std::endl;
+		std::cout << "low " << low << std::endl;
+		std::cout << "target " << target << std::endl;
 
 
-	std::cout << "size() = " << _vHighestValues.size() << std::endl;
-	std::cout << "mid index [" << mid << "]" << std::endl;
+	if (low > high)
+		return -1;
+	
+	uint32_t mid = low + (high - low) / 2;
+
+
+	std::cout << "size " << _vHighestValues.size() << std::endl;
+	std::cout << "mid " << mid << std::endl;
 	std::cout << "mid val "<< _vHighestValues.at(mid) << std::endl;
-	std::cout << "			RANGE ERROR " << high << std::endl;
-
-
+	std::cout << std::endl << "HERE" << std::endl << std::endl;
 
 	if (_vHighestValues.at(mid) == target)
 	{
@@ -208,16 +199,11 @@ int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 		return mid;
 	}
 
-	
 	if (low == mid) {
 		std::cout << "low = mid -> [" << low << "] [" << mid << "]" << std::endl;
 		std::cout << "target: " << target << " mid: " << _vHighestValues.at(mid) <<std::endl;
-		
 		if (target > _vHighestValues.at(mid)) {
 			std::cout << "	HIGH !!!! " << mid + 1 << std::endl;
-			if (high == 1 && _vHighestValues.size() != 2)
-				mid++;
-
 			return mid + 1;
 		}
 

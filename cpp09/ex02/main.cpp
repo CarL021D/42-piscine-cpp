@@ -6,7 +6,14 @@ int main(int ac, char **av) {
 
     PmergeMe vectorSort;
 
-    if (!vectorSort.commandLineError(ac, av))
+    if (!vectorSort.commandLineError(ac, av)) {
+
         vectorSort.vSort(av[1]);
+        std::cout << "Program: Success" << std::endl;
+    } else
+        std::cout << "Program: Error" << std::endl;
+    
+
+
 
 }
