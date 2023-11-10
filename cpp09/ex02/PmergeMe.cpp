@@ -192,6 +192,8 @@ int32_t PmergeMe::vBinarySearch(uint32_t target, uint32_t low, uint32_t high) {
 	if (_vHighestValues.size() == 2) {
 		if (target < _vHighestValues.at(mid))
 			return mid;
+		else if (target < _vHighestValues.at(high))
+			return mid += 1;
 		return mid += 2;
 	}
 	
