@@ -46,67 +46,118 @@ bool BitcoinExchange::checkValidFileFormat(int ac, char *inFile) {
 	return true;
 }
 
+void BitcoinExchange::fillBtcDBmap() {
+
+	std::string line;
+
+	std::getline(_btcDB, line);
+
+	while (std::getline(_btcDB, line)) {
+				
+		size_t delPos = line.find(',');
+
+		std::string date = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
+		std::string value = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
+		
+		// std::cout << "		date - [" << date << "]" << std::endl;
+		// std::cout << "		value - [" << value << "]" << std::endl;
+
+
+		_btcDBMap.insert(std::pair<std::string,std::string>(date, value));
+
+	}
+}
+
 void BitcoinExchange::displayBtcStockExchangeRate() {
 	
 	std::string line;
 
+	fillBtcDBmap();
+
 	while (std::getline(_inFile, line)) {
 		size_t delPos = line.find('|');
 
-		std::string key = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
+		std::string date = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
 		std::string value = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
 
-		_data.insert(std::pair<std::string,std::string>(key, value));
-	
-		for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end();) {
+		// if (date.size())
+		// 	date.erase(date.size() - 1);
+		
+		// std::cout << "		date - [" << date << "]" << std::endl;
+		// std::cout << "		value - [" << value << "]" << std::endl;
+		// value.erase(0, 1);
+		
+		// std::cout << "		value - [" << value << "]" << std::endl;
 
-			if (!(dateFormatError(it->first) || lineFormatError(it->first, it->second) || valueFormatError(it->second)))
-				displayBtcValue();
-			break ;
-		}
-		_data.erase(_data.begin());
+		// _data.insert(std::pair<std::string,std::string>(key, value));
+	
+		// for (std::map<std::string, std::string>::const_iterator it = _data.begin(); it != _data.end();) {
+
+			if (!(dateFormatError(date) || lineFormatError(date, value) || valueFormatError(value)))
+				displayBtcValue(date, value);
+		// 	break ;
+		// }
+		// _data.erase(_data.begin());
 	}
 }
 
-void	BitcoinExchange::displayBtcValue() {
+void	BitcoinExchange::displayBtcValue(std::string& date, std::string& value) {
 
-	std::string line, dbYear, dbMonth, dbDay;
-	long yearDigits, monthDigits, dayDigits, prevYear, prevMonth, prevDay;
+	if (date.size())
+		date.erase(date.size() - 1);
+	value.erase(0, 1);
 
-	_btcDB.seekg(0, std::ios::beg);
-	std::getline(_btcDB, line);
+	std::map<std::string, std::string>::iterator it = _btcDBMap.find(date);
+	if (it != _btcDBMap.end())
+		std::cout << date << " => " << value << " = " << stringIntoFloat(value) * stringIntoFloat(_btcDBMap[date]) << std::endl;
+	else {
 
-	while (std::getline(_btcDB, line)) {
-		
-		size_t delPos = line.find(',');
-		std::string dbDate = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
-		std::string dbValue = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
-
-		delPos = dbDate.find('-');
-		dbYear = dbDate.substr(0, delPos);
-		size_t tmp = delPos + 1;
-		delPos = dbDate.find('-', tmp);
-		dbMonth = dbDate.substr(tmp, delPos - tmp); 
-		dbDay = dbDate.substr(delPos +  1); 
-
-		yearDigits = stringIntoFloat(dbYear);
-		monthDigits = stringIntoFloat(dbMonth);
-		dayDigits = stringIntoFloat(dbDay);
-
-		if (yearDigits == _year && monthDigits == _month && dayDigits == _day) {
-			std::cout << _year << "-" << _month << "-" << _day << " => " << _btcCount << " = " << _btcCount * stringIntoFloat(dbValue) << std::endl;
-			return ;
-		}
-		
-		if (yearDigits >= _year && monthDigits >= _month && dayDigits >= _day) {
-			std::cout << prevYear << "-" << prevMonth << "-" << prevDay << " => " << _btcCount << " = " << _btcCount * stringIntoFloat(dbValue) << std::endl;
-			return ;
-		}
-
-		prevYear = yearDigits;
-		prevMonth = monthDigits;
-		prevDay = dayDigits;
+		_btcDBMap.insert(std::make_pair(date, ""));
+		it = _btcDBMap.find(date);
+		--it;
+		std::cout << date << " => " << value << " = " << stringIntoFloat(value) * stringIntoFloat(it->second) << std::endl;
+		++it;
+		_btcDBMap.erase(it);
 	}
+	// std::string line, dbYear, dbMonth, dbDay;
+	// long yearDigits, monthDigits, dayDigits, prevYear, prevMonth, prevDay;
+
+	// _btcDB.seekg(0, std::ios::beg);
+	// std::getline(_btcDB, line);
+
+	// while (std::getline(_btcDB, line)) {
+		
+	// 	size_t delPos = line.find(',');
+	// 	std::string dbDate = (delPos != std::string::npos) ? line.substr(0, delPos) : line;
+	// 	std::string dbValue = (delPos != std::string::npos) ? line.substr(delPos + 1) : "";
+
+	// 	delPos = dbDate.find('-');
+	// 	dbYear = dbDate.substr(0, delPos);
+	// 	size_t tmp = delPos + 1;
+	// 	delPos = dbDate.find('-', tmp);
+	// 	dbMonth = dbDate.substr(tmp, delPos - tmp); 
+	// 	dbDay = dbDate.substr(delPos +  1); 
+
+	// 	yearDigits = stringIntoFloat(dbYear);
+	// 	monthDigits = stringIntoFloat(dbMonth);
+	// 	dayDigits = stringIntoFloat(dbDay);
+
+	// 	//TODO: - Check if the date precede min creation
+
+	// 	if (yearDigits == _year && monthDigits == _month && dayDigits == _day) {
+	// 		std::cout << _year << "-" << _month << "-" << _day << " => " << _btcCount << " = " << _btcCount * stringIntoFloat(dbValue) << std::endl;
+	// 		return ;
+	// 	}
+		
+	// 	if (yearDigits >= _year && monthDigits >= _month && dayDigits >= _day) {
+	// 		std::cout << prevYear << "-" << prevMonth << "-" << prevDay << " => " << _btcCount << " = " << _btcCount * stringIntoFloat(dbValue) << std::endl;
+	// 		return ;
+	// 	}
+
+	// 	prevYear = yearDigits;
+	// 	prevMonth = monthDigits;
+	// 	prevDay = dayDigits;
+	// }
 }
 
 bool BitcoinExchange::lineFormatError(const std::string& key, const std::string& value) const {

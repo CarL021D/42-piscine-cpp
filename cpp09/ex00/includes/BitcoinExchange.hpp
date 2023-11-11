@@ -15,11 +15,15 @@ class BitcoinExchange {
 			BitcoinExchange(const BitcoinExchange& src);
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
+			void fillBtcDBmap();
+
+
+
 			bool	checkValidFileFormat(int ac, char *inFile);
 			void	displayBtcStockExchangeRate(void);
 
 	private:
-			std::map<std::string, std::string> _data;
+			std::map<std::string, std::string> _btcDBMap;
 			std::ifstream _inFile;
 			std::ifstream _btcDB;
 			int64_t _year;
@@ -27,7 +31,7 @@ class BitcoinExchange {
 			int64_t _day;
 			float _btcCount;
 
-			void displayBtcValue(void);
+			void displayBtcValue(std::string& date, std::string& value);
 			bool lineFormatError(const std::string& key, const std::string& value) const;
 			bool dateFormatError(std::string dateStr);
 			bool valueFormatError(const std::string& valueStr);
