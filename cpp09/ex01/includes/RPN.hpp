@@ -11,7 +11,7 @@ class RPN {
 			RPN(const RPN& src);
 			RPN& operator=(const RPN& rhs);
 
-			bool commandLineError(__int32_t ac, std::string line);
+			bool commandLineError(std::string line);
 			void displayOperationResult(std::string line);
 
 	private:

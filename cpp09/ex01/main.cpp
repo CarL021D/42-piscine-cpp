@@ -5,6 +5,11 @@
 
 	RPN rpn;
 
-	if (!rpn.commandLineError(ac, av[1]))
+	if (ac != 2) {
+		std::cerr << "Wrong number of arguments" << std::endl;
+		return 1;
+	}
+
+	if (!rpn.commandLineError(av[1]))
 		rpn.displayOperationResult(av[1]);
 }

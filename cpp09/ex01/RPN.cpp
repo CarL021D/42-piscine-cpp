@@ -11,12 +11,7 @@ RPN& RPN::operator=(const RPN& rhs) {
 	return *this;
 }
 
-bool RPN::commandLineError(int32_t ac, std::string line) {
-
-	if (ac != 2) {
-		std::cerr << "Wrong number of arguments" << std::endl;
-		return true;
-	}
+bool RPN::commandLineError(std::string line) {
 
 	for (uint32_t i = 0; i < line.length(); ++i) {
 
