@@ -16,5 +16,5 @@ class RPN {
 
 	private:
 			std::stack<__int32_t> _valueStack;
-			std::stack<char> _signStack;
+			// std::stack<char> _signStack;
 };

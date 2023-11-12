@@ -4,18 +4,25 @@ RPN::RPN() {}
 
 RPN::~RPN() {}
 
-RPN::RPN(const RPN& src) { *this = src; }
+RPN::RPN(const RPN& src) { _valueStack = src._valueStack; }
 
 RPN& RPN::operator=(const RPN& rhs) {
-	(void)rhs;	
+
+	_valueStack = rhs._valueStack;	
 	return *this;
 }
 
 bool RPN::commandLineError(std::string line) {
 
+	if (line.length() < 6) {
+		std::cerr << "Error" << std::endl;
+		return true;
+	}
+
 	for (uint32_t i = 0; i < line.length(); ++i) {
 
 		if (!isdigit(line[i]) && line[i] != '+' && line[i] != '-' && line[i] != '*' && line[i] != '/') {
+
 			std::cerr << "Error" << std::endl;
 			return true;
 		}
@@ -81,3 +88,27 @@ void RPN::displayOperationResult(std::string line) {
 		_valueStack.push(res);
 	}
 }
+
+/*
+	if pos == 0
+		while (pos != 2; pos += 2)
+
+				push_back if is digit == true
+				if stack. size != 2
+					error
+					return ;
+				pos += 2
+
+	if char is sign
+		if size == 2
+			calcul
+		else
+			error
+
+	if digit
+		if size == 1
+			push_back
+		else
+			error
+
+*/
