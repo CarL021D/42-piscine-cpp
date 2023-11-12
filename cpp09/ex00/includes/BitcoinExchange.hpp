@@ -15,17 +15,17 @@ class BitcoinExchange {
 			BitcoinExchange(const BitcoinExchange& src);
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
-			void fillBtcDBmap();
+			void fillBtcDBmap(std::ifstream& btcDB);
 
 
 
-			bool	checkValidFileFormat(int ac, char *inFile);
-			void	displayBtcStockExchangeRate(void);
+			// bool	checkValidFileFormat(int ac, char *inFile);
+			void	displayBtcStockExchangeRate(std::ifstream& inFile);
 
 	private:
 			std::map<std::string, std::string> _btcDBMap;
-			std::ifstream _inFile;
-			std::ifstream _btcDB;
+			// std::ifstream _inFile;
+			// std::ifstream _btcDB;
 			int64_t _year;
 			int64_t _month;
 			int64_t _day;
