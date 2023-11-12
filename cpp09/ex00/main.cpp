@@ -47,5 +47,6 @@ int main(int ac, char **av)
     btcExchange.fillBtcDBmap(btcDB);
     btcExchange.displayBtcStockExchangeRate(inFile);
 
-    
+    inFile.close();
+	btcDB.close();
 }
