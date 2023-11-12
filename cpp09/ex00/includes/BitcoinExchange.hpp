@@ -15,17 +15,11 @@ class BitcoinExchange {
 			BitcoinExchange(const BitcoinExchange& src);
 			BitcoinExchange& operator=(const BitcoinExchange& rhs);
 
-			void fillBtcDBmap(std::ifstream& btcDB);
-
-
-
-			// bool	checkValidFileFormat(int ac, char *inFile);
+			void 	fillBtcDBmap(std::ifstream& btcDB);
 			void	displayBtcStockExchangeRate(std::ifstream& inFile);
 
 	private:
 			std::map<std::string, std::string> _btcDBMap;
-			// std::ifstream _inFile;
-			// std::ifstream _btcDB;
 			int64_t _year;
 			int64_t _month;
 			int64_t _day;
@@ -38,7 +32,8 @@ class BitcoinExchange {
 
 			const std::string removeFrontAndTraillingWhiteSpaces(const std::string& str) const;
 			bool valueIsOnlyDigits(const std::string& dateStr) const;
-			bool nonExistentDateError(const std::string& dateStr, const std::string& yearStr, const std::string& monthStr, const std::string& dayStr);
+			bool nonExistentDateError(const std::string& dateStr, const std::string& yearStr,
+					const std::string& monthStr, const std::string& dayStr);
 			bool intMaxIntMinInrangeCheck(long nb) const;
 			bool isFloat(const std::string &str) const;
 			bool strValFormatError(std::string& str) const;

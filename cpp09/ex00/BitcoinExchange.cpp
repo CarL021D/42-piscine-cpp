@@ -4,11 +4,14 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) { *this = src; }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
+ 	
+	_btcDBMap.insert(src._btcDBMap.begin(), src._btcDBMap.end());
+}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 	 
-	 (void)rhs;
+ 	_btcDBMap.insert(rhs._btcDBMap.begin(), rhs._btcDBMap.end());
 	 return *this;
 }
 
@@ -49,7 +52,7 @@ void	BitcoinExchange::displayBtcValue(std::string& date, std::string& value) {
 	date = removeFrontAndTraillingWhiteSpaces(date);
 	value = removeFrontAndTraillingWhiteSpaces(value);
 
-	std::map<std::string, std::string>::iterator it = _btcDBMap.find(date);
+	std::map<std::string, std::string>::iterator it = _btcDBMap.find(date);	
 	if (it != _btcDBMap.end())
 		std::cout << date << " => " << value << " = " << stringIntoFloat(value) * stringIntoFloat(_btcDBMap[date]) << std::endl;
 	else {
