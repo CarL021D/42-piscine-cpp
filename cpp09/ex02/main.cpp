@@ -1,13 +1,7 @@
 #include <iostream>
-// #include <chrono>
 #include "includes/PmergeMe.hpp"
 
-bool commandLineError(int32_t ac, char **av) {
-
-	if (ac != 2) {
-		std::cerr << "Error: wrong number of arguments." << std::endl;
-		return true;
-	}
+bool commandLineError(char **av) {
 
 	std::string line = av[1];
 	for (uint32_t i = 0; i < line.length(); ++i) {
@@ -25,8 +19,12 @@ int main(int ac, char **av) {
 
 	PmergeMe vectorSort;
 
+	if (ac != 2) {
+		std::cerr << "Error: wrong number of arguments." << std::endl;
+		return 1;
+	}
 
-	if (commandLineError(ac, av))
+	if (commandLineError(av))
 		return 1;
 
 	std::cout << "before:	" << av[1] << std::endl;
