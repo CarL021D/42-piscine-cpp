@@ -2,13 +2,10 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdint.h>
-#include <algorithm>
 #include <vector>
 #include <deque>
-#include <utility>
 #include <climits>
 
-// template<typename Container>
 class PmergeMe {
 
 	public:
@@ -17,39 +14,11 @@ class PmergeMe {
 			PmergeMe(const PmergeMe& src);
 			PmergeMe& operator=(const PmergeMe& rhs);
 	
-			// void sort(const std::string& line);
 			void displayVectorValues(std::vector<uint32_t>& vector) const;
 			void displayDequeValues(std::deque<uint32_t>& deque) const;
 
 	private:
-			// std::vector<uint32_t> _vHighestValues;
-			// std::vector<std::pair<uint32_t, uint32_t> > pairs;
-			
-			// std::deque<uint32_t> _dHighestValues;
-			// std::deque<std::pair<uint32_t, uint32_t> > _dPairs;
-
-			// bool oddList;
-			// uint32_t remainingVal;
-
-			// void makePairs(const std::string& line);
-			// void mergeSort(uint32_t low, uint32_t high);
-			// void merge(uint32_t low, uint32_t mid, uint32_t high);
-			// int32_t binarySearch(uint32_t target, uint32_t low, uint32_t high);
 };
-
-// template<typename Container>
-// void displayContainerValues(Container& container) const {
-
-// 	std::cout << "After:	";
-// 	for (std::vector<uint32_t>::const_iterator it = container.begin(); it != container.end(); ++it)
-// 		std::cout << " " << *it;
-// 	std::cout << std::endl;
-// }
-
-
-
-
-
 
 template<typename Container>
 std::vector<std::pair<uint32_t, uint32_t> >    makePairs(Container& container, const std::string& line, bool& oddList, uint32_t remainingVal) {
@@ -161,17 +130,14 @@ int32_t binarySearch(Container& container, uint32_t target, uint32_t low, uint32
 
 	if (container.at(mid) > target)
 		 return binarySearch(container, target, low, mid);
-
 	return binarySearch(container, target, mid + 1, high);	
 }
 
 template<typename Container>
 void sort(const std::string& line, Container& container) {
 
-	// std::vector<std::pair<uint32_t, uint32_t> > pairs;
 	bool oddList;
 	uint32_t remainingVal = 0;
-
 	clock_t startTime = clock();
 
 	std::vector<std::pair<uint32_t, uint32_t> > pairs = makePairs(container, line, oddList, remainingVal);
