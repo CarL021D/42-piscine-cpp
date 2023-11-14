@@ -1,5 +1,8 @@
 #include <iostream>
+#include <vector>
 #include "includes/PmergeMe.hpp"
+
+
 
 bool commandLineError(char **av) {
 
@@ -17,7 +20,10 @@ bool commandLineError(char **av) {
 
 int main(int ac, char **av) {
 
-	PmergeMe vectorSort;
+	PmergeMe pmerge;
+
+	std::vector<uint32_t> vector;
+	std::deque<uint32_t> deque;
 
 	if (ac != 2) {
 		std::cerr << "Error: wrong number of arguments." << std::endl;
@@ -29,6 +35,14 @@ int main(int ac, char **av) {
 
 	std::cout << "before:	" << av[1] << std::endl;
 
-	vectorSort.vSort(av[1]);
+	// pmerge.sort(av[1], vector);
+	sort(av[1], vector);
+	sort(av[1], deque);
+
+	std::cout << "Vector ";
+	pmerge.displayVectorValues(vector);
+	std::cout << "Deque  ";
+	pmerge.displayDequeValues(deque);
+	
 	
 }
