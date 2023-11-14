@@ -35,7 +35,6 @@ int main(int ac, char **av) {
 
 	std::cout << "before:	" << av[1] << std::endl;
 
-	// pmerge.sort(av[1], vector);
 	sort(av[1], vector);
 	sort(av[1], deque);
 
