@@ -72,7 +72,7 @@ void RPN::displayOperationResult(std::string line) {
 			}
 			else {
 
-				std::cerr << "Error 1." << std::endl;
+				std::cerr << "Error." << std::endl;
 				return ;
 			}
 		} else

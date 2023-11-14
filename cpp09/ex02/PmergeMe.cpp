@@ -22,8 +22,8 @@ void PmergeMe::vSort(const std::string& line) {
 
 	for (std::vector<std::pair<uint32_t, uint32_t> >::const_iterator it = _vPairs.begin(); it != _vPairs.end(); ++it) {
 		
-		uint32_t n = _vHighestValues.size() - 1;
-		uint32_t i = vBinarySearch(it->second, 0, n);		
+		uint32_t size = _vHighestValues.size() - 1;
+		uint32_t i = vBinarySearch(it->second, 0, size);		
 		_vHighestValues.insert(_vHighestValues.begin() + i, it->second);
 	}
 
