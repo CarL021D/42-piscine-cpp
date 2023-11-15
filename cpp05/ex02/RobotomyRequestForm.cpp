@@ -6,11 +6,11 @@
 
 RobotomyRequestForm::RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name, 72, 45) {}
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Trob", 72, 45), _target(target) {}
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : AForm(src._name, 72, 45) { *this = src; }
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : AForm("Trob", 72, 45), _target(src._target) { *this = src; }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) {
 	_isSigned = rhs._isSigned;
@@ -31,7 +31,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 	srand(time(NULL));
 	int randomNumber = rand() % 2;
 	if (randomNumber % 2)
-		std::cout << executor.getName() << " has been robotomized with success!" << std::endl;
+		std::cout << _target << " has been robotomized with success!" << std::endl;
 	else
-		std::cout << "Robotomized operation on " << executor.getName() << " failed!" << std::endl;
+		std::cout << "Robotomized operation on " << _target << " failed!" << std::endl;
 }

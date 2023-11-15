@@ -16,6 +16,8 @@ class ShrubberyCreationForm : public AForm {
 			ShrubberyCreationForm();
 
 			void	printTree(std::ofstream& os) const;
+
+			const std::string	_target;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& rhs);

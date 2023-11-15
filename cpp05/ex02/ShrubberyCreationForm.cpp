@@ -5,11 +5,14 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubCreation", 145, 137), _target(target) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm(src._name, 72, 45) { *this = src; }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm("Trob", 72, 45), _target(src._target) {
+	_isSigned = src._isSigned;
+	*this = src;
+}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {
 	_isSigned = rhs._isSigned;
@@ -27,7 +30,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	else if (_isSigned == false)
 		throw UnsignedFormularyException();
 
-	std::ofstream file((executor.getName() + "_shrubbery").c_str());
+	std::ofstream file((_target + "_shrubbery").c_str());
 	if (file.is_open()) {
 		printTree(file);
 	   file.close();

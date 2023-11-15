@@ -53,7 +53,6 @@ void Bureaucrat::executeForm(const AForm& form) {
 
 	if ((getGrade() <= form.getGrade()) && form.getIsSigned() == true) {
 		std::cout << _name << " executed " << form.getName() << std::endl;
-		form.execute(*this);
 	} else 
 		std::cout << "Error, I can't execute the form." << std::endl;
 }

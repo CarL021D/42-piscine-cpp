@@ -5,14 +5,13 @@
 
 PresidentialPardonForm::PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name, 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src) : AForm(src._name, 25, 5) { *this = src; }
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src) : AForm("PresidentialPardonForm", 25, 5), _target(src._target){ *this = src; }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) {
-
 	_isSigned = rhs._isSigned;
 	return *this;
 }
@@ -28,5 +27,5 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
 	else if (_isSigned == false)
 		throw UnsignedFormularyException();
 
-    std::cout << executor.getName() << " has been forgiven by Zaphod Beeblebrox" << std::endl;
+    std::cout << _target << " has been forgiven by Zaphod Beeblebrox" << std::endl;
 }
