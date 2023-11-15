@@ -26,10 +26,11 @@ class Bureaucrat {
 			const std::string	getName() const;
 			int16_t				getGrade() const;
 	private:
+			Bureaucrat();
+			
 			const std::string	_name;
 			int16_t				_grade;
 			
-			Bureaucrat();
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs);

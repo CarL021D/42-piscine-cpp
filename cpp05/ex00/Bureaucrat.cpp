@@ -35,9 +35,8 @@ void Bureaucrat::demoteGrade() {
     _grade++;
 }
 
-const std::string Bureaucrat::getName() const { return _name; }
-
-int16_t Bureaucrat::getGrade() const { return _grade; }
+const std::string	Bureaucrat::getName() const { return _name; }
+int16_t				Bureaucrat::getGrade() const { return _grade; }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade too high exception";
