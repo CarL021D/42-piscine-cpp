@@ -15,34 +15,34 @@ int main() {
 
 	try {
 
-		Bureaucrat bureaucrat00("Bureaucrat00", 2);
+		Bureaucrat bureaucrat00("Lee", 2);
 
-		// // Test 1
-		// president.beSigned(bureaucrat00);
-		// president.execute(bureaucrat00);
+		// Test 1
+		president.beSigned(bureaucrat00);
+		president.execute(bureaucrat00);
 
-		// // Test 2
+		// Test 2
 		// roboto.beSigned(bureaucrat00);
 		// roboto.execute(bureaucrat00);
 
-		// // Test 3
+		// Test 3
 		// shrubbery.beSigned(bureaucrat00);
 		// shrubbery.execute(bureaucrat00);
 
-		// // Test 4
+		// Test 4
 		// president.execute(bureaucrat00);
 
-		// // Test 5
+		// Test 5
 		// president.execute(bureaucrat00);
 
-		// // Test 6
+		// Test 6
 		// president.execute(bureaucrat00);
 
-		// // Test 7
+		// Test 7
 		// president.beSigned(bureaucrat00);
 		// bureaucrat00.executeForm(president);
 
-		// // Test 8
+		// Test 8
 		// bureaucrat00.executeForm(president);
 
 	// } catch (std::exception const & e) {
