@@ -34,7 +34,7 @@ class Bureaucrat {
 			void	executeForm(const AForm& form);
 
 
-			std::string const	getName() const;
+			const std::string	getName() const;
 			short				getGrade() const;
 	private:
 			Bureaucrat();

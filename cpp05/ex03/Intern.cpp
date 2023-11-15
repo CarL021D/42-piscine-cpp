@@ -28,8 +28,7 @@ AForm* Intern::makeForm(const std::string typeName, const std::string target) {
 		&Intern::createShrubberyForm
 	};
 
-	for (short i = 0; i < 3; i++)
-	{
+	for (short i = 0; i < 3; i++) {
 		if (typeName == formNamesArr[i])
 		{
 			form = (this->*formTypesArr[i])(target);

@@ -7,7 +7,7 @@
 RobotomyRequestForm::RobotomyRequestForm() {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Trob", 72, 45), _target(target) {
-	// this->_isSigned = false;
+	// _isSigned = false;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
@@ -16,7 +16,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) { *this
 
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& rhs) {
-	this->_isSigned = rhs._isSigned;
+	_isSigned = rhs._isSigned;
 	return *this;
 }
 
@@ -26,15 +26,15 @@ std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm& rhs) {
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-	if (executor.getGrade() > this->_execGrade)
+	if (executor.getGrade() > _execGrade)
 		throw GradeTooLowException();
-	else if (this->_isSigned == false)
+	else if (_isSigned == false)
 		throw UnsignedFormularyException();
 
 	srand(time(NULL));
 	int randomNumber = rand() % 2;
 	if (randomNumber % 2)
-		std::cout << this->_target << " has been robotized with success!" << std::endl;
+		std::cout << _target << " has been robotized with success!" << std::endl;
 	else
-		std::cout << "Robotized operation on " << this->_target << " failed!" << std::endl;
+		std::cout << "Robotized operation on " << _target << " failed!" << std::endl;
 }

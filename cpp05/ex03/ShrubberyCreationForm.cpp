@@ -13,7 +13,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) {
 
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs) {
-	this->_isSigned = rhs._isSigned;
+	_isSigned = rhs._isSigned;
 	return *this;
 }
 
@@ -23,12 +23,12 @@ std::ostream& operator<<(std::ostream& os, const ShrubberyCreationForm& rhs) {
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-	if (executor.getGrade() > this->_execGrade)
+	if (executor.getGrade() > _execGrade)
 		throw GradeTooLowException();
-	else if (this->_isSigned == false)
+	else if (_isSigned == false)
 		throw UnsignedFormularyException();
 
-	std::ofstream file((this->_target + "_shrubbery").c_str());
+	std::ofstream file((_target + "_shrubbery").c_str());
 	if (file.is_open()) {
 		printTree(file);
 	   file.close();
