@@ -28,13 +28,14 @@ class Bureaucrat {
 			void				demoteGrade();
 			void				signForm(const Form& form) const;
 
-			std::string const	getName() const;
+			const std::string	getName() const;
 			int16_t				getGrade() const;
 	private:
+			Bureaucrat();
+			
 			const std::string	_name;
 			int16_t				_grade;
 			
-			Bureaucrat();
 
 };
 

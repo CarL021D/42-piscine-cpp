@@ -15,7 +15,7 @@ Form::~Form() {}
 Form::Form(const Form& cpy) : _name(cpy._name), _grade(cpy._grade), _execGrade(cpy._execGrade), _isSigned(cpy._isSigned) {}
 
 Form& Form::operator=(const Form& rhs) {
-	this->_isSigned = rhs._isSigned;
+	_isSigned = rhs._isSigned;
 	return *this;
 }
 
@@ -25,20 +25,20 @@ std::ostream& operator<<(std::ostream& os, const Form& rhs) {
 }
 
 void Form::beSigned(Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() <= this->_grade) {
-		this->_isSigned = true;
-		std::cout << std::endl << this->_name << " signed" << std::endl;
+	if (bureaucrat.getGrade() <= _grade) {
+		_isSigned = true;
+		std::cout << _name << " signed" << std::endl;
 	}
 	else {
-		std::cout << bureaucrat.getName() << " can't sign " << this->_name << std::endl;
+		std::cout << bureaucrat.getName() << " couldn't sign " << _name << std::endl;
 		throw GradeTooLowException();
 	}
 }
 
-const std::string   Form::getName() const { return this->_name; }
-int16_t				Form::getGrade() const { return this->_grade; }
-int16_t				Form::getExecGrade() const { return this->_execGrade; }
-bool				Form::getIsSigned() const { return this->_isSigned; }
+const std::string   Form::getName() const { return _name; }
+int16_t				Form::getGrade() const { return _grade; }
+int16_t				Form::getExecGrade() const { return _execGrade; }
+bool				Form::getIsSigned() const { return _isSigned; }
 
 const char* Form::GradeTooHighException::what() const throw() {
 	return "Grade too high!";
