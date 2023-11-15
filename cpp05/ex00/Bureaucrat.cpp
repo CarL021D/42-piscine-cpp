@@ -14,30 +14,30 @@ Bureaucrat::~Bureaucrat() {}
 Bureaucrat::Bureaucrat(const Bureaucrat& cpy) { *this = cpy; }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
-	this->_grade = rhs._grade;
+	_grade = rhs._grade;
 	return *this;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs) {
-	os << rhs.getName() << " bureaucrat grade " << rhs.getGrade() << std::endl;
+	os << rhs.getName() << " bureaucrat grade " << rhs.getGrade();
 	return os;
 }
 
 void Bureaucrat::upgradeGrade() {
-	if (this->_grade == 1)
+	if (_grade == 1)
 		throw GradeTooHighException();
-	this->_grade--;
+	_grade--;
 }
 
 void Bureaucrat::demoteGrade() {
-    if (this->_grade == 150)
+    if (_grade == 150)
         throw GradeTooLowException();
-    this->_grade++;
+    _grade++;
 }
 
-std::string const Bureaucrat::getName() const { return this->_name; }
+const std::string Bureaucrat::getName() const { return _name; }
 
-int16_t Bureaucrat::getGrade() const { return this->_grade; }
+int16_t Bureaucrat::getGrade() const { return _grade; }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade too high exception";

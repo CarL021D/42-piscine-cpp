@@ -23,7 +23,7 @@ class Bureaucrat {
 
 			void 				upgradeGrade();
 			void				demoteGrade();
-			std::string const	getName() const;
+			const std::string	getName() const;
 			int16_t				getGrade() const;
 	private:
 			const std::string	_name;
