@@ -16,8 +16,15 @@ bool ScalarConverter::argumentError(std::string& arg) {
 
 	for (uint32_t i = 0; i < arg.size(); ++i) {
 
-		if (isalpha(arg[i]) && i != arg.size() - 1)
+		if (isalpha(arg[i]) && i != (arg.size() - 1)) {
+			std::cerr << "Wrong letter" << std::endl;	
 			return true;
+		}
+
+		if (arg.length() > 1 && !isdigit(arg[i]) && arg[i] != '.' && arg[i] != 'f') {
+			std::cerr << "Wrong value" << std::endl;	
+			return true;
+		}
 
 		if (arg[i] == '.' && mulitipleDot == true)
 			return true;
@@ -173,8 +180,6 @@ void ScalarConverter::convert(std::string arg) {
 		std::cerr << "Error: bad argument." << std::endl;
 		return ;
 	}
-
-
 
 	if (!strIsChar(arg) && !strIsInt(arg) && !strIsFloat(arg) && !strIsDouble(arg))
 		std::cout << arg << " couldn't be converted" << std::endl;
