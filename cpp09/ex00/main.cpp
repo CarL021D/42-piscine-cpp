@@ -1,7 +1,7 @@
 #include <iostream>
 #include "includes/BitcoinExchange.hpp"
 
-bool FileFormatError(std::string inFileName, std::ifstream& inFile, std::ifstream& btcDB) {
+bool FileFormatError(char *inFileName, std::ifstream& inFile, std::ifstream& btcDB) {
 
 	std::string 	line;
 
