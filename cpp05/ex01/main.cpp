@@ -31,12 +31,12 @@ int main() {
 		// std::cout << form03;
 
 	} catch (Bureaucrat::GradeTooHighException& e1) {
-		std::cout << "Grade to high exception" << std::endl << e1.what() << std::endl;
+		std::cout << e1.what() << std::endl;
 	} catch (Bureaucrat::GradeTooLowException& e1) {
-		std::cout << "Grade to low exception" << std::endl << e1.what() << std::endl;
+		std::cout << e1.what() << std::endl;
 	} catch (Form::GradeTooHighException& e2) {
-		std::cout << "Grade to high exception" << std::endl << e2.what() << std::endl;
+		std::cout << e2.what() << std::endl;
 	} catch (Form::GradeTooLowException& e2) {
-		std::cout << "Grade to low exception" << std::endl << e2.what() << std::endl;
+		std::cout << e2.what() << std::endl;
 	}
 }

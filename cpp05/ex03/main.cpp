@@ -35,7 +35,7 @@ int main() {
 		// // Test 4
 		// Bureaucrat bureaucrat00("Bureaucrat00", 2);
 		// form = intern.makeForm("moon", "Mister1");
-		// if (form != nullptr)
+		// if (form != NULL)
 		// {
 		// 	form->beSigned(bureaucrat00);
 		// 	form->execute(bureaucrat00);
