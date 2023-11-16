@@ -139,7 +139,7 @@ bool ScalarConverter::strIsInt(std::string str) {
 bool ScalarConverter::strIsChar(std::string str) {
 	char c;
 	
-	if (str.length() != 1 || (str[0]) < 32 || (str[0]) > 126 )
+	if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
 		return false;
 
 	c = str[0];
