@@ -20,7 +20,7 @@ AForm* Intern::createRobotomyForm(const std::string target) { return new Robotom
 AForm* Intern::createShrubberyForm(const std::string target) { return new ShrubberyCreationForm(target); }
 
 AForm* Intern::makeForm(const std::string typeName, const std::string target) {
-	AForm* form = nullptr;
+	AForm* form;
 	std::string formNamesArr[3] = {"president", "roboto", "shruberry"};
 	AForm* (Intern::*formTypesArr[3])(const std::string) = {
 		&Intern::createPresidentForm,
@@ -37,5 +37,5 @@ AForm* Intern::makeForm(const std::string typeName, const std::string target) {
 		}
 	}
 	std::cout << "Wrong form input name: " << typeName << std::endl;
-	return nullptr;
+	return NULL;
 }

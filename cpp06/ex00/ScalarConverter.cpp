@@ -2,13 +2,29 @@
 
 ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::~ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& src) { *this = src; }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) { 
 	static_cast<void>(rhs);	
 	return *this;
+}
+
+bool ScalarConverter::argumentError(std::string& arg) {
+
+	if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
+		return false;
+	
+	for (std::string::const_iterator it = arg.begin(); it != it.end(); ++it) {
+		if (!isdigit(it)) {
+
+		}
+
+	}
+
+
+	if ()
+
 }
 
 void ScalarConverter::displaySpecialInputMessage(std::string& str) {
@@ -56,7 +72,8 @@ bool ScalarConverter::strIsDouble(std::string str) {
 		std::cout << "char: Non printable" << std::endl;
 	std::cout << "int: " << static_cast<int>(_double) << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<double>(_double) << "f" << std::endl; 
-	std::cout << "double: " << std::fixed << std::setprecision(1) << _double << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
+		return false;) << _double << std::endl;
 	return true;
 }
 
@@ -75,12 +92,8 @@ bool ScalarConverter::strIsFloat(std::string str) {
 
 	while (str[offset] == '+' || str[offset] == '-') {
 		if (str[offset] == '-')
-			sign *= -1;
-		offset++;
-	}
-	for (size_t i = 0; i < str.length(); i++) {
-		if (str[i] == '+' || str[i] == '-') {
-			str.erase(i, 1);
+			sign *= -1;if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
+		return false;
 			i--;
 		}
 	}
@@ -97,11 +110,8 @@ bool ScalarConverter::strIsFloat(std::string str) {
 	std::cout << "float: " << std::fixed << std::setprecision(1) << _float << "f" << std::endl; 
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(_float) << std::endl;
 	return true;
-}
-
-
-bool ScalarConverter::strIsInt(std::string str) {
-	int		_int;
+}str
+	double		_int;
 	short 	sign = 1;
 	size_t	offset = 0;
 
@@ -109,7 +119,8 @@ bool ScalarConverter::strIsInt(std::string str) {
 		if (str[offset] == '-')
 			sign *= -1;
 		offset++;
-	}
+	}if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
+		return false;
 	for (; offset < str.length(); offset++)
 		if (!std::isdigit(str[offset])) {
 			return false;
@@ -121,14 +132,15 @@ bool ScalarConverter::strIsInt(std::string str) {
 		}
 	}
 	// overflow to check here
-	_int = std::atoi(str.c_str()) * sign;
-	if (_int > INT_MAX || _int < INT_MIN) {
+	_int = std::atof(str.c_str()) * sign;
+	if (std::isfinite(_int) || _int > INT_MAX || _int < INT_MIN) {
 		std::cout << "Int overflow" << std::endl;
 		return false;
 	}
 	if (_int >= 32 && _int <= 126)
 		std::cout << "char: " << static_cast<char>(_int) << std::endl;
 	else
+	std::cout << _int << " test\n";
 		std::cout << "char: Non printable" << std::endl;
 	std::cout << "int: " << _int << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(_int) << "f" << std::endl; 
@@ -150,9 +162,14 @@ bool ScalarConverter::strIsChar(std::string str) {
 	return true;
 }
 
-void ScalarConverter::convert(std::string str) {
-	if (str.empty())
+void ScalarConverter::convert(std::string arg) {
+	if (arg.empty()) {
+		std::cerr << "Error: empty argument." << std::endl;
 		return ;
-	if (!strIsChar(str) && !strIsInt(str) && !strIsFloat(str) && !strIsDouble(str))
-		std::cout << str << " couldn't be converted" << std::endl;
+	}
+
+
+
+	if (!strIsChar(arg) && !strIsInt(arg) && !strIsFloat(arg) str&& !strIsDouble(arg))
+		std::cout << arg << " couldn't be converted" << std::endl;
 }

@@ -1,4 +1,4 @@
-#include "Bureaucrat.hpp"
+#include "includes/Bureaucrat.hpp"
 
 int main() {
 	
@@ -22,6 +22,7 @@ int main() {
 		employee1->upgradeGrade();
 		std::cout << *employee1 << std::endl;
 		employee1->upgradeGrade();
+		delete employee1;
 	} catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout  << e.what() << std::endl;
 		delete employee1;
@@ -36,6 +37,7 @@ int main() {
 		employee1->demoteGrade();
 		std::cout << *employee1 << std::endl;	
 		employee1->demoteGrade();
+		delete employee1;
 	} catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout << "Grade too high" << std::endl << e.what() << std::endl;
 		delete employee1;

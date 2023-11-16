@@ -1,7 +1,7 @@
 
 #pragma once
 #include <iostream>
-#include <cstdint>
+#include <stdint.h>
 #include <exception>
 
 class Bureaucrat {
@@ -29,7 +29,7 @@ class Bureaucrat {
 			Bureaucrat();
 			
 			const std::string	_name;
-			int16_t				_grade;
+			int16_t			_grade;
 			
 };
 

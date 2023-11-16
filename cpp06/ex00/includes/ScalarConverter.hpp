@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <climits>
+#include <cmath>
 #include <cfloat>
 #include <regex>
 #include "includes/ScalarConverter.hpp"
