@@ -19,6 +19,7 @@ class  ScalarConverter {
 			static void		convert(std::string str);
 
 	private:
+			static bool		argumentError(std::string& arg);
 			static bool		strIsChar(std::string str);
 			static bool		strIsInt(std::string str);
 			static bool		strIsFloat(std::string str);

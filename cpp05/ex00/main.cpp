@@ -10,10 +10,8 @@ int main() {
 		delete employee1;
 	} catch (Bureaucrat::GradeTooHighException& e) {
 		std::cout << e.what() << std::endl;
-		delete employee1;
 	} catch (Bureaucrat::GradeTooLowException& e) {
 		std::cout << e.what() << std::endl;
-		delete employee1;
 	}
 
 	std::cout << std::endl << "Upgrade:" << std::endl;

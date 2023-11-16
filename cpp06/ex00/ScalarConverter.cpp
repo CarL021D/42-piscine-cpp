@@ -12,19 +12,20 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& rhs) {
 
 bool ScalarConverter::argumentError(std::string& arg) {
 
-	if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
-		return false;
-	
-	for (std::string::const_iterator it = arg.begin(); it != it.end(); ++it) {
-		if (!isdigit(it)) {
+	bool mulitipleDot = false;
 
-		}
+	for (uint32_t i = 0; i < arg.size(); ++i) {
 
+		if (isalpha(arg[i]) && i != arg.size() - 1)
+			return true;
+
+		if (arg[i] == '.' && mulitipleDot == true)
+			return true;
+
+		if (arg[i] == '.')
+			mulitipleDot = true;
 	}
-
-
-	if ()
-
+	return false;
 }
 
 void ScalarConverter::displaySpecialInputMessage(std::string& str) {
@@ -72,8 +73,7 @@ bool ScalarConverter::strIsDouble(std::string str) {
 		std::cout << "char: Non printable" << std::endl;
 	std::cout << "int: " << static_cast<int>(_double) << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<double>(_double) << "f" << std::endl; 
-	std::cout << "double: " << std::fixed << std::setprecision(1if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
-		return false;) << _double << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << _double << std::endl;
 	return true;
 }
 
@@ -92,8 +92,12 @@ bool ScalarConverter::strIsFloat(std::string str) {
 
 	while (str[offset] == '+' || str[offset] == '-') {
 		if (str[offset] == '-')
-			sign *= -1;if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
-		return false;
+			sign *= -1;
+		offset++;
+	}
+	for (size_t i = 0; i < str.length(); i++) {
+		if (str[i] == '+' || str[i] == '-') {
+			str.erase(i, 1);
 			i--;
 		}
 	}
@@ -110,7 +114,10 @@ bool ScalarConverter::strIsFloat(std::string str) {
 	std::cout << "float: " << std::fixed << std::setprecision(1) << _float << "f" << std::endl; 
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(_float) << std::endl;
 	return true;
-}str
+}
+
+
+bool ScalarConverter::strIsInt(std::string str) {
 	double		_int;
 	short 	sign = 1;
 	size_t	offset = 0;
@@ -119,8 +126,7 @@ bool ScalarConverter::strIsFloat(std::string str) {
 		if (str[offset] == '-')
 			sign *= -1;
 		offset++;
-	}if (str.length() != 1 || (str[0] - 48) < 32 || (str[0] - 48) > 126 )
-		return false;
+	}
 	for (; offset < str.length(); offset++)
 		if (!std::isdigit(str[offset])) {
 			return false;
@@ -163,13 +169,13 @@ bool ScalarConverter::strIsChar(std::string str) {
 }
 
 void ScalarConverter::convert(std::string arg) {
-	if (arg.empty()) {
-		std::cerr << "Error: empty argument." << std::endl;
+	if (arg.empty() || argumentError(arg)) {
+		std::cerr << "Error: bad argument." << std::endl;
 		return ;
 	}
 
 
 
-	if (!strIsChar(arg) && !strIsInt(arg) && !strIsFloat(arg) str&& !strIsDouble(arg))
+	if (!strIsChar(arg) && !strIsInt(arg) && !strIsFloat(arg) && !strIsDouble(arg))
 		std::cout << arg << " couldn't be converted" << std::endl;
 }
