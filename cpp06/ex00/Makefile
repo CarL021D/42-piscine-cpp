@@ -21,7 +21,7 @@ RM			=	rm -f
 
 CFLAGS		= 	-Wall -Wextra -Werror -I./
 
-# CPPFLAGS	= 	-std=c++98
+CPPFLAGS	= 	-std=c++98
 
 NAME		= 	ex00
 

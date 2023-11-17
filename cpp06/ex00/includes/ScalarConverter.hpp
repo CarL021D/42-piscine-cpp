@@ -5,7 +5,7 @@
 #include <climits>
 #include <cmath>
 #include <cfloat>
-#include <regex>
+#include <stdlib.h>
 #include "includes/ScalarConverter.hpp"
 
 

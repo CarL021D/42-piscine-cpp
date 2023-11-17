@@ -13,7 +13,7 @@ bool ScalarConverter::argumentError(std::string& arg) {
 
 	bool mulitipleDot = false;
 
-	for (uint32_t i = 0; i < arg.size(); ++i) {
+	for (uint32_t i = 0; i < arg.size() - 1; ++i) {
 
 		if (arg[0] == '-')
 			i++;
