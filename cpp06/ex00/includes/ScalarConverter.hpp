@@ -23,6 +23,4 @@ class  ScalarConverter {
 			static void		argIntoChar(double value);
 			static void		argIntoInt(double value);
 			static void		argIntoFloat(double value);
-			static bool		argIntoDouble(std::string str);
-			static bool		specialAttribut(std::string str);
 };

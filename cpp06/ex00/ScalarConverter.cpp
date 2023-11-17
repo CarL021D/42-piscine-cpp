@@ -54,14 +54,11 @@ void ScalarConverter::argIntoInt(double value) {
 void  ScalarConverter::argIntoChar(double value) {
 
 	char c = static_cast<char>(value);
-	std::cout << "double char 			" << value <<std::endl;
 
 	if (!std::isfinite(value) || value > INT_MAX || value < INT_MIN) {
 		std::cout << "char: impossible" << std::endl;
 		return ;
 	}
-
-	std::cout << "char 			[" << c << "]" <<std::endl;
 
 	if (isprint(c))
 		std::cout << "char: " << c << std::endl;
