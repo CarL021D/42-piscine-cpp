@@ -1,4 +1,4 @@
-#include <cstdint>
+#include <stdint.h>
 
 typedef struct Data {
 	int		nbr;

@@ -1,4 +1,3 @@
-#include <cstdint>
 #include "includes/Serializer.hpp"
 
 Serializer::Serializer() {}
