@@ -20,10 +20,9 @@ class  ScalarConverter {
 
 	private:
 			static bool		argumentError(std::string& arg);
-			static bool		strIsChar(std::string str);
-			static bool		strIsInt(std::string str);
-			static bool		strIsFloat(std::string str);
-			static bool		strIsDouble(std::string str);
+			static void		argIntoChar(double value);
+			static void		argIntoInt(double value);
+			static void		argIntoFloat(double value);
+			static bool		argIntoDouble(std::string str);
 			static bool		specialAttribut(std::string str);
-			static void		displaySpecialInputMessage(std::string& str);
 };
