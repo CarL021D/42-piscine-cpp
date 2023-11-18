@@ -35,8 +35,8 @@ int main(int ac, char **av) {
 
 	std::cout << "before:	" << av[1] << std::endl;
 
-	sort(av[1], vector);
-	sort(av[1], deque);
+	pmerge.sort(av[1], vector);
+	pmerge.sort(av[1], deque);
 
 	std::cout << "Vector ";
 	pmerge.displayVectorValues(vector);
