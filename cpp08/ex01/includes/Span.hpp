@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
+#include <stdint.h>
 #include <vector>
+#include <climits>
+#include <cmath>
 #include <exception>
 
 class IndexErrorException : public std::exception {
@@ -13,18 +16,21 @@ class IndexErrorException : public std::exception {
 class Span {
 
 	public:
-			Span();
 			~Span();
-			Span(size_t sizeMax);
+			Span(uint32_t sizeMax);
 			Span(const Span& src);
 			Span& operator=(const Span& rhs);
 
-			void	addNumber(int nbr);
+			void	addNumber(int32_t nbr);
 			int		shortestSpan() const;
 			int		longestSpan() const;
 			int		begin() const;
 			int		end() const;
+			void	printContent() const;
+
 	private:
-			std::vector<int>	_vec;
-			size_t				_sizeMax;
+			Span();
+			
+			std::vector<int32_t>	_vec;
+			int32_t					_sizeMax;
 };
