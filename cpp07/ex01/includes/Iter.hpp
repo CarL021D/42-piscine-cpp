@@ -2,7 +2,7 @@
 
 template< typename T >
 void	printTArr(T& arg) {
-	std::cout << " " << arg << " ";
+	std::cout << " [" << arg << "] ";
 }
 
 template< typename T >
