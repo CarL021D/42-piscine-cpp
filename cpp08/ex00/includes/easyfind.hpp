@@ -9,13 +9,13 @@ class NoOccurenceException : public std::exception {
 			}
 };
 
-template <typename T>
-void easyFind(const T& container, int nb) {
+template <typename T, typename U>
+void easyFind(const T& container, const U& value) {
 	typename T::const_iterator it;
 
 	for (it = container.begin(); it != container.end(); ++it) {
-		if (*it == nb) {
-			std::cout << "Occurrence of number: " << nb << " found at index " << std::distance(container.begin(), it) << std::endl;
+		if (*it == value) {
+			std::cout << "Occurrence of number: " << value << " found at index " << std::distance(container.begin(), it) << std::endl;
 			return;
 		}
 	}
