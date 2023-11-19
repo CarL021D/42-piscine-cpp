@@ -23,7 +23,7 @@ int main() {
 	std::cout << "it: " << *it << std::endl;
 	it++;
 	std::cout << "it: " << *it << std::endl;
-		it++;
+	it++;
 	std::cout << "it: " << *it << std::endl;
 	it--;
 	std::cout << "it: " << *it << std::endl;
@@ -36,5 +36,4 @@ int main() {
 
 	std::cout << std::endl;
 	std::cout << "size [" << mstack.size() << "]"<< std::endl;
-	return 0;
 }
