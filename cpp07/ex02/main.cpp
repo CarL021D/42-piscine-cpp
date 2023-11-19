@@ -46,8 +46,8 @@ int main() {
 		std::cout << "Arr size [" << shortArr.size() << "]" << std::endl;
 		std::cout << std::endl;
 
+		std::cout << "Arr size [" << cpy.size() << "]" << std::endl;
 		std::cout << stringArr[3] << std::endl;
-		std::cout << stringArr[0] << std::endl;
 	} catch (const std::exception & e) {
 		std::cout << "Exception of type: " << e.what() << std::endl;
 	}
