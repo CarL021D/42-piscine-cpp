@@ -23,8 +23,6 @@ int main() {
 	std::cout << "it: " << *it << std::endl;
 	it++;
 	std::cout << "it: " << *it << std::endl;
-	it++;
-	std::cout << "it: " << *it << std::endl;
 	it--;
 	std::cout << "it: " << *it << std::endl;
 
