@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <vector>
 #include <climits>
+#include <limits>
 #include <cmath>
 #include <exception>
 
@@ -16,8 +17,8 @@ class IndexErrorException : public std::exception {
 class Span {
 
 	public:
+			Span(int32_t sizeMax);
 			~Span();
-			Span(uint32_t sizeMax);
 			Span(const Span& src);
 			Span& operator=(const Span& rhs);
 

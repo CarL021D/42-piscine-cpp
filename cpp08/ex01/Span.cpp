@@ -4,9 +4,9 @@ Span::Span() {}
 
 Span::~Span() {}
 
-Span::Span(uint32_t sizeMax) {
+Span::Span(int32_t sizeMax) {
 	
-	if (!std::isfinite(_sizeMax) || _sizeMax > INT_MAX || _sizeMax < 0)
+	if (!std::isfinite(sizeMax) || sizeMax > INT_MAX || sizeMax < 0)
 		throw IndexErrorException();
 	_sizeMax = sizeMax;
 }
