@@ -3,7 +3,6 @@
 #include <stack>
 #include <iterator>
 
-// Custom exception class for no occurrence
 class NoOccurrenceException : public std::exception {
 public:
 	const char* what() const throw() {
@@ -11,58 +10,15 @@ public:
 	}
 };
 
-template <typename T>
-class MutantStack : public std::stack<T> {
-public:
-	using typename std::stack<T>::stack;
+template <typename T, typename U = std::deque<T> >
+class MutantStack : public std::stack<T, U> {
 
-	// Custom iterator class
-	class iterator : public std::iterator<std::bidirectional_iterator_tag, T> {
-		private:
-				typename std::stack<T>::container_type::iterator iter;
-		public:
-				explicit iterator(typename std::stack<T>::container_type::iterator it) : iter(it) {}
+	public:
+			typedef typename std::stack<T, U>::container_type::iterator iter;
+			typedef typename std::stack<T, U>::container_type::const_iterator const_iter;
 
-				T& operator*() {
-					return *iter;
-				}
-
-				iterator& operator++() {
-					++iter;
-					return *this;
-				}
-
-				iterator operator++(int) {
-					iterator temp = *this;
-					++iter;
-					return temp;
-				}
-
-				iterator& operator--() {
-					--iter;
-					return *this;
-				}
-
-				iterator operator--(int) {
-					iterator temp = *this;
-					--iter;
-					return temp;
-				}
-
-				bool operator==(const iterator& rhs) const {
-					return iter == rhs.iter;
-				}
-
-				bool operator!=(const iterator& rhs) const {
-					return iter != rhs.iter;
-				}
-	};
-
-	iterator begin() {
-		return iterator(std::stack<T>::c.begin());
-	}
-
-	iterator end() {
-		return iterator(std::stack<T>::c.end());
-	}
+			iter begin() { return this->c.begin(); }
+			iter end() { return this->c.end(); }
+			const_iter begin() const { return this->c.begin(); }
+			const_iter end() const { return this->c.end(); }
 };
