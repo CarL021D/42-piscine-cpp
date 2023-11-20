@@ -25,12 +25,7 @@ int main()
 
 
 		Span spo(10000);
-		for (uint32_t i = 0; i < 10000; ++i) {
-
-			int32_t randomNumber = rand();
-			spo.addNumber(randomNumber);
-		}
-
+		spo.addRandomNbrs(10000);
 		// spo.printContent();
 		std::cout << "shortest span: " << spo.shortestSpan() << std::endl;
 		std::cout << "longest span: " << spo.longestSpan() << std::endl;

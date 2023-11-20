@@ -100,3 +100,19 @@ void Span::printContent() const {
 		std::cout << " " << *it << " ";
 	std::cout << std::endl;
 }
+
+void	Span::addRandomNbrs(uint32_t count) {
+
+	std::vector<int32_t> tmp;
+
+	if (count < 1)
+		return ;
+
+	for (uint32_t i = 0; i < count; ++i) {
+
+		int32_t nb = rand();
+		tmp.push_back(nb);
+	}
+
+	_vec.insert(_vec.end(), tmp.begin(), tmp.end());
+}

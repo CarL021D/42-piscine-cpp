@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdint.h>
 #include <vector>
+#include <algorithm>
 #include <climits>
 #include <limits>
 #include <cmath>
@@ -28,9 +29,7 @@ class Span {
 			int		begin() const;
 			int		end() const;
 			void	printContent() const;
-
-			
-
+			void	addRandomNbrs(uint32_t count);
 
 	private:
 			Span();
