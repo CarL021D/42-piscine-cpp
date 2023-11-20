@@ -4,7 +4,7 @@ Span::Span() {}
 
 Span::~Span() {}
 
-Span::Span(int32_t sizeMax) {
+Span::Span(int32_t sizeMax) : _size(0) {
 	
 	if (!std::isfinite(sizeMax) || sizeMax > INT_MAX || sizeMax < 0)
 		throw IndexErrorException();
@@ -18,6 +18,7 @@ Span::Span(const Span& src) {
 
 	_vec = src._vec;
 	_sizeMax = src._sizeMax;
+	_size = src._size;
 
 	for (std::vector<int>::const_iterator it = src._vec.begin(); it != src._vec.end(); ++it)
 		_vec.push_back(*it);
@@ -31,6 +32,7 @@ Span& Span::operator=(const Span& rhs) {
 
 	_vec = rhs._vec;
 	_sizeMax = rhs._sizeMax;
+	_size = rhs._size;
 
 	for (std::vector<int>::const_iterator it = rhs._vec.begin(); it != rhs._vec.end(); ++it)
 		_vec.push_back(*it);
@@ -39,10 +41,11 @@ Span& Span::operator=(const Span& rhs) {
 
 void	Span::addNumber(int32_t nbr) {
 
-	if (nbr > INT_MAX || nbr < INT_MIN)
-		return ;
+	if (nbr > INT_MAX || nbr < INT_MIN || _size == _sizeMax)
+		throw IndexErrorException();
 
 	_vec.push_back(nbr);
+	_size++;
 }
 
 int	Span::longestSpan() const {

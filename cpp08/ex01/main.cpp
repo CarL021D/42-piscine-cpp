@@ -7,22 +7,24 @@
 int main()
 {
 	try {
+		// // Empty arr test
+		// Span spa = Span(0);
+		// spa.addNumber(1);
+
 		Span sp(5);
-		// Span sp = Span(0);
 		sp.addNumber(100);
 		sp.addNumber(3);
 		sp.addNumber(0);
 		sp.addNumber(21);
 		sp.addNumber(44);
-		// sp.addNumber(9);
 		sp.printContent();
 
 		std::cout << "shortest span: " << sp.shortestSpan() << std::endl;
 		std::cout << "longest span: " << sp.longestSpan() << std::endl;
 		std::cout << std::endl;
 
-		Span spo(10000);
 
+		Span spo(10000);
 		for (uint32_t i = 0; i < 10000; ++i) {
 
 			int32_t randomNumber = rand();

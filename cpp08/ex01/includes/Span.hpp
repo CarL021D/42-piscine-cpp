@@ -29,9 +29,13 @@ class Span {
 			int		end() const;
 			void	printContent() const;
 
+			
+
+
 	private:
 			Span();
 			
 			std::vector<int32_t>	_vec;
 			int32_t					_sizeMax;
+			int32_t					_size;
 };
