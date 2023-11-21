@@ -24,11 +24,13 @@ int main()
 		std::cout << std::endl;
 
 
-		// Span spo(10000);
-		// spo.addRandomNbrs(10000);
-		// // spo.printContent();
-		// std::cout << "shortest span: " << spo.shortestSpan() << std::endl;
-		// std::cout << "longest span: " << spo.longestSpan() << std::endl;
+		Span spo(10000);
+
+		spo.addRandomNbrs(10000);
+		// spo.printContent();
+
+		std::cout << "shortest span: " << spo.shortestSpan() << std::endl;
+		std::cout << "longest span: " << spo.longestSpan() << std::endl;
 	}
 	catch (const IndexErrorException &e) {
 		std::cout << "Exception: " << e.what() << std::endl;

@@ -50,54 +50,50 @@ void	Span::addNumber(int32_t nbr) {
 
 int	Span::longestSpan() const {
 
+	std::vector<int32_t> tmp;
+	int32_t min, max;
 
-	// std::vector<int32_t> tmp;
 
-	// if (_sizeMax < 2)
-	// 	throw IndexErrorException();
-
-	// tmp = _vec;
-	// std::sort(tmp.begin(), tmp.end());
-	// int32_t maxRange = std::numeric_limits<int>::min();
-
-	// std::vector<int32_t>::const_iterator prev = tmp.begin();
-	// std::vector<int32_t>::const_iterator it = tmp.begin();
-	// ++it; // Move to the next element after the first
-
-	// for (; it != tmp.end(); ++it) {
-	// 	if (*it - *prev > maxRange) {
-	// 		maxRange = *it - *prev;
-	// 	}
-	// 	++prev;
-	// }
-
-	if (_sizeMax < 2)
+	if (_sizeMax < 2 || _size < 2)
 		throw IndexErrorException();
 
-		
+	tmp = _vec;
+	std::sort(tmp.begin(), tmp.end());
 
-	int maxRange = std::numeric_limits<int>::min();
-	for (uint32_t i = 0; i < _vec.size() - 1; i++) {
-		for (uint32_t j = i + 1; j < _vec.size(); j++) {
-			int range = std::abs(_vec[j] - _vec[i]);
-			maxRange = std::max(maxRange, range);
-		}
+	min = tmp.at(0);
+	max = tmp.at(1);
+
+	for (std::vector<int32_t>::const_iterator it = tmp.begin() + 2; it != tmp.end(); ++it) {
+
+		if (*it > max) { max = *it; }
+		if (*it < min) { min = *it; }
 	}
-	return maxRange;
+
+	return max - min;
 }
 
 int	Span::shortestSpan() const {
-	if (_sizeMax < 2)
-		throw IndexErrorException();
 	
-	int minRange = std::numeric_limits<int>::max();
-	for (uint32_t i = 0; i < _vec.size() - 1; i++) {
-		for (uint32_t j = i + 1; j < _vec.size(); j++) {
-			int range = std::abs(_vec[j] - _vec[i]);
-			minRange = std::min(minRange, range);
-		}
+	std::vector<int32_t>	tmp;
+	int32_t					shortestRange;
+
+	if (_sizeMax < 2 || _size < 2)
+		throw IndexErrorException();
+
+	tmp = _vec;
+
+	std::sort(tmp.begin(), tmp.end());
+	shortestRange = tmp.at(1) - tmp.at(0);
+
+	for (std::vector<int32_t>::const_iterator it = tmp.begin() + 2; it != tmp.end(); ++it) {
+
+		std::vector<int32_t>::const_iterator tmpIt = it;
+		--tmpIt;		
+		if ((*it - *tmpIt) < (shortestRange))
+			shortestRange = *it - *tmpIt;
 	}
-	return minRange;
+
+	return shortestRange;
 }
 
 int Span::begin() const {
@@ -119,7 +115,7 @@ void Span::printContent() const {
 		return ;
 	}
 
-	std::cout << "List:";
+	std::cout << "Element(s):";
 	for (std::vector<int>::const_iterator it = _vec.begin(); it != _vec.end(); ++it)
 		std::cout << " " << *it << " ";
 	std::cout << std::endl;
@@ -139,4 +135,5 @@ void	Span::addRandomNbrs(uint32_t count) {
 	}
 
 	_vec.insert(_vec.end(), tmp.begin(), tmp.end());
+	_size += count;
 }
