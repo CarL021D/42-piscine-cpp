@@ -18,7 +18,7 @@ class PmergeMe {
 			void displayDequeValues(std::deque<uint32_t>& deque) const;
 
 			template<typename Container>
-			void sort(const std::string& line, Container& container) {
+			void sort(std::string line, Container& container) {
 
 				clock_t startTime = clock();
 
@@ -49,7 +49,7 @@ class PmergeMe {
 
 	private:
 			template<typename Container>
-			std::vector<std::pair<uint32_t, uint32_t> >    makePairs(Container& container, const std::string& line) {
+			std::vector<std::pair<uint32_t, uint32_t> >    makePairs(Container& container, std::string& line) {
 
 				(void)container;
 				std::vector<std::pair<uint32_t, uint32_t> > pairs;
@@ -57,6 +57,8 @@ class PmergeMe {
 				int32_t secondValue = -1;
 				uint32_t pos = 0;
 				uint32_t count = 0;
+
+				line = removeFrontAndTraillingWhiteSpaces(line);
 
 				while (pos < line.length()) {
 					
@@ -157,6 +159,20 @@ class PmergeMe {
 				if (container.at(mid) > target)
 					return binarySearch(container, target, low, mid);
 				return binarySearch(container, target, mid + 1, high);	
+			}
+
+			std::string removeFrontAndTraillingWhiteSpaces(std::string& str) {
+
+				std::string truncStr;
+
+				size_t startPos = str.find_first_not_of(" \t");
+				if (startPos != std::string::npos) {
+					truncStr = str.substr(startPos);
+					size_t endPos = truncStr.find_last_not_of(" \t");
+					if (endPos != std::string::npos)
+						truncStr = truncStr.substr(0, endPos + 1 );
+				}
+				return truncStr;
 			}
 
 			bool 		_oddList;

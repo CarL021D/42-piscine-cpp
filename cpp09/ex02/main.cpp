@@ -2,8 +2,6 @@
 #include <vector>
 #include "includes/PmergeMe.hpp"
 
-
-
 bool commandLineError(char **av) {
 
 	std::string line = av[1];
