@@ -1,11 +1,14 @@
 #include <iostream>
 #include <stack>
+#include <vector>
 #include <iterator>
+#include <stdint.h>
 #include "includes/MutantStack.hpp"
 
 int main() {
 
-	MutantStack<int> mstack;
+	MutantStack<int32_t> mstack;
+	// MutantStack<int32_t, std::vector<int32_t> > mstack;
 	mstack.push(2);
 	mstack.push(21);
 	std::cout << "MutantStack size: [" << mstack.size() << "]"<< std::endl;
@@ -20,8 +23,8 @@ int main() {
 	std::cout << std::endl;
 
 
-	MutantStack<int>::iter it = mstack.begin();
-	// MutantStack<int>::const_iter it = mstack.begin();
+	MutantStack<int32_t>::iter it = mstack.begin();
+	// MutantStack<int32_t, std::vector<int32_t> >::iter it = mstack.begin();
 	std::cout << "it: " << *it << std::endl;
 	it++;
 	std::cout << "it: " << *it << std::endl;
@@ -30,8 +33,8 @@ int main() {
 
 	std::cout << "List: ";
 	it = mstack.begin();
-	MutantStack<int>::iter ite = mstack.end();
-	// MutantStack<int>::const_iter ite = mstack.end();
+	MutantStack<int32_t>::iter ite = mstack.end();
+	// MutantStack<int32_t, std::vector<int32_t> >::iter ite = mstack.end();
 	while (it != ite) {
 		std::cout << " [" << *it << "] " ;
 		++it;
