@@ -116,7 +116,7 @@ bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 		val = valueStr.substr(1);
 
 	if (strValFormatError(val)) {
-		std::cout << "-> Error: bad format." << std::endl;
+		std::cout << "Error: bad format." << std::endl;
 		return true;
 	}
 
@@ -125,16 +125,11 @@ bool BitcoinExchange::valueFormatError(const std::string& valueStr) {
 		return true;
 	}
 
-	if (!intMaxIntMinInrangeCheck(stringIntoLong(val))) {
+	if (stringIntoLong(val) > 1000) {
 		std::cout << "Error: too large a number." << std::endl;
 		return true;
 	}
-
-	if (!isFloat(val)) {
-		std::cout << "Error: bad input => " << val << "." << std::endl;
-		return true;
-	}
-
+	
 	_btcCount = stringIntoFloat(val);
 	
 	if (_btcCount < 0) {
@@ -196,6 +191,12 @@ bool BitcoinExchange::nonExistentDateError(const std::string& dateStr, const std
 			std::cout << "Error: bad input => " << dateStr << "." << std::endl;
 			return true;
 	}
+
+	if (_year < 2009 || (_year == 2009 && _month  == 1 && _day == 1)) {
+		std::cout << "Error: bad input." << std::endl;
+		return true;
+	}
+
 	return false;
 }
 
